@@ -1,0 +1,37 @@
+{
+  "collected_at": "2026-11-10T16:28:30.251317+00:00",
+  "source": "live local services",
+  "result": {
+    "name": "iris-classifier",
+    "versions": [
+      {
+        "version": "4",
+        "run_id": "12ea6ed7b3de463bab159f9f454a01df",
+        "status": "READY",
+        "source": "models:/m-061c93fa6fd4428d8b906d16a41f2556",
+        "aliases": []
+      },
+      {
+        "version": "3",
+        "run_id": "d6cf8e19d7b64fdb9c0124c63ff7355a",
+        "status": "READY",
+        "source": "models:/m-9dc908c681204268b51b2e164e83dfc3",
+        "aliases": []
+      },
+      {
+        "version": "2",
+        "run_id": "b70a9a9e59a5423a8264e76d90714a3b",
+        "status": "READY",
+        "source": "models:/m-e3f519bc2d924bdbbf629df318d78207",
+        "aliases": []
+      },
+      {
+        "version": "1",
+        "run_id": "6138bca51d5f4b0ab91bf5c8d4db3adc",
+        "status": "READY",
+        "source": "models:/m-a803e073434f4472aa02645d3bd7313f",
+        "aliases": []
+      }
+    ]
+  }
+}

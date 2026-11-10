@@ -4,15 +4,15 @@ rootdir: /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3
 configfile: pyproject.toml
 testpaths: tests
 plugins: cov-7.0.0, anyio-4.16.0, hydra-core-1.3.8, platformdirs-4.14.5
-collected 46 items
+collected 47 items
 
-tests/test_airflow.py ......                                             [ 13%]
-tests/test_dvc.py ......                                                 [ 26%]
-tests/test_executor.py ......                                            [ 39%]
-tests/test_kubernetes.py ......                                          [ 52%]
-tests/test_llm_protocol.py .                                             [ 54%]
+tests/test_airflow.py ......                                             [ 12%]
+tests/test_dvc.py ......                                                 [ 25%]
+tests/test_executor.py .......                                           [ 40%]
+tests/test_kubernetes.py ......                                          [ 53%]
+tests/test_llm_protocol.py .                                             [ 55%]
 tests/test_mlflow.py ....                                                [ 63%]
-tests/test_orchestrator.py ...........                                   [ 86%]
+tests/test_orchestrator.py ...........                                   [ 87%]
 tests/test_training_api.py ......                                        [100%]
 
 =============================== warnings summary ===============================
@@ -42,15 +42,15 @@ Name                              Stmts   Miss  Cover   Missing
 ---------------------------------------------------------------
 agent/__init__.py                     0      0   100%
 agent/config.py                      20      2    90%   37-38
-agent/executor.py                    68      0   100%
+agent/executor.py                    72      0   100%
 agent/main.py                        41     14    66%   34, 39, 43-59, 63
-agent/orchestrator.py               206     35    83%   81, 83, 85, 87, 89, 110-111, 113-117, 125, 133, 136, 141, 195, 203, 225, 236, 238-239, 259-260, 271, 277-280, 285, 290, 307, 312, 323-324, 339
+agent/orchestrator.py               206     35    83%   81, 83, 85, 87, 89, 110-111, 113-117, 125, 133, 136, 141, 195, 203, 225, 236, 238-239, 259-260, 271, 277-285, 290, 295, 312, 317, 328-329, 344
 agent/permissions.py                  7      0   100%
 agent/schemas.py                     58      0   100%
 agent/tools/__init__.py               0      0   100%
 agent/tools/airflow_tools.py         45      4    91%   25, 47, 65-69
 agent/tools/dvc_tools.py             48      4    92%   59-61, 64
-agent/tools/kubernetes_tools.py      63     22    65%   17-24, 77-80, 103-106, 129, 138-149
+agent/tools/kubernetes_tools.py      69     27    61%   18-25, 78-81, 104-107, 131, 140-158
 agent/tools/mlflow_tools.py          43      3    93%   33, 94-95
 api/__init__.py                       0      0   100%
 api/main.py                          44      2    95%   21, 54
@@ -59,6 +59,6 @@ training/prepare_data.py             16     16     0%   1-22
 training/stages.py                   95     34    64%   26, 29, 31, 33, 52, 95-147, 159, 166-168, 174-178
 training/train.py                    43     43     0%   1-53
 ---------------------------------------------------------------
-TOTAL                               797    179    78%
+TOTAL                               807    184    77%
 Coverage JSON written to file .local/coverage.json
-======================= 46 passed, 10 warnings in 45.83s =======================
+======================= 47 passed, 10 warnings in 52.70s =======================

@@ -1,0 +1,98 @@
+{
+  "collected_at": "2026-11-10T16:28:25.527363+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Which dataset version was used for experiment run 12ea6ed7b3de463bab159f9f454a01df?",
+    "agent": {
+      "request_id": "be35d99ed02d41e99e798953bf55c873",
+      "planner": "rules",
+      "facts": [
+        "Run 12ea6ed7b3de463bab159f9f454a01df: status=FINISHED, metrics={'accuracy': 0.9555555555555556, 'f1': 0.9555555555555556}.",
+        "Dataset data/iris.csv.dvc at Git 9f5392f260f0db71a772e172359810ce85cd7208: DVC outputs=[{'md5': '5c2fcf018f5f74ee80f846aabcc97f36', 'size': 2757, 'isexec': True, 'hash': 'md5', 'path': 'iris.csv'}]."
+      ],
+      "uncertainties": [
+        "No supplied degradation measurements or violated freshness policy establish a need for retraining."
+      ],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "mlflow.get_run",
+          "status": "ok",
+          "data": {
+            "run_id": "12ea6ed7b3de463bab159f9f454a01df",
+            "experiment_id": "1",
+            "status": "FINISHED",
+            "start_time": 1794328061837,
+            "end_time": 1794328077229,
+            "metrics": {
+              "accuracy": 0.9555555555555556,
+              "f1": 0.9555555555555556
+            },
+            "params": {
+              "max_depth": "3",
+              "n_estimators": "60",
+              "split_seed": "42",
+              "test_size": "0.3",
+              "min_f1": "0.85"
+            },
+            "tags": {
+              "mlflow.user": "airflow",
+              "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+              "mlflow.source.type": "LOCAL",
+              "mlflow.runName": "5fc09526c5c30b8f",
+              "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "dataset_git_commit": "9f5392f260f0db71a772e172359810ce85cd7208",
+              "dataset_pointer": "data/iris.csv.dvc",
+              "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+              "quality_gate": "passed",
+              "evaluation_split": "stratified-seed42-test0.3"
+            },
+            "artifacts": [
+              {
+                "path": "evaluation.json",
+                "is_dir": false,
+                "size": 515
+              },
+              {
+                "path": "model.joblib",
+                "is_dir": false,
+                "size": 70641
+              },
+              {
+                "path": "validation.json",
+                "is_dir": false,
+                "size": 320
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 420.865,
+          "request_id": "be35d99ed02d41e99e798953bf55c873"
+        },
+        {
+          "tool": "dvc.current_version",
+          "status": "ok",
+          "data": {
+            "git_commit": "9f5392f260f0db71a772e172359810ce85cd7208",
+            "requested_ref": "9f5392f260f0db71a772e172359810ce85cd7208",
+            "pointer": "data/iris.csv.dvc",
+            "outputs": [
+              {
+                "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "size": 2757,
+                "isexec": true,
+                "hash": "md5",
+                "path": "iris.csv"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 491.631,
+          "request_id": "be35d99ed02d41e99e798953bf55c873"
+        }
+      ]
+    }
+  }
+}

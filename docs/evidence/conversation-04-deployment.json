@@ -1,0 +1,517 @@
+{
+  "collected_at": "2026-11-10T16:28:27.692160+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Check Kubernetes deployment health and logs",
+    "agent": {
+      "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4",
+      "planner": "rules",
+      "facts": [
+        "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:b70a9a9e59a5423a8264e76d90714a3b'], version={'MODEL_RUN_ID': 'b70a9a9e59a5423a8264e76d90714a3b', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
+        "Pod prediction-api-6fb6b69847-jh7v5: phase=Running, healthy=True, restarts=0.",
+        "Pod prediction-api-6fb6b69847-m9lk2: phase=Running, healthy=True, restarts=0.",
+        "Pod prediction-api-c95659fbc-gpbcl: phase=Running, healthy=False, restarts=0.",
+        "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.245.239\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
+        "Recorded Kubernetes warning events: [{\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 5, \"last_seen\": \"2026-11-10 16:24:00+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 13, \"last_seen\": \"2026-11-10 16:24:54+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:23:55+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 13, \"last_seen\": \"2026-11-10 16:25:06+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 7, \"last_seen\": \"2026-11-10 16:28:25+00:00\"}]",
+        "Pod prediction-api-c95659fbc-gpbcl log excerpt: INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n"
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Deployment rollout is unhealthy or incomplete; inspect Pod events and logs.",
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "kubernetes.deployment_status",
+          "status": "ok",
+          "data": {
+            "name": "prediction-api",
+            "namespace": "mlops",
+            "desired": 2,
+            "ready": 2,
+            "available": 2,
+            "updated": 1,
+            "rollout_complete": false,
+            "generation": 2,
+            "observed_generation": 2,
+            "images": [
+              "mlops-inference:b70a9a9e59a5423a8264e76d90714a3b"
+            ],
+            "version": {
+              "MODEL_RUN_ID": "b70a9a9e59a5423a8264e76d90714a3b",
+              "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "APP_VERSION": "1.0.0"
+            },
+            "readiness_paths": [
+              "/deliberately-missing-readyz"
+            ],
+            "conditions": [
+              {
+                "type": "Available",
+                "status": "True",
+                "reason": "MinimumReplicasAvailable",
+                "message": "Deployment has minimum availability."
+              },
+              {
+                "type": "Progressing",
+                "status": "True",
+                "reason": "ReplicaSetUpdated",
+                "message": "ReplicaSet \"prediction-api-c95659fbc\" is progressing."
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 202.861,
+          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+        },
+        {
+          "tool": "kubernetes.list_workloads",
+          "status": "ok",
+          "data": {
+            "namespace": "mlops",
+            "pods": [
+              {
+                "name": "prediction-api-6fb6b69847-jh7v5",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b",
+                    "image_id": "sha256:38a47dd7d47d0592bbff936b839cb5c66c74c6191d23be712ad3a2793671475b",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              },
+              {
+                "name": "prediction-api-6fb6b69847-m9lk2",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b",
+                    "image_id": "sha256:38a47dd7d47d0592bbff936b839cb5c66c74c6191d23be712ad3a2793671475b",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              },
+              {
+                "name": "prediction-api-c95659fbc-gpbcl",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "reason": "ContainersNotReady"
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "False",
+                    "reason": "ContainersNotReady"
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": false,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b",
+                    "image_id": "sha256:38a47dd7d47d0592bbff936b839cb5c66c74c6191d23be712ad3a2793671475b",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": false
+              }
+            ],
+            "deployments": [
+              {
+                "name": "prediction-api",
+                "desired": 2,
+                "ready": 2,
+                "images": [
+                  "mlops-inference:b70a9a9e59a5423a8264e76d90714a3b"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 92.572,
+          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+        },
+        {
+          "tool": "kubernetes.services",
+          "status": "ok",
+          "data": {
+            "services": [
+              {
+                "name": "prediction-api",
+                "type": "ClusterIP",
+                "cluster_ip": "10.43.245.239",
+                "selector": {
+                  "app": "prediction-api"
+                },
+                "ports": [
+                  {
+                    "port": 80,
+                    "target_port": 8000
+                  }
+                ]
+              }
+            ],
+            "endpoints": [
+              {
+                "name": "prediction-api",
+                "ready_addresses": [
+                  "10.42.0.4",
+                  "10.42.0.5"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 38.86,
+          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+        },
+        {
+          "tool": "kubernetes.events",
+          "status": "ok",
+          "data": {
+            "events": [
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-6fb6b69847-jh7v5 to 26d655e3e830",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": null,
+                "last_seen": "2026-11-10 16:22:36.187175+00:00"
+              },
+              {
+                "reason": "Pulling",
+                "message": "Pulling image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\"",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 3,
+                "last_seen": "2026-11-10 16:23:21+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Failed to pull image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": failed to pull and unpack image \"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": failed to resolve reference \"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 3,
+                "last_seen": "2026-11-10 16:23:23+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Error: ErrImagePull",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 3,
+                "last_seen": "2026-11-10 16:23:23+00:00"
+              },
+              {
+                "reason": "BackOff",
+                "message": "Back-off pulling image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\"",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 5,
+                "last_seen": "2026-11-10 16:24:00+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Error: ImagePullBackOff",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 5,
+                "last_seen": "2026-11-10 16:24:00+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:14+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:14+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:15+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.5:8000/healthz\": dial tcp 10.42.0.5:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-jh7v5",
+                "count": 13,
+                "last_seen": "2026-11-10 16:24:54+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-6fb6b69847-m9lk2 to 26d655e3e830",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": null,
+                "last_seen": "2026-11-10 16:22:36.168795+00:00"
+              },
+              {
+                "reason": "Pulling",
+                "message": "Pulling image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\"",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 4,
+                "last_seen": "2026-11-10 16:24:08+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Failed to pull image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": failed to pull and unpack image \"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": failed to resolve reference \"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 4,
+                "last_seen": "2026-11-10 16:24:12+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Error: ErrImagePull",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 4,
+                "last_seen": "2026-11-10 16:24:12+00:00"
+              },
+              {
+                "reason": "BackOff",
+                "message": "Back-off pulling image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\"",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 4,
+                "last_seen": "2026-11-10 16:23:55+00:00"
+              },
+              {
+                "reason": "Failed",
+                "message": "Error: ImagePullBackOff",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 4,
+                "last_seen": "2026-11-10 16:23:55+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:27+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:27+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 1,
+                "last_seen": "2026-11-10 16:24:27+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.4:8000/healthz\": dial tcp 10.42.0.4:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-6fb6b69847-m9lk2",
+                "count": 13,
+                "last_seen": "2026-11-10 16:25:06+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-6fb6b69847-m9lk2",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847",
+                "count": 1,
+                "last_seen": "2026-11-10 16:22:36+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-6fb6b69847-jh7v5",
+                "type": "Normal",
+                "object": "prediction-api-6fb6b69847",
+                "count": 1,
+                "last_seen": "2026-11-10 16:22:36+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-c95659fbc-gpbcl to 26d655e3e830",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": null,
+                "last_seen": "2026-11-10 16:28:04.444267+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:05+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.6:8000/healthz\": dial tcp 10.42.0.6:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 7,
+                "last_seen": "2026-11-10 16:28:25+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-c95659fbc-gpbcl",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:04+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-6fb6b69847 from 0 to 2",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-10 16:22:35+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-c95659fbc from 0 to 1",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:04+00:00"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 350.617,
+          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-c95659fbc-gpbcl",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n"
+          },
+          "error": null,
+          "duration_ms": 228.115,
+          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+        }
+      ]
+    }
+  }
+}

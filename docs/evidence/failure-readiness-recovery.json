@@ -1,0 +1,40 @@
+{
+  "collected_at": "2026-11-10T16:28:47.804852+00:00",
+  "source": "live local services",
+  "result": {
+    "name": "prediction-api",
+    "namespace": "mlops",
+    "desired": 2,
+    "ready": 2,
+    "available": 2,
+    "updated": 2,
+    "rollout_complete": true,
+    "generation": 3,
+    "observed_generation": 3,
+    "images": [
+      "mlops-inference:b70a9a9e59a5423a8264e76d90714a3b"
+    ],
+    "version": {
+      "MODEL_RUN_ID": "b70a9a9e59a5423a8264e76d90714a3b",
+      "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+      "APP_VERSION": "1.0.0"
+    },
+    "readiness_paths": [
+      "/readyz"
+    ],
+    "conditions": [
+      {
+        "type": "Available",
+        "status": "True",
+        "reason": "MinimumReplicasAvailable",
+        "message": "Deployment has minimum availability."
+      },
+      {
+        "type": "Progressing",
+        "status": "True",
+        "reason": "NewReplicaSetAvailable",
+        "message": "ReplicaSet \"prediction-api-6fb6b69847\" has successfully progressed."
+      }
+    ]
+  }
+}

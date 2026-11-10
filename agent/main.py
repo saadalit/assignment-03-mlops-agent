@@ -15,6 +15,8 @@ from agent.schemas import AgentRequest, AgentResponse
 @asynccontextmanager
 async def lifespan(app):
     load_dotenv(".env")
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    logging.getLogger("mlops.tools").setLevel(logging.INFO)
     yield
 
 
