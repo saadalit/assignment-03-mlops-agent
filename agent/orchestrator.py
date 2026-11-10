@@ -75,7 +75,7 @@ class Orchestrator:
         )
         if multi or (
             not data_only
-            and any(w in text for w in ("best", "compare", "experiment", "model", "f1"))
+            and any(w in text for w in ("best", "compare", "experiment", "model", "f1", "mlflow"))
         ):
             if len(ids) >= 2 and "compare" in text:
                 call("mlflow.compare_runs", run_ids=ids)
@@ -85,6 +85,8 @@ class Orchestrator:
                 call("mlflow.registry")
             elif "list experiments" in text:
                 call("mlflow.list_experiments")
+            elif "list" in text and "runs" in text:
+                call("mlflow.list_runs", experiment=self.settings.experiment)
             else:
                 metric_match = re.search(
                     r"\b(f1|accuracy|precision|recall|log_loss|rmse|mae)\b", text
@@ -210,6 +212,20 @@ class Orchestrator:
             d, name = result.data, result.tool
             if name == "mlflow.best_run":
                 candidate = d.get("candidate")
+                comparison = [
+                    {
+                        "run_id": r["run_id"],
+                        "status": r["status"],
+                        d["metric"]: r.get("metrics", {}).get(d["metric"]),
+                        "quality_gate": r.get("tags", {}).get("quality_gate", "unknown"),
+                    }
+                    for r in d.get("runs", [])
+                ]
+                if comparison:
+                    facts.append(
+                        f"Recorded comparison ({d['metric']}, {d.get('mode', 'max')}): "
+                        f"{json.dumps(comparison)}"
+                    )
                 if candidate:
                     facts.append(
                         f"Candidate {candidate['run_id']}: {d['metric']}="

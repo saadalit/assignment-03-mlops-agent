@@ -103,6 +103,20 @@ def test_freshness_policy_is_explicit(settings, monkeypatch):
     assert any("freshness policy" in r for r in result.recommendations)
 
 
+def test_incomplete_rollout_does_not_claim_serving_model_identity(settings, monkeypatch):
+    ex = mocked_executor(monkeypatch, settings)
+    handler = ex.tools["kubernetes.deployment_status"].handler
+    ex.tools["kubernetes.deployment_status"].handler = lambda **kw: {
+        **handler(**kw),
+        "rollout_complete": False,
+    }
+    result = Orchestrator(settings, ex).run(
+        AgentRequest(message="Find best model and check deployment")
+    )
+    assert not any("Deployed run matches" in f for f in result.facts)
+    assert any("Serving model identity is unverified" in u for u in result.uncertainties)
+
+
 def test_dataset_question_selects_dvc_without_mlflow(settings):
     ex = Executor(
         [

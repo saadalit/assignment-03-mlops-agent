@@ -21,6 +21,8 @@ jobs:
       - run: uv run pytest --cov=agent --cov=api --cov=training --cov-report=term-missing --cov-report=xml
       - name: Validate DVC pipeline and infrastructure documents
         run: uv run python scripts/validate_config.py
+      - name: Validate actual DVC import and pipeline graph
+        run: uv run dvc dag
       - uses: actions/upload-artifact@v4
         if: always()
         with:

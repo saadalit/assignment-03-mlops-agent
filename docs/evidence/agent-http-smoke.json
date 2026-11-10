@@ -1,0 +1,59 @@
+{
+  "collected_at": "2026-11-10T16:19:55.236938+00:00",
+  "source": "live local services",
+  "result": {
+    "health": 200,
+    "unauthenticated": 401,
+    "authenticated": {
+      "request_id": "8ad8fa45e10748ebaa5539617ba97abb",
+      "planner": "rules",
+      "facts": [
+        "dvc.list_datasets: {\"datasets\": [{\"pointer\": \"data/iris.csv.dvc\", \"git_commit\": \"bf770a27d69e83c382d71f85e45430610c6dee16\", \"requested_ref\": \"HEAD\", \"outputs\": [{\"md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"size\": 2757, \"isexec\": true, \"hash\": \"md5\", \"path\": \"iris.csv\"}], \"workspace_md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"matches_recorded_version\": true}], \"pipeline\": true}"
+      ],
+      "uncertainties": [
+        "dvc.status: Service operation failed (FileNotFoundError); outcome unknown"
+      ],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "dvc.list_datasets",
+          "status": "ok",
+          "data": {
+            "datasets": [
+              {
+                "pointer": "data/iris.csv.dvc",
+                "git_commit": "bf770a27d69e83c382d71f85e45430610c6dee16",
+                "requested_ref": "HEAD",
+                "outputs": [
+                  {
+                    "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                    "size": 2757,
+                    "isexec": true,
+                    "hash": "md5",
+                    "path": "iris.csv"
+                  }
+                ],
+                "workspace_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "matches_recorded_version": true
+              }
+            ],
+            "pipeline": true
+          },
+          "error": null,
+          "duration_ms": 655.625,
+          "request_id": "8ad8fa45e10748ebaa5539617ba97abb"
+        },
+        {
+          "tool": "dvc.status",
+          "status": "error",
+          "data": {},
+          "error": "Service operation failed (FileNotFoundError); outcome unknown",
+          "duration_ms": 162.739,
+          "request_id": "8ad8fa45e10748ebaa5539617ba97abb"
+        }
+      ]
+    }
+  }
+}

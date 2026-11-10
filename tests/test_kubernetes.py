@@ -71,3 +71,24 @@ def test_pod_health_includes_restarts_and_waiting(settings):
     result = KubernetesTools(settings, core, apps).list_workloads()["pods"][0]
     assert not result["healthy"] and result["containers"][0]["restarts"] == 5
     assert result["containers"][0]["waiting"]["reason"] == "CrashLoopBackOff"
+
+
+def test_confirmed_restart_patches_only_allowed_deployment(settings, monkeypatch):
+    core, apps = Mock(), Mock()
+    adapter = KubernetesTools(settings, core, apps)
+    monkeypatch.setattr(adapter, "deployment_status", lambda namespace, name: {"ready": 2})
+    apps.patch_namespaced_deployment.return_value = NS(metadata=NS(name="prediction-api"))
+    result = Executor(adapter.specs()).execute(
+        "kubernetes.restart_deployment",
+        {},
+        "id",
+        {"kubernetes.restart_deployment:mlops:prediction-api"},
+    )
+    assert result.status == "ok" and result.data["accepted"]
+    args = apps.patch_namespaced_deployment.call_args.args
+    assert args[:2] == ("prediction-api", "mlops")
+    assert (
+        "kubectl.kubernetes.io/restartedAt"
+        in args[2]["spec"]["template"]["metadata"]["annotations"]
+    )
+    assert "has not been established" in result.data["note"]

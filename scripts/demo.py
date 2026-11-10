@@ -97,12 +97,22 @@ def main():
         "Compare the last five training runs and recommend the best model based on F1 score",
     )
     converse(settings, "conversation-04-deployment", "Check Kubernetes deployment health and logs")
-    converse(
+    integrated = converse(
         settings,
         "conversation-05-multi-tool",
         "Find the best recent model, identify the dataset version used to train it, "
         "check the deployment status, and explain whether retraining is necessary",
     )
+    names = {r.tool for r in integrated.evidence}
+    required = {
+        "mlflow.best_run",
+        "dvc.current_version",
+        "kubernetes.deployment_status",
+        "airflow.list_runs",
+    }
+    assert required <= names, "Mandatory scenario did not query all four integrations"
+    assert all(r.status == "ok" for r in integrated.evidence), "Live integration call failed"
+    assert not any("trigger" in n or "restart" in n for n in names)
     save("mlflow-experiments", mlflow.list_experiments())
     save("mlflow-runs", mlflow.list_runs())
     save("mlflow-registry", mlflow.registry())
