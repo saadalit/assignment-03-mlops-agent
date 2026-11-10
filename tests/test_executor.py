@@ -62,3 +62,9 @@ def test_redacts_secrets_in_nested_evidence(monkeypatch, caplog):
     text = result.model_dump_json() + caplog.text
     assert result.status == "ok"
     assert all(secret not in text for secret in ("abc", "xyz", "superprivate123", '"secret"'))
+
+
+def test_malformed_service_payload_is_an_error_without_claims():
+    ex = Executor([ToolSpec("test.status", "status", Empty, lambda: ["unexpected"])])
+    result = ex.execute("test.status", {}, "id")
+    assert result.status == "error" and result.data == {}

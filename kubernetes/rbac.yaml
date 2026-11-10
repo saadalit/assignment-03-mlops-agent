@@ -16,6 +16,10 @@ rules:
   - apiGroups: [apps]
     resources: [deployments]
     verbs: [get, list]
+  - apiGroups: [""]
+    resources: [configmaps]
+    resourceNames: [prediction-api-config]
+    verbs: [get]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding

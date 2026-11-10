@@ -1,3 +1,4 @@
+import os
 from datetime import UTC, datetime
 
 from agent.config import Settings
@@ -17,7 +18,7 @@ class KubernetesTools:
             try:
                 config.load_incluster_config()
             except config.ConfigException:
-                config.load_kube_config()
+                config.load_kube_config(config_file=os.getenv("KUBECONFIG"))
             cfg = client.Configuration.get_default_copy()
             cfg.retries = 0
             api_client = client.ApiClient(cfg)
@@ -111,6 +112,7 @@ class KubernetesTools:
                     "type": e.type,
                     "object": e.involved_object.name,
                     "count": e.count,
+                    "last_seen": str(e.last_timestamp or e.event_time),
                 }
                 for e in events
                 if e.involved_object.name.startswith("prediction-api")
@@ -134,7 +136,7 @@ class KubernetesTools:
         }
 
     def deployment_status(self, namespace="mlops", name="prediction-api"):
-        _, apps = self._clients(namespace)
+        core, apps = self._clients(namespace)
         if name != "prediction-api":
             from agent.permissions import PermissionDenied
 
@@ -146,6 +148,13 @@ class KubernetesTools:
             for e in c.env or []
             if e.name in {"MODEL_RUN_ID", "APP_VERSION", "DATASET_MD5"}
         }
+        for container in d.spec.template.spec.containers:
+            for source in container.env_from or []:
+                if source.config_map_ref and source.config_map_ref.name == "prediction-api-config":
+                    cfg = core.read_namespaced_config_map(
+                        "prediction-api-config", namespace, _request_timeout=self.settings.timeout
+                    )
+                    env["APP_VERSION"] = (cfg.data or {}).get("APP_VERSION", "unknown")
         return {
             "name": name,
             "namespace": namespace,
@@ -163,6 +172,11 @@ class KubernetesTools:
             "observed_generation": d.status.observed_generation,
             "images": [c.image for c in d.spec.template.spec.containers],
             "version": env,
+            "readiness_paths": [
+                c.readiness_probe.http_get.path
+                for c in d.spec.template.spec.containers
+                if c.readiness_probe and c.readiness_probe.http_get
+            ],
             "conditions": [
                 {"type": c.type, "status": c.status, "reason": c.reason, "message": c.message}
                 for c in d.status.conditions or []

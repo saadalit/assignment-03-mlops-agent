@@ -86,6 +86,8 @@ class Executor:
 
                 require_confirmation(spec.confirmation(args), confirmations or set())
             data = spec.handler(**args)
+            if not isinstance(data, dict):
+                raise RuntimeError("Malformed service response")
             # Tool evidence may include arbitrary service logs; scrub before LLM/API/storage.
             data = scrub(json.loads(json.dumps(data, default=str)))
         except PermissionDenied as exc:
@@ -101,6 +103,8 @@ class Executor:
                 f"Service operation failed ({type(exc).__name__}); outcome unknown",
             )
         duration = round((time.monotonic() - start) * 1000, 3)
+        if status != "ok":
+            data = {}
         result = ToolResult(
             tool=name,
             status=status,

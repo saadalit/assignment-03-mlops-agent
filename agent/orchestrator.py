@@ -274,9 +274,14 @@ class Orchestrator:
             elif name == "kubernetes.events":
                 warnings = [e for e in d.get("events", []) if e.get("type") == "Warning"]
                 if warnings:
-                    facts.append(f"Kubernetes warning events: {json.dumps(warnings)}")
+                    facts.append(f"Recorded Kubernetes warning events: {json.dumps(warnings)}")
                     warning_text = json.dumps(warnings).lower()
-                    if "readiness probe failed" in warning_text and "404" in warning_text:
+                    if (
+                        "readiness probe failed" in warning_text
+                        and "404" in warning_text
+                        and deployed
+                        and not deployed.get("rollout_complete", False)
+                    ):
                         recommendations.append(
                             "Readiness checks returned HTTP 404; verify the probe path "
                             "against /readyz before changing the model."
