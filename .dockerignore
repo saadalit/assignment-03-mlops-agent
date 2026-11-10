@@ -1,0 +1,8 @@
+*
+!api/
+!api/**
+!models/
+!models/current/
+!models/current/model.joblib
+!models/current/metadata.json
+!requirements-inference.txt

@@ -1,0 +1,7 @@
+FROM apache/airflow:3.1.5-python3.12
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+USER airflow
+RUN pip install --no-cache-dir apache-airflow==3.1.5 mlflow-skinny==3.5.1 \
+    scikit-learn==1.7.2 pandas==2.3.3 joblib==1.5.2 pyyaml==6.0.3

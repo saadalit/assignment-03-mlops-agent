@@ -1,0 +1,52 @@
+name: assignment3
+services:
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
+    container_name: assignment3-airflow
+    init: true
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      AIRFLOW_HOME: /opt/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "agent:admin"
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow/passwords.json
+      AIRFLOW__CORE__PARALLELISM: "2"
+      AIRFLOW__CORE__DAGS_FOLDER: /workspace/dags
+      AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: "20"
+      AIRFLOW__DAG_PROCESSOR__MIN_FILE_PROCESS_INTERVAL: "20"
+      AIRFLOW__API__WORKERS: "1"
+      AIRFLOW__LOGGING__LOGGING_LEVEL: INFO
+      MLFLOW_TRACKING_URI: http://host.docker.internal:5000
+      MLFLOW_EXPERIMENT_NAME: iris-classification
+      PYTHONPATH: /workspace
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/workspace
+      - ./.local/airflow:/opt/airflow
+    command:
+      - bash
+      - -c
+      - git config --global --add safe.directory /workspace && exec airflow standalone
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/monitor/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    mem_limit: 1800m
+  kubernetes:
+    image: rancher/k3s:v1.34.1-k3s1
+    container_name: assignment3-k3s
+    privileged: true
+    command: server --disable traefik --disable servicelb --disable metrics-server --tls-san 127.0.0.1
+    ports:
+      - "127.0.0.1:6443:6443"
+    volumes:
+      - k3s-data:/var/lib/rancher/k3s
+volumes:
+  k3s-data:

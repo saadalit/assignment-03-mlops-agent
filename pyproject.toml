@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "assignment-03-mlops-agent"
+version = "1.0.0"
+description = "Evidence-driven MLOps agent for DVC, MLflow, Airflow 3 and Kubernetes"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "dvc==3.63.0",
+  "fastapi==0.118.3",
+  "httpx==0.28.1",
+  "joblib==1.5.2",
+  "kubernetes==34.1.0",
+  "mlflow==3.5.1",
+  "pandas==2.3.3",
+  "pydantic==2.12.3",
+  "python-dotenv==1.1.1",
+  "pyyaml==6.0.3",
+  "scikit-learn==1.7.2",
+  "uvicorn==0.38.0",
+]
+
+[dependency-groups]
+dev = ["pytest==8.4.2", "pytest-cov==7.0.0", "ruff==0.14.3"]
+
+[project.scripts]
+mlops-agent = "agent.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agent", "api", "training"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["live: requires running local infrastructure"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
