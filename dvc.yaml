@@ -3,7 +3,6 @@ stages:
     cmd: python -m training.train --stage validate --workspace artifacts/pipeline
     deps:
       - data/iris.csv
-      - data/iris.csv.dvc
       - training/stages.py
     outs:
       - artifacts/pipeline/validation.json
@@ -23,8 +22,11 @@ stages:
     cmd: python -m training.train --stage evaluate --workspace artifacts/pipeline
     deps:
       - artifacts/pipeline/model.joblib
-    metrics:
+    outs:
       - artifacts/pipeline/evaluation.json:
+          cache: false
+    metrics:
+      - artifacts/pipeline/metrics.json:
           cache: false
   quality_gate:
     cmd: python -m training.train --stage gate --workspace artifacts/pipeline
