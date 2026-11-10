@@ -95,6 +95,16 @@ def test_missing_provenance_not_substituted_with_head(settings, monkeypatch):
     assert any("lacks complete" in u for u in result.uncertainties)
 
 
+def test_unavailable_run_does_not_substitute_current_dataset(settings, monkeypatch):
+    ex = mocked_executor(monkeypatch, settings, failing="mlflow.get_run")
+    result = Orchestrator(settings, ex).run(
+        AgentRequest(message="Which dataset version was used for experiment run " + "a" * 32)
+    )
+    assert [r.tool for r in result.evidence] == ["mlflow.get_run"]
+    assert not result.facts
+    assert any("mlflow.get_run" in u for u in result.uncertainties)
+
+
 def test_freshness_policy_is_explicit(settings, monkeypatch):
     settings.max_model_age_days = -1
     result = Orchestrator(settings, mocked_executor(monkeypatch, settings)).run(

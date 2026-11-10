@@ -1,10 +1,10 @@
 {
-  "collected_at": "2026-11-10T16:28:29.204407+00:00",
+  "collected_at": "2026-11-10T16:30:15.067073+00:00",
   "source": "live local services",
   "result": {
     "user": "Find the best recent model, identify the dataset version used to train it, check the deployment status, and explain whether retraining is necessary",
     "agent": {
-      "request_id": "c4d8e1176ff149f9af43e7e34e334a98",
+      "request_id": "db76b96c8c0f4c5ebb70449ba0345b43",
       "planner": "rules",
       "facts": [
         "Recorded comparison (f1, max): [{\"run_id\": \"12ea6ed7b3de463bab159f9f454a01df\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"5c59967669364161b4abf7a76f3d9359\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"failed\"}, {\"run_id\": \"d6cf8e19d7b64fdb9c0124c63ff7355a\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"e6356513e2e94608b625148bd0c72163\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"b70a9a9e59a5423a8264e76d90714a3b\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}]",
@@ -13,24 +13,23 @@
         "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:b70a9a9e59a5423a8264e76d90714a3b'], version={'MODEL_RUN_ID': 'b70a9a9e59a5423a8264e76d90714a3b', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
         "Pod prediction-api-6fb6b69847-jh7v5: phase=Running, healthy=True, restarts=0.",
         "Pod prediction-api-6fb6b69847-m9lk2: phase=Running, healthy=True, restarts=0.",
-        "Pod prediction-api-c95659fbc-gpbcl: phase=Running, healthy=False, restarts=0.",
         "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.245.239\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
-        "Recorded Kubernetes warning events: [{\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 5, \"last_seen\": \"2026-11-10 16:24:00+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 13, \"last_seen\": \"2026-11-10 16:24:54+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:23:55+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 13, \"last_seen\": \"2026-11-10 16:25:06+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 8, \"last_seen\": \"2026-11-10 16:28:28+00:00\"}]",
-        "Pod prediction-api-c95659fbc-gpbcl log excerpt: INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n",
+        "Recorded Kubernetes warning events: [{\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 5, \"last_seen\": \"2026-11-10 16:24:00+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 13, \"last_seen\": \"2026-11-10 16:24:54+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:23:55+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 13, \"last_seen\": \"2026-11-10 16:25:06+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 12, \"last_seen\": \"2026-11-10 16:28:40+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Readiness probe failed: HTTP probe failed with statuscode: 404\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 2, \"last_seen\": \"2026-11-10 16:28:47+00:00\"}]",
+        "Pod prediction-api-6fb6b69847-jh7v5 log excerpt:  10.42.0.1:49416 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45856 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45870 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47738 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47752 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47768 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41384 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33308 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33312 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33322 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41828 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41844 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37014 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37018 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37028 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57840 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57856 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57864 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58948 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58956 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58966 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56304 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56318 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:11158 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60399 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43802 - \"GET /readyz HTTP/1.1\" 200 OK\n",
+        "Pod prediction-api-6fb6b69847-m9lk2 log excerpt:  10.42.0.1:47802 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36790 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36792 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36806 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54584 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54590 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54598 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41422 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43240 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43254 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43260 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49250 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49256 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49262 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60748 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60146 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60154 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34506 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34510 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34524 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42808 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42810 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42826 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:64867 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34644 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54448 - \"GET /readyz HTTP/1.1\" 200 OK\n",
         "Airflow run manual__2026-11-10T16:26:38.973629+00:00: success.",
         "Airflow run manual__2026-11-10T16:14:38.278897+00:00: failed.",
         "Airflow run manual__2026-11-10T16:13:55.799604+00:00: failed.",
         "Airflow run manual__2026-11-10T16:07:40.146810+00:00: success.",
         "Airflow failed/retrying tasks: [{\"id\": \"01a1c63d-7307-7f76-90b7-32f76be62f14\", \"task_id\": \"register_candidate\", \"dag_id\": \"training_pipeline\", \"dag_run_id\": \"manual__2026-11-10T16:14:38.278897+00:00\", \"map_index\": -1, \"logical_date\": \"2026-11-10T16:14:38.278897Z\", \"run_after\": \"2026-11-10T16:14:38.278897Z\", \"start_date\": \"2026-11-10T16:16:03.015943Z\", \"end_date\": \"2026-11-10T16:16:03.015943Z\", \"duration\": 0.0, \"state\": \"upstream_failed\", \"try_number\": 0, \"max_tries\": 1, \"task_display_name\": \"register_candidate\", \"dag_display_name\": \"training_pipeline\", \"hostname\": \"\", \"unixname\": \"airflow\", \"pool\": \"default_pool\", \"pool_slots\": 1, \"queue\": \"default\", \"priority_weight\": 1, \"operator\": \"_PythonDecoratedOperator\", \"operator_name\": \"@task\", \"queued_when\": null, \"scheduled_when\": null, \"pid\": null, \"executor\": null, \"executor_config\": \"{}\", \"note\": null, \"rendered_map_index\": null, \"rendered_fields\": {}, \"trigger\": null, \"triggerer_job\": null, \"dag_version\": {\"id\": \"01a1c631-e101-7c3a-8bd5-6bba545fe3af\", \"version_number\": 1, \"dag_id\": \"training_pipeline\", \"bundle_name\": \"dags-folder\", \"bundle_version\": null, \"created_at\": \"2026-11-10T16:02:00.065824Z\", \"dag_display_name\": \"training_pipeline\", \"bundle_url\": null}}, {\"id\": \"01a1c63e-7342-783b-b89e-19730800370b\", \"task_id\": \"quality_gate\", \"dag_id\": \"training_pipeline\", \"dag_run_id\": \"manual__2026-11-10T16:14:38.278897+00:00\", \"map_index\": -1, \"logical_date\": \"2026-11-10T16:14:38.278897Z\", \"run_after\": \"2026-11-10T16:14:38.278897Z\", \"start_date\": \"2026-11-10T16:15:49.936695Z\", \"end_date\": \"2026-11-10T16:16:02.848289Z\", \"duration\": -34.089, \"state\": \"failed\", \"try_number\": 2, \"max_tries\": 1, \"task_display_name\": \"quality_gate\", \"dag_display_name\": \"training_pipeline\", \"hostname\": \"665262df5989\", \"unixname\": \"airflow\", \"pool\": \"default_pool\", \"pool_slots\": 1, \"queue\": \"default\", \"priority_weight\": 2, \"operator\": \"_PythonDecoratedOperator\", \"operator_name\": \"@task\", \"queued_when\": \"2026-11-10T16:15:49.796074Z\", \"scheduled_when\": \"2026-11-10T16:15:49.686561Z\", \"pid\": 392, \"executor\": null, \"executor_config\": \"{}\", \"note\": null, \"rendered_map_index\": null, \"rendered_fields\": {}, \"trigger\": null, \"triggerer_job\": null, \"dag_version\": {\"id\": \"01a1c631-e101-7c3a-8bd5-6bba545fe3af\", \"version_number\": 1, \"dag_id\": \"training_pipeline\", \"bundle_name\": \"dags-folder\", \"bundle_version\": null, \"created_at\": \"2026-11-10T16:02:00.065824Z\", \"dag_display_name\": \"training_pipeline\", \"bundle_url\": null}}]",
-        "Task quality_gate diagnostics: {\"content\": [{\"event\": \"::group::Log message source details\", \"sources\": [\"/opt/airflow/logs/dag_id=training_pipeline/run_id=manual__2026-11-10T16:14:38.278897+00:00/task_id=quality_gate/attempt=2.log\"]}, {\"event\": \"::endgroup::\"}, {\"timestamp\": \"2026-11-10T16:15:50.084695Z\", \"event\": \"DAG bundles loaded: dags-folder\", \"level\": \"info\", \"logger\": \"airflow.dag_processing.bundles.manager.DagBundlesManager\", \"filename\": \"manager.py\", \"lineno\": 179}, {\"timestamp\": \"2026-11-10T16:15:50.092867Z\", \"event\": \"Filling up the DagBag from /workspace/dags/training_pipeline.py\", \"level\": \"info\", \"logger\": \"airflow.models.dagbag.DagBag\", \"filename\": \"dagbag.py\", \"lineno\": 593}, {\"timestamp\": \"2026-11-10T16:15:57.791757Z\", \"event\": \"Task failed with exception\", \"level\": \"error\", \"logger\": \"task\", \"filename\": \"task_runner.py\", \"lineno\": 1008, \"error_detail\": [{\"exc_type\": \"ValueError\", \"exc_value\": \"QUALITY_GATE_FAILED: f1=0.9556 < required=1.01; promotion blocked\", \"exc_notes\": [], \"syntax_error\": null, \"is_cause\": false, \"frames\": [{\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py\", \"lineno\": 934, \"name\": \"run\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py\", \"lineno\": 1325, \"name\": \"_execute_task\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/operator.py\", \"lineno\": 417, \"name\": \"wrapper\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/decorator.py\", \"lineno\": 252, \"name\": \"execute\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/operator.py\", \"lineno\": 417, \"name\": \"wrapper\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/standard/operators/python.py\", \"lineno\": 215, \"name\": \"execute\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/standard/operators/python.py\", \"lineno\": 238, \"name\": \"execute_callable\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/callback_runner.py\", \"lineno\": 82, \"name\": \"run\"}, {\"filename\": \"/workspace/dags/training_pipeline.py\", \"lineno\": 74, \"name\": \"quality_gate\"}, {\"filename\": \"/workspace/training/stages.py\", \"lineno\": 155, \"name\": \"quality_gate\"}], \"is_group\": false, \"exceptions\": []}]}], \"continuation_token\": \"[REDACTED]\"}"
+        "Task quality_gate diagnostics: {\"content\": [{\"event\": \"::group::Log message source details\", \"sources\": [\"/opt/airflow/logs/dag_id=training_pipeline/run_id=manual__2026-11-10T16:14:38.278897+00:00/task_id=quality_gate/attempt=2.log\"]}, {\"event\": \"::endgroup::\"}, {\"timestamp\": \"2026-11-10T16:15:50.084695Z\", \"event\": \"DAG bundles loaded: dags-folder\", \"level\": \"info\", \"logger\": \"airflow.dag_processing.bundles.manager.DagBundlesManager\", \"filename\": \"manager.py\", \"lineno\": 179}, {\"timestamp\": \"2026-11-10T16:15:50.092867Z\", \"event\": \"Filling up the DagBag from /workspace/dags/training_pipeline.py\", \"level\": \"info\", \"logger\": \"airflow.models.dagbag.DagBag\", \"filename\": \"dagbag.py\", \"lineno\": 593}, {\"timestamp\": \"2026-11-10T16:15:57.791757Z\", \"event\": \"Task failed with exception\", \"level\": \"error\", \"logger\": \"task\", \"filename\": \"task_runner.py\", \"lineno\": 1008, \"error_detail\": [{\"exc_type\": \"ValueError\", \"exc_value\": \"QUALITY_GATE_FAILED: f1=0.9556 < required=1.01; promotion blocked\", \"exc_notes\": [], \"syntax_error\": null, \"is_cause\": false, \"frames\": [{\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py\", \"lineno\": 934, \"name\": \"run\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py\", \"lineno\": 1325, \"name\": \"_execute_task\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/operator.py\", \"lineno\": 417, \"name\": \"wrapper\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/decorator.py\", \"lineno\": 252, \"name\": \"execute\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/operator.py\", \"lineno\": 417, \"name\": \"wrapper\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/standard/operators/python.py\", \"lineno\": 215, \"name\": \"execute\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/standard/operators/python.py\", \"lineno\": 238, \"name\": \"execute_callable\"}, {\"filename\": \"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/callback_runner.py\", \"lineno\": 82, \"name\": \"run\"}, {\"filename\": \"/workspace/dags/training_pipeline.py\", \"lineno\": 74, \"name\": \"quality_gate\"}, {\"filename\": \"/workspace/training/stages.py\", \"lineno\": 155, \"name\": \"quality_gate\"}], \"is_group\": false, \"exceptions\": []}]}], \"continuation_token\": \"[REDACTED]\"}",
+        "Deployed run differs from the selected candidate."
       ],
       "uncertainties": [
-        "Serving model identity is unverified: rollout incomplete or MODEL_RUN_ID missing.",
         "No supplied degradation measurements or violated freshness policy establish a need for retraining."
       ],
       "recommendations": [
         "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency.",
-        "Deployment rollout is unhealthy or incomplete; inspect Pod events and logs.",
         "Investigate failed task logs before retrying or promoting a model.",
         "The recorded score failed the configured gate, blocking registration; check the threshold and evaluation data before tuning or retraining.",
         "Training and cluster changes require a separate explicit request and action confirmation."
@@ -232,8 +231,8 @@
             "caution": "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency."
           },
           "error": null,
-          "duration_ms": 194.435,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 290.073,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "dvc.current_version",
@@ -253,8 +252,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 442.931,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 385.234,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "kubernetes.deployment_status",
@@ -265,10 +264,10 @@
             "desired": 2,
             "ready": 2,
             "available": 2,
-            "updated": 1,
-            "rollout_complete": false,
-            "generation": 2,
-            "observed_generation": 2,
+            "updated": 2,
+            "rollout_complete": true,
+            "generation": 3,
+            "observed_generation": 3,
             "images": [
               "mlops-inference:b70a9a9e59a5423a8264e76d90714a3b"
             ],
@@ -278,7 +277,7 @@
               "APP_VERSION": "1.0.0"
             },
             "readiness_paths": [
-              "/deliberately-missing-readyz"
+              "/readyz"
             ],
             "conditions": [
               {
@@ -290,14 +289,14 @@
               {
                 "type": "Progressing",
                 "status": "True",
-                "reason": "ReplicaSetUpdated",
-                "message": "ReplicaSet \"prediction-api-c95659fbc\" is progressing."
+                "reason": "NewReplicaSetAvailable",
+                "message": "ReplicaSet \"prediction-api-6fb6b69847\" has successfully progressed."
               }
             ]
           },
           "error": null,
-          "duration_ms": 81.843,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 69.937,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "kubernetes.list_workloads",
@@ -390,49 +389,6 @@
                   }
                 ],
                 "healthy": true
-              },
-              {
-                "name": "prediction-api-c95659fbc-gpbcl",
-                "phase": "Running",
-                "conditions": [
-                  {
-                    "type": "PodReadyToStartContainers",
-                    "status": "True",
-                    "reason": null
-                  },
-                  {
-                    "type": "Initialized",
-                    "status": "True",
-                    "reason": null
-                  },
-                  {
-                    "type": "Ready",
-                    "status": "False",
-                    "reason": "ContainersNotReady"
-                  },
-                  {
-                    "type": "ContainersReady",
-                    "status": "False",
-                    "reason": "ContainersNotReady"
-                  },
-                  {
-                    "type": "PodScheduled",
-                    "status": "True",
-                    "reason": null
-                  }
-                ],
-                "containers": [
-                  {
-                    "name": "prediction-api",
-                    "ready": false,
-                    "restarts": 0,
-                    "image": "docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b",
-                    "image_id": "sha256:38a47dd7d47d0592bbff936b839cb5c66c74c6191d23be712ad3a2793671475b",
-                    "waiting": null,
-                    "last_termination": null
-                  }
-                ],
-                "healthy": false
               }
             ],
             "deployments": [
@@ -447,8 +403,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 71.095,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 78.315,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "kubernetes.services",
@@ -481,8 +437,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 23.468,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 24.942,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "kubernetes.events",
@@ -702,8 +658,24 @@
                 "message": "Startup probe failed: Get \"http://10.42.0.6:8000/healthz\": dial tcp 10.42.0.6:8000: connect: connection refused",
                 "type": "Warning",
                 "object": "prediction-api-c95659fbc-gpbcl",
-                "count": 8,
-                "last_seen": "2026-11-10 16:28:28+00:00"
+                "count": 12,
+                "last_seen": "2026-11-10 16:28:40+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+                "type": "Warning",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 2,
+                "last_seen": "2026-11-10 16:28:47+00:00"
+              },
+              {
+                "reason": "Killing",
+                "message": "Stopping container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               },
               {
                 "reason": "SuccessfulCreate",
@@ -712,6 +684,14 @@
                 "object": "prediction-api-c95659fbc",
                 "count": 1,
                 "last_seen": "2026-11-10 16:28:04+00:00"
+              },
+              {
+                "reason": "SuccessfulDelete",
+                "message": "Deleted pod: prediction-api-c95659fbc-gpbcl",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               },
               {
                 "reason": "ScalingReplicaSet",
@@ -728,23 +708,42 @@
                 "object": "prediction-api",
                 "count": 1,
                 "last_seen": "2026-11-10 16:28:04+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled down replica set prediction-api-c95659fbc from 1 to 0",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               }
             ]
           },
           "error": null,
-          "duration_ms": 88.383,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 94.459,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "kubernetes.pod_logs",
           "status": "ok",
           "data": {
-            "pod": "prediction-api-c95659fbc-gpbcl",
-            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n"
+            "pod": "prediction-api-6fb6b69847-jh7v5",
+            "logs": "INFO:     10.42.0.1:60576 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45490 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45496 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45498 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41758 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41768 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41770 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18364 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38750 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56372 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56396 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43062 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46542 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46554 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46556 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58278 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58290 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58302 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35282 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35290 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35298 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59352 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59366 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38402 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38418 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38420 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55220 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55232 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55244 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46042 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46044 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38892 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38906 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38922 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55858 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55870 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32970 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32982 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32992 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49392 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49402 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49416 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45856 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45870 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47738 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47752 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47768 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41384 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33308 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33312 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33322 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41828 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41844 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37014 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37018 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37028 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57840 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57856 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57864 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58948 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58956 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58966 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56304 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56318 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:11158 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60399 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43802 - \"GET /readyz HTTP/1.1\" 200 OK\n"
           },
           "error": null,
-          "duration_ms": 35.59,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 54.543,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-6fb6b69847-m9lk2",
+            "logs": "INFO:     10.42.0.1:59872 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59878 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32840 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32846 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32089 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:5245 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:12626 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34898 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34912 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34918 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41712 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41716 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36058 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36068 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56668 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56678 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56692 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45684 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45690 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36078 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36094 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36100 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51824 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51830 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57532 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57542 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58658 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58668 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58678 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45470 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45484 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34388 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34390 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34406 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47640 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47652 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47658 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48734 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48750 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48758 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47788 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47794 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47802 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36790 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36792 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36806 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54584 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54590 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54598 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41422 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43240 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43254 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43260 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49250 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49256 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49262 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60748 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60146 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60154 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34506 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34510 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34524 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42808 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42810 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42826 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:64867 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34644 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54448 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 53.531,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "airflow.list_runs",
@@ -891,8 +890,8 @@
             "total_entries": 4
           },
           "error": null,
-          "duration_ms": 90.146,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 93.717,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "airflow.failed_tasks",
@@ -1174,8 +1173,8 @@
             "failed_tasks": []
           },
           "error": null,
-          "duration_ms": 89.545,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 114.6,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "airflow.failed_tasks",
@@ -1548,8 +1547,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 80.089,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 115.718,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         },
         {
           "tool": "airflow.task_logs",
@@ -1661,8 +1660,8 @@
             }
           },
           "error": null,
-          "duration_ms": 51.342,
-          "request_id": "c4d8e1176ff149f9af43e7e34e334a98"
+          "duration_ms": 51.838,
+          "request_id": "db76b96c8c0f4c5ebb70449ba0345b43"
         }
       ]
     }

@@ -106,6 +106,9 @@ class Orchestrator:
                         ref=ref,
                         path=tags.get("dataset_pointer", "data/iris.csv.dvc"),
                     )
+            elif ids:
+                # A failed run lookup cannot establish that run's dataset from current HEAD.
+                pass
             elif "reproduce" in text:
                 match = re.search(r"\b(v\d[\w.-]*|[a-f0-9]{40})\b", text)
                 call("dvc.reproduction", ref=match.group() if match else "HEAD")

@@ -1,23 +1,22 @@
 {
-  "collected_at": "2026-11-10T16:28:27.692160+00:00",
+  "collected_at": "2026-11-10T16:30:13.413279+00:00",
   "source": "live local services",
   "result": {
     "user": "Check Kubernetes deployment health and logs",
     "agent": {
-      "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4",
+      "request_id": "f21e5c57d267417e90263c13c9ff7d11",
       "planner": "rules",
       "facts": [
         "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:b70a9a9e59a5423a8264e76d90714a3b'], version={'MODEL_RUN_ID': 'b70a9a9e59a5423a8264e76d90714a3b', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
         "Pod prediction-api-6fb6b69847-jh7v5: phase=Running, healthy=True, restarts=0.",
         "Pod prediction-api-6fb6b69847-m9lk2: phase=Running, healthy=True, restarts=0.",
-        "Pod prediction-api-c95659fbc-gpbcl: phase=Running, healthy=False, restarts=0.",
         "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.245.239\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
-        "Recorded Kubernetes warning events: [{\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 5, \"last_seen\": \"2026-11-10 16:24:00+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 13, \"last_seen\": \"2026-11-10 16:24:54+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:23:55+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 13, \"last_seen\": \"2026-11-10 16:25:06+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 7, \"last_seen\": \"2026-11-10 16:28:25+00:00\"}]",
-        "Pod prediction-api-c95659fbc-gpbcl log excerpt: INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n"
+        "Recorded Kubernetes warning events: [{\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 3, \"last_seen\": \"2026-11-10 16:23:23+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 5, \"last_seen\": \"2026-11-10 16:24:00+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-jh7v5\", \"count\": 13, \"last_seen\": \"2026-11-10 16:24:54+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Failed to pull image \\\"mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to pull and unpack image \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": failed to resolve reference \\\"docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b\\\": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ErrImagePull\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:24:12+00:00\"}, {\"reason\": \"Failed\", \"message\": \"Error: ImagePullBackOff\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 4, \"last_seen\": \"2026-11-10 16:23:55+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-6fb6b69847-m9lk2\", \"count\": 13, \"last_seen\": \"2026-11-10 16:25:06+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 12, \"last_seen\": \"2026-11-10 16:28:40+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Readiness probe failed: HTTP probe failed with statuscode: 404\", \"type\": \"Warning\", \"object\": \"prediction-api-c95659fbc-gpbcl\", \"count\": 2, \"last_seen\": \"2026-11-10 16:28:47+00:00\"}]",
+        "Pod prediction-api-6fb6b69847-jh7v5 log excerpt:  10.42.0.1:49416 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45856 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45870 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47738 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47752 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47768 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41384 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33308 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33312 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33322 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41828 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41844 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37014 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37018 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37028 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57840 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57856 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57864 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58948 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58956 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58966 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56304 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56318 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:11158 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60399 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43802 - \"GET /readyz HTTP/1.1\" 200 OK\n",
+        "Pod prediction-api-6fb6b69847-m9lk2 log excerpt:  10.42.0.1:47802 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36790 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36792 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36806 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54584 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54590 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54598 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41422 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43240 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43254 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43260 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49250 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49256 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49262 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60748 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60146 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60154 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34506 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34510 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34524 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42808 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42810 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42826 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:64867 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34644 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54448 - \"GET /readyz HTTP/1.1\" 200 OK\n"
       ],
       "uncertainties": [],
       "recommendations": [
-        "Deployment rollout is unhealthy or incomplete; inspect Pod events and logs.",
         "Training and cluster changes require a separate explicit request and action confirmation."
       ],
       "evidence": [
@@ -30,10 +29,10 @@
             "desired": 2,
             "ready": 2,
             "available": 2,
-            "updated": 1,
-            "rollout_complete": false,
-            "generation": 2,
-            "observed_generation": 2,
+            "updated": 2,
+            "rollout_complete": true,
+            "generation": 3,
+            "observed_generation": 3,
             "images": [
               "mlops-inference:b70a9a9e59a5423a8264e76d90714a3b"
             ],
@@ -43,7 +42,7 @@
               "APP_VERSION": "1.0.0"
             },
             "readiness_paths": [
-              "/deliberately-missing-readyz"
+              "/readyz"
             ],
             "conditions": [
               {
@@ -55,14 +54,14 @@
               {
                 "type": "Progressing",
                 "status": "True",
-                "reason": "ReplicaSetUpdated",
-                "message": "ReplicaSet \"prediction-api-c95659fbc\" is progressing."
+                "reason": "NewReplicaSetAvailable",
+                "message": "ReplicaSet \"prediction-api-6fb6b69847\" has successfully progressed."
               }
             ]
           },
           "error": null,
-          "duration_ms": 202.861,
-          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+          "duration_ms": 193.597,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
         },
         {
           "tool": "kubernetes.list_workloads",
@@ -155,49 +154,6 @@
                   }
                 ],
                 "healthy": true
-              },
-              {
-                "name": "prediction-api-c95659fbc-gpbcl",
-                "phase": "Running",
-                "conditions": [
-                  {
-                    "type": "PodReadyToStartContainers",
-                    "status": "True",
-                    "reason": null
-                  },
-                  {
-                    "type": "Initialized",
-                    "status": "True",
-                    "reason": null
-                  },
-                  {
-                    "type": "Ready",
-                    "status": "False",
-                    "reason": "ContainersNotReady"
-                  },
-                  {
-                    "type": "ContainersReady",
-                    "status": "False",
-                    "reason": "ContainersNotReady"
-                  },
-                  {
-                    "type": "PodScheduled",
-                    "status": "True",
-                    "reason": null
-                  }
-                ],
-                "containers": [
-                  {
-                    "name": "prediction-api",
-                    "ready": false,
-                    "restarts": 0,
-                    "image": "docker.io/library/mlops-inference:b70a9a9e59a5423a8264e76d90714a3b",
-                    "image_id": "sha256:38a47dd7d47d0592bbff936b839cb5c66c74c6191d23be712ad3a2793671475b",
-                    "waiting": null,
-                    "last_termination": null
-                  }
-                ],
-                "healthy": false
               }
             ],
             "deployments": [
@@ -212,8 +168,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 92.572,
-          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+          "duration_ms": 152.723,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
         },
         {
           "tool": "kubernetes.services",
@@ -246,8 +202,8 @@
             ]
           },
           "error": null,
-          "duration_ms": 38.86,
-          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+          "duration_ms": 81.535,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
         },
         {
           "tool": "kubernetes.events",
@@ -467,8 +423,24 @@
                 "message": "Startup probe failed: Get \"http://10.42.0.6:8000/healthz\": dial tcp 10.42.0.6:8000: connect: connection refused",
                 "type": "Warning",
                 "object": "prediction-api-c95659fbc-gpbcl",
-                "count": 7,
-                "last_seen": "2026-11-10 16:28:25+00:00"
+                "count": 12,
+                "last_seen": "2026-11-10 16:28:40+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+                "type": "Warning",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 2,
+                "last_seen": "2026-11-10 16:28:47+00:00"
+              },
+              {
+                "reason": "Killing",
+                "message": "Stopping container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc-gpbcl",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               },
               {
                 "reason": "SuccessfulCreate",
@@ -477,6 +449,14 @@
                 "object": "prediction-api-c95659fbc",
                 "count": 1,
                 "last_seen": "2026-11-10 16:28:04+00:00"
+              },
+              {
+                "reason": "SuccessfulDelete",
+                "message": "Deleted pod: prediction-api-c95659fbc-gpbcl",
+                "type": "Normal",
+                "object": "prediction-api-c95659fbc",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               },
               {
                 "reason": "ScalingReplicaSet",
@@ -493,23 +473,42 @@
                 "object": "prediction-api",
                 "count": 1,
                 "last_seen": "2026-11-10 16:28:04+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled down replica set prediction-api-c95659fbc from 1 to 0",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-10 16:28:47+00:00"
               }
             ]
           },
           "error": null,
-          "duration_ms": 350.617,
-          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+          "duration_ms": 329.502,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
         },
         {
           "tool": "kubernetes.pod_logs",
           "status": "ok",
           "data": {
-            "pod": "prediction-api-c95659fbc-gpbcl",
-            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\n"
+            "pod": "prediction-api-6fb6b69847-jh7v5",
+            "logs": "INFO:     10.42.0.1:60576 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45490 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45496 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45498 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41758 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41768 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41770 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18364 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38750 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56372 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56396 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43062 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46542 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46554 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46556 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58278 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58290 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58302 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35282 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35290 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35298 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59352 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59366 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38402 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38418 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38420 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55220 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55232 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55244 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46042 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46044 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:46046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38892 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38906 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38922 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55858 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55870 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32970 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32982 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32992 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49392 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49402 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49416 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45856 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45870 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47738 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47752 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47768 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41380 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41384 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33308 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33312 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33322 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41828 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41844 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37014 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37018 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37028 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57840 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57856 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57864 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58948 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58956 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58966 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56304 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56318 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:11158 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60399 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43802 - \"GET /readyz HTTP/1.1\" 200 OK\n"
           },
           "error": null,
-          "duration_ms": 228.115,
-          "request_id": "f4e586bcfd9b46bf862c2f5caf5841e4"
+          "duration_ms": 118.231,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-6fb6b69847-m9lk2",
+            "logs": "INFO:     10.42.0.1:59872 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59878 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32840 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32846 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:32089 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:5245 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:12626 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34898 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34912 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34918 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41712 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41716 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36058 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36068 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56668 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56678 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56692 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45684 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45690 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36078 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36094 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36100 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51824 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51830 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:51836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57532 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57542 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58658 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58668 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58678 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45470 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45484 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34388 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34390 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34406 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47640 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47652 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47658 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48734 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48750 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48758 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47788 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47794 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47802 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36790 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36792 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:36806 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54584 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54590 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54598 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41422 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43240 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43254 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43260 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49250 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49256 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49262 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60722 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60734 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60748 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60146 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60154 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34506 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34510 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34524 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42808 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42810 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42826 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:64867 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34644 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54448 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 95.97,
+          "request_id": "f21e5c57d267417e90263c13c9ff7d11"
         }
       ]
     }

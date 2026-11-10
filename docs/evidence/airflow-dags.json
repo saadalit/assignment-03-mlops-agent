@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-10T16:28:30.472053+00:00",
+  "collected_at": "2026-11-10T16:30:16.320128+00:00",
   "source": "live local services",
   "result": {
     "dags": [
@@ -8,8 +8,8 @@
         "dag_display_name": "training_pipeline",
         "is_paused": false,
         "is_stale": false,
-        "last_parsed_time": "2026-11-10T16:28:27.834443Z",
-        "last_parse_duration": 0.5396639240002514,
+        "last_parsed_time": "2026-11-10T16:30:12.560761Z",
+        "last_parse_duration": 0.7368028570003844,
         "last_expired": null,
         "bundle_name": "dags-folder",
         "bundle_version": null,
