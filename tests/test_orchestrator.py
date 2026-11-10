@@ -40,6 +40,7 @@ def mocked_executor(monkeypatch, settings, failing=None, tags=None):
             "namespace": "mlops",
             "ready": 2,
             "desired": 2,
+            "rollout_complete": True,
             "images": ["api:v1"],
             "version": {"MODEL_RUN_ID": "a" * 32},
         },

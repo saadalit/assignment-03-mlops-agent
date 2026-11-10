@@ -18,7 +18,10 @@ class KubernetesTools:
                 config.load_incluster_config()
             except config.ConfigException:
                 config.load_kube_config()
-            self.core, self.apps = client.CoreV1Api(), client.AppsV1Api()
+            cfg = client.Configuration.get_default_copy()
+            cfg.retries = 0
+            api_client = client.ApiClient(cfg)
+            self.core, self.apps = client.CoreV1Api(api_client), client.AppsV1Api(api_client)
         return self.core, self.apps
 
     def _kwargs(self):
@@ -149,6 +152,13 @@ class KubernetesTools:
             "desired": d.spec.replicas,
             "ready": d.status.ready_replicas or 0,
             "available": d.status.available_replicas or 0,
+            "updated": d.status.updated_replicas or 0,
+            "rollout_complete": (
+                (d.status.observed_generation or 0) >= d.metadata.generation
+                and (d.status.updated_replicas or 0) == d.spec.replicas
+                and (d.status.ready_replicas or 0) >= d.spec.replicas
+                and not d.status.unavailable_replicas
+            ),
             "generation": d.metadata.generation,
             "observed_generation": d.status.observed_generation,
             "images": [c.image for c in d.spec.template.spec.containers],

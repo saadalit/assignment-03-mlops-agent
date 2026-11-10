@@ -46,7 +46,12 @@ class Orchestrator:
         planning_error = None
         if self.settings.planner == "ollama":
             try:
-                self._llm_plan(request.message, call)
+
+                def llm_call(tool_name, **args):
+                    call(tool_name, **args)
+                    return evidence[-1].model_dump()
+
+                self._llm_plan(request.message, llm_call)
             except Exception:
                 planning_error = (
                     "LLM planner unavailable or exceeded tool budget; no answer was invented."
@@ -173,7 +178,7 @@ class Orchestrator:
                         "messages": messages,
                         "tools": self.executor.definitions(),
                         "stream": False,
-                        "options": {"temperature": 0},
+                        "options": {"temperature": 0, "num_ctx": 8192, "num_predict": 512},
                     },
                 )
                 response.raise_for_status()
@@ -189,7 +194,7 @@ class Orchestrator:
                     name = fn["name"].replace("__", ".")
                     data = call(name, **fn["arguments"])
                     messages.append(
-                        {"role": "tool", "name": fn["name"], "content": json.dumps(data)}
+                        {"role": "tool", "tool_name": fn["name"], "content": json.dumps(data)}
                     )
         raise ValueError("Tool budget exhausted")
 
@@ -226,7 +231,7 @@ class Orchestrator:
                     f"{d['ready']}/{d['desired']} "
                     f"ready, images={d['images']}, version={d['version']}."
                 )
-                if d["ready"] < d["desired"] or d.get("observed_generation") != d.get("generation"):
+                if not d.get("rollout_complete", False):
                     recommendations.append(
                         "Deployment rollout is unhealthy or incomplete; "
                         "inspect Pod events and logs."
@@ -252,6 +257,12 @@ class Orchestrator:
                 warnings = [e for e in d.get("events", []) if e.get("type") == "Warning"]
                 if warnings:
                     facts.append(f"Kubernetes warning events: {json.dumps(warnings)}")
+                    warning_text = json.dumps(warnings).lower()
+                    if "readiness probe failed" in warning_text and "404" in warning_text:
+                        recommendations.append(
+                            "Readiness checks returned HTTP 404; verify the probe path "
+                            "against /readyz before changing the model."
+                        )
             elif name == "kubernetes.pod_logs":
                 facts.append(f"Pod {d['pod']} log excerpt: {d['logs'][-1800:]}")
             elif name == "airflow.list_runs":
@@ -268,6 +279,17 @@ class Orchestrator:
                     )
             elif name == "airflow.task_logs":
                 facts.append(f"Task {d['task_id']} diagnostics: {json.dumps(d['log'])[-3500:]}")
+                diagnostics = json.dumps(d["log"])
+                if "DATA_VALIDATION_FAILED" in diagnostics:
+                    recommendations.append(
+                        "Validation rejected the dataset before training; repair schema or "
+                        "provenance and explicitly rerun the approved DAG."
+                    )
+                if "QUALITY_GATE_FAILED" in diagnostics:
+                    recommendations.append(
+                        "The recorded score failed the configured gate, blocking registration; "
+                        "check the threshold and evaluation data before tuning or retraining."
+                    )
             elif name == "airflow.trigger_training":
                 facts.append(
                     f"Training run {d.get('dag_run_id')} accepted; state={d.get('state')}. "
@@ -284,7 +306,7 @@ class Orchestrator:
                 recommendations.append("Resolve the provenance mismatch before promotion.")
             if deployed:
                 actual = deployed.get("version", {}).get("MODEL_RUN_ID")
-                if actual:
+                if actual and deployed.get("rollout_complete", False):
                     facts.append(
                         "Deployed run "
                         f"{'matches' if actual == candidate['run_id'] else 'differs from'} "
@@ -292,7 +314,8 @@ class Orchestrator:
                     )
                 else:
                     unknown.append(
-                        "Deployment does not record MODEL_RUN_ID; candidate identity is unverified."
+                        "Serving model identity is unverified: rollout incomplete "
+                        "or MODEL_RUN_ID missing."
                     )
             if tags.get("quality_gate") == "failed":
                 recommendations.append(

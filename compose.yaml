@@ -1,10 +1,19 @@
 name: assignment3
 services:
+  airflow-init:
+    image: assignment3-airflow:latest
+    user: "0:0"
+    entrypoint: ["bash", "-c", "chown -R 50000:0 /opt/airflow"]
+    volumes:
+      - airflow-home:/opt/airflow
   airflow:
     build:
       context: .
       dockerfile: Dockerfile.airflow
     container_name: assignment3-airflow
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
     init: true
     ports:
       - "127.0.0.1:8080:8080"

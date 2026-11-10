@@ -34,6 +34,9 @@ def main():
     for path in ("namespace", "configmap", "service", "rbac"):
         print(kubectl("apply", "-f", "-", manifest=Path(f"kubernetes/{path}.yaml").read_text()))
     manifest = yaml.safe_load(Path("kubernetes/deployment.yaml").read_text())
+    manifest["spec"]["template"]["spec"]["containers"][0]["image"] = (
+        f"mlops-inference:{info['run_id']}"
+    )
     manifest["spec"]["template"]["spec"]["containers"][0]["env"] = [
         {"name": "MODEL_RUN_ID", "value": info["run_id"]},
         {"name": "DATASET_MD5", "value": info["dataset_md5"]},
