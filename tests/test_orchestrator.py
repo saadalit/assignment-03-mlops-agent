@@ -116,6 +116,45 @@ def test_dataset_question_selects_dvc_without_mlflow(settings):
     assert [r.tool for r in result.evidence] == ["dvc.list_datasets", "dvc.status"]
 
 
+def test_failure_diagnosis_prioritizes_root_failure_over_upstream_failed(settings):
+    from agent.schemas import DagQuery, DagRun, TaskLog
+
+    ex = Executor(
+        [
+            ToolSpec(
+                "airflow.list_runs",
+                "runs",
+                DagQuery,
+                lambda **kw: {"dag_runs": [{"dag_run_id": "r1", "state": "failed"}]},
+            ),
+            ToolSpec(
+                "airflow.failed_tasks",
+                "tasks",
+                DagRun,
+                lambda **kw: {
+                    "failed_tasks": [
+                        {"task_id": "preprocess", "state": "upstream_failed"},
+                        {"task_id": "train", "state": "upstream_failed"},
+                        {"task_id": "validate", "state": "failed", "try_number": 2},
+                    ]
+                },
+            ),
+            ToolSpec(
+                "airflow.task_logs",
+                "logs",
+                TaskLog,
+                lambda **kw: {"task_id": kw["task_id"], "log": "DATA_VALIDATION_FAILED"},
+            ),
+        ]
+    )
+    result = Orchestrator(settings, ex).run(
+        AgentRequest(message="Diagnose failed training pipeline")
+    )
+    assert result.evidence[-1].tool == "airflow.task_logs"
+    assert result.evidence[-1].data["task_id"] == "validate"
+    assert any("Validation rejected" in r for r in result.recommendations)
+
+
 def test_llm_cannot_self_authorize_restart(settings, monkeypatch):
     from agent.orchestrator import build_executor
 

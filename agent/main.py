@@ -2,14 +2,23 @@ import argparse
 import hmac
 import logging
 import os
+from contextlib import asynccontextmanager
 
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException
 
 from agent.config import Settings
 from agent.orchestrator import Orchestrator
 from agent.schemas import AgentRequest, AgentResponse
 
-app = FastAPI(title="Evidence-driven MLOps Agent", version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app):
+    load_dotenv(".env")
+    yield
+
+
+app = FastAPI(title="Evidence-driven MLOps Agent", version="1.0.0", lifespan=lifespan)
 
 
 def authorize(authorization: str | None = Header(default=None)):

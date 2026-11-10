@@ -1,0 +1,102 @@
+'data/iris.csv.dvc' didn't change, skipping
+Running stage 'validate':
+> python -m training.train --stage validate --workspace artifacts/pipeline
+{"stage": "validate", "status": "success"}
+{
+  "workspace": "artifacts/pipeline",
+  "data_path": "data/iris.csv",
+  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+  "dataset_git_commit": "0932d219fa1122bce0b1187511e35e160a94161a",
+  "dataset_pointer": "data/iris.csv.dvc",
+  "rows": 150,
+  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36"
+}
+Generating lock file 'dvc.lock'
+Updating lock file 'dvc.lock'
+
+Running stage 'preprocess':
+> python -m training.train --stage preprocess --workspace artifacts/pipeline
+{"stage": "preprocess", "status": "success"}
+{
+  "workspace": "artifacts/pipeline",
+  "data_path": "data/iris.csv",
+  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+  "dataset_git_commit": "0932d219fa1122bce0b1187511e35e160a94161a",
+  "dataset_pointer": "data/iris.csv.dvc",
+  "rows": 150,
+  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+  "max_depth": 3
+}
+Updating lock file 'dvc.lock'
+
+Running stage 'train':
+> python -m training.train --stage train --workspace artifacts/pipeline
+{"stage": "train", "status": "success"}
+{
+  "workspace": "artifacts/pipeline",
+  "data_path": "data/iris.csv",
+  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+  "dataset_git_commit": "0932d219fa1122bce0b1187511e35e160a94161a",
+  "dataset_pointer": "data/iris.csv.dvc",
+  "rows": 150,
+  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+  "max_depth": 3
+}
+Updating lock file 'dvc.lock'
+
+Running stage 'evaluate':
+> python -m training.train --stage evaluate --workspace artifacts/pipeline
+2026/11/10 21:09:18 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+🏃 View run pipeline at: http://127.0.0.1:5000/#/experiments/1/runs/e6356513e2e94608b625148bd0c72163
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/1
+{"stage": "evaluate", "status": "success"}
+{
+  "workspace": "artifacts/pipeline",
+  "data_path": "data/iris.csv",
+  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+  "dataset_git_commit": "0932d219fa1122bce0b1187511e35e160a94161a",
+  "dataset_pointer": "data/iris.csv.dvc",
+  "rows": 150,
+  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+  "max_depth": 3,
+  "metrics": {
+    "accuracy": 0.9555555555555556,
+    "f1": 0.9555555555555556
+  },
+  "min_f1": 0.85,
+  "run_id": "e6356513e2e94608b625148bd0c72163",
+  "app_version": "1.0.0"
+}
+Updating lock file 'dvc.lock'
+
+Running stage 'quality_gate':
+> python -m training.train --stage gate --workspace artifacts/pipeline
+{"stage": "gate", "status": "success"}
+{
+  "workspace": "artifacts/pipeline",
+  "data_path": "data/iris.csv",
+  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+  "dataset_git_commit": "0932d219fa1122bce0b1187511e35e160a94161a",
+  "dataset_pointer": "data/iris.csv.dvc",
+  "rows": 150,
+  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+  "max_depth": 3,
+  "metrics": {
+    "accuracy": 0.9555555555555556,
+    "f1": 0.9555555555555556
+  },
+  "min_f1": 0.85,
+  "run_id": "e6356513e2e94608b625148bd0c72163",
+  "app_version": "1.0.0",
+  "quality_gate": "passed"
+}
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.

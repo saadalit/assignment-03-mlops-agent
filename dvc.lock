@@ -1,0 +1,79 @@
+schema: '2.0'
+stages:
+  validate:
+    cmd: python -m training.train --stage validate --workspace 
+      artifacts/pipeline
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 5c2fcf018f5f74ee80f846aabcc97f36
+      size: 2757
+      isexec: true
+    - path: training/stages.py
+      hash: md5
+      md5: d895b3827ee0ef0fe6a1c9c9afe32e63
+      size: 6637
+      isexec: true
+    outs:
+    - path: artifacts/pipeline/validation.json
+      hash: md5
+      md5: 6a8288c1b481668d91e1daeb34147195
+      size: 310
+      isexec: true
+  preprocess:
+    cmd: python -m training.train --stage preprocess --workspace 
+      artifacts/pipeline
+    deps:
+    - path: artifacts/pipeline/validation.json
+      hash: md5
+      md5: 6a8288c1b481668d91e1daeb34147195
+      size: 310
+      isexec: true
+    outs:
+    - path: artifacts/pipeline/split.npz
+      hash: md5
+      md5: d4d7a52f3f025ae2eec64bb0454d56f1
+      size: 7002
+      isexec: true
+  train:
+    cmd: python -m training.train --stage train --workspace artifacts/pipeline
+    deps:
+    - path: artifacts/pipeline/split.npz
+      hash: md5
+      md5: d4d7a52f3f025ae2eec64bb0454d56f1
+      size: 7002
+      isexec: true
+    outs:
+    - path: artifacts/pipeline/model.joblib
+      hash: md5
+      md5: 43587392f0c0b31423d54f7062b00082
+      size: 70641
+      isexec: true
+  evaluate:
+    cmd: python -m training.train --stage evaluate --workspace 
+      artifacts/pipeline
+    deps:
+    - path: artifacts/pipeline/model.joblib
+      hash: md5
+      md5: 43587392f0c0b31423d54f7062b00082
+      size: 70641
+      isexec: true
+    outs:
+    - path: artifacts/pipeline/evaluation.json
+      hash: md5
+      md5: 77cfeaa819e955d7351fd390192af48f
+      size: 505
+      isexec: true
+    - path: artifacts/pipeline/metrics.json
+      hash: md5
+      md5: 713620b77474efa514aac693312a607e
+      size: 64
+      isexec: true
+  quality_gate:
+    cmd: python -m training.train --stage gate --workspace artifacts/pipeline
+    deps:
+    - path: artifacts/pipeline/evaluation.json
+      hash: md5
+      md5: 77cfeaa819e955d7351fd390192af48f
+      size: 505
+      isexec: true

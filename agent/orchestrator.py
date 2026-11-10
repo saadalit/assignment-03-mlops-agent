@@ -140,15 +140,17 @@ class Orchestrator:
             result = call("airflow.list_runs", dag_id=dag)
             for run in result.get("dag_runs", [])[:2]:
                 tasks = call("airflow.failed_tasks", dag_id=dag, run_id=run["dag_run_id"])
-                for task in tasks.get("failed_tasks", [])[:2]:
-                    if task.get("state") != "upstream_failed":
-                        call(
-                            "airflow.task_logs",
-                            dag_id=dag,
-                            run_id=run["dag_run_id"],
-                            task_id=task["task_id"],
-                            try_number=max(1, task.get("try_number", 1)),
-                        )
+                diagnosable = [
+                    t for t in tasks.get("failed_tasks", []) if t.get("state") != "upstream_failed"
+                ]
+                for task in diagnosable[:2]:
+                    call(
+                        "airflow.task_logs",
+                        dag_id=dag,
+                        run_id=run["dag_run_id"],
+                        task_id=task["task_id"],
+                        try_number=max(1, task.get("try_number", 1)),
+                    )
 
     def _llm_plan(self, message, call):
         # Ollama's supported tool-calling API. The model cannot grant confirmations.

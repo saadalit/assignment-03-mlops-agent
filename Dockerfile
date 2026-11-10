@@ -1,7 +1,9 @@
+FROM ghcr.io/astral-sh/uv:0.13.7 AS uv
 FROM python:3.12.12-slim
 WORKDIR /app
+COPY --from=uv /uv /bin/uv
 COPY requirements-inference.txt ./
-RUN pip install --no-cache-dir --require-hashes -r requirements-inference.txt \
+RUN uv pip install --system --no-cache --require-hashes -r requirements-inference.txt \
     && useradd --uid 10001 --create-home app
 COPY --chown=app:app api ./api
 COPY --chown=app:app models/current ./models/current

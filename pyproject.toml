@@ -31,7 +31,7 @@ dev = ["pytest==8.4.2", "pytest-cov==7.0.0", "ruff==0.14.3"]
 mlops-agent = "agent.main:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["agent", "api", "training"]
+packages = ["agent", "api", "training", "scripts"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

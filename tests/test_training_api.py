@@ -83,10 +83,11 @@ def test_inference_rejects_mislabeled_artifact(tmp_path, monkeypatch):
             pass
 
 
-def test_agent_http_api_requires_credentials(monkeypatch):
+def test_agent_http_api_requires_credentials(monkeypatch, tmp_path):
     from agent.main import app
 
     monkeypatch.delenv("AGENT_API_TOKEN", raising=False)
+    monkeypatch.chdir(tmp_path)
     with TestClient(app) as client:
         assert client.post("/chat", json={"message": "best model"}).status_code == 503
         monkeypatch.setenv("AGENT_API_TOKEN", "private-test-token")
