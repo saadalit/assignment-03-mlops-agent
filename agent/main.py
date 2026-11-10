@@ -31,17 +31,22 @@ def chat(request: AgentRequest):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="MLOps agent: evidence, uncertainty, recommendations")
+    parser = argparse.ArgumentParser(
+        description="MLOps agent: evidence, uncertainty, recommendations"
+    )
     parser.add_argument("message")
-    parser.add_argument("--confirm", action="append", default=[], help="Exact action being confirmed")
+    parser.add_argument(
+        "--confirm", action="append", default=[], help="Exact action being confirmed"
+    )
     parser.add_argument("--planner", choices=["rules", "ollama"], default=None)
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     settings = Settings.from_env()
     if args.planner:
         settings.planner = args.planner
-    response = Orchestrator(settings).run(AgentRequest(message=args.message,
-                                                     confirmations=args.confirm))
+    response = Orchestrator(settings).run(
+        AgentRequest(message=args.message, confirmations=args.confirm)
+    )
     print(response.model_dump_json(indent=2))
 
 

@@ -35,17 +35,30 @@ def validate(data_path="data/iris.csv", workspace=".local/runs/manual", inject_i
     actual = hashlib.md5(path.read_bytes()).hexdigest()
     if actual != recorded:
         raise ValueError("DATA_VALIDATION_FAILED: data differs from recorded DVC content address")
-    commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
-                            check=True, timeout=10).stdout.strip()
-    committed = yaml.safe_load(subprocess.run(
-        ["git", "show", f"{commit}:{pointer.as_posix()}"], capture_output=True, text=True,
-        check=True, timeout=10).stdout)["outs"][0]["md5"]
+    commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True, timeout=10
+    ).stdout.strip()
+    committed = yaml.safe_load(
+        subprocess.run(
+            ["git", "show", f"{commit}:{pointer.as_posix()}"],
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=10,
+        ).stdout
+    )["outs"][0]["md5"]
     if committed != actual:
         raise ValueError("DATA_VALIDATION_FAILED: DVC pointer is not committed to Git")
     work.mkdir(parents=True, exist_ok=True)
-    info = {"workspace": str(work), "data_path": str(path), "dataset_md5": actual,
-            "dataset_git_commit": commit, "dataset_pointer": str(pointer), "rows": len(df),
-            "dataset_version": "v2"}
+    info = {
+        "workspace": str(work),
+        "data_path": str(path),
+        "dataset_md5": actual,
+        "dataset_git_commit": commit,
+        "dataset_pointer": str(pointer),
+        "rows": len(df),
+        "dataset_version": f"md5:{actual}",
+    }
     (work / "validation.json").write_text(json.dumps(info, indent=2))
     return info
 
@@ -53,10 +66,19 @@ def validate(data_path="data/iris.csv", workspace=".local/runs/manual", inject_i
 def preprocess(info):
     df = pd.read_csv(info["data_path"])
     x_train, x_test, y_train, y_test = train_test_split(
-        df[FEATURES].to_numpy(), df["target"].to_numpy(), test_size=0.3,
-        random_state=42, stratify=df["target"])
-    np.savez(Path(info["workspace"]) / "split.npz", x_train=x_train, x_test=x_test,
-             y_train=y_train, y_test=y_test)
+        df[FEATURES].to_numpy(),
+        df["target"].to_numpy(),
+        test_size=0.3,
+        random_state=42,
+        stratify=df["target"],
+    )
+    np.savez(
+        Path(info["workspace"]) / "split.npz",
+        x_train=x_train,
+        x_test=x_test,
+        y_train=y_train,
+        y_test=y_test,
+    )
     return info
 
 
@@ -73,22 +95,43 @@ def evaluate(info, min_f1=0.85):
     split = np.load(work / "split.npz")
     model = joblib.load(work / "model.joblib")
     predictions = model.predict(split["x_test"])
-    metrics = {"accuracy": float(accuracy_score(split["y_test"], predictions)),
-               "f1": float(f1_score(split["y_test"], predictions, average="macro"))}
+    metrics = {
+        "accuracy": float(accuracy_score(split["y_test"], predictions)),
+        "f1": float(f1_score(split["y_test"], predictions, average="macro")),
+    }
+    (work / "metrics.json").write_text(json.dumps(metrics, indent=2))
     mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000"))
     mlflow.set_experiment(os.getenv("MLFLOW_EXPERIMENT_NAME", "iris-classification"))
     with mlflow.start_run(run_name=work.name) as run:
-        mlflow.log_params({"max_depth": info["max_depth"], "n_estimators": 60,
-                           "split_seed": 42, "test_size": 0.3, "min_f1": min_f1})
+        mlflow.log_params(
+            {
+                "max_depth": info["max_depth"],
+                "n_estimators": 60,
+                "split_seed": 42,
+                "test_size": 0.3,
+                "min_f1": min_f1,
+            }
+        )
         mlflow.log_metrics(metrics)
-        mlflow.set_tags({k: info[k] for k in ("dataset_md5", "dataset_git_commit",
-                                             "dataset_pointer", "dataset_version")})
-        mlflow.set_tags({"quality_gate": "pending", "evaluation_split": "stratified-seed42-test0.3"})
+        mlflow.set_tags(
+            {
+                k: info[k]
+                for k in ("dataset_md5", "dataset_git_commit", "dataset_pointer", "dataset_version")
+            }
+        )
+        mlflow.set_tags(
+            {"quality_gate": "pending", "evaluation_split": "stratified-seed42-test0.3"}
+        )
         mlflow.log_artifact(str(work / "validation.json"))
         mlflow.log_artifact(str(work / "model.joblib"))
         mlflow.sklearn.log_model(model, name="model", input_example=split["x_test"][:2])
-        result = {**info, "metrics": metrics, "min_f1": min_f1, "run_id": run.info.run_id,
-                  "app_version": "1.0.0"}
+        result = {
+            **info,
+            "metrics": metrics,
+            "min_f1": min_f1,
+            "run_id": run.info.run_id,
+            "app_version": "1.0.0",
+        }
         (work / "evaluation.json").write_text(json.dumps(result, indent=2))
         mlflow.log_dict(result, "evaluation.json")
     return result
@@ -99,8 +142,10 @@ def quality_gate(info):
     passed = info["metrics"]["f1"] >= info["min_f1"]
     MlflowClient().set_tag(info["run_id"], "quality_gate", "passed" if passed else "failed")
     if not passed:
-        raise ValueError(f"QUALITY_GATE_FAILED: f1={info['metrics']['f1']:.4f} < "
-                         f"required={info['min_f1']}; promotion blocked")
+        raise ValueError(
+            f"QUALITY_GATE_FAILED: f1={info['metrics']['f1']:.4f} < "
+            f"required={info['min_f1']}; promotion blocked"
+        )
     return {**info, "quality_gate": "passed"}
 
 

@@ -4,8 +4,8 @@ import os
 import re
 import subprocess
 import time
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 import httpx
 from pydantic import BaseModel, ValidationError
@@ -24,7 +24,8 @@ def redact(value: str) -> str:
     value = re.sub(r"(?i)(bearer\s+)\S+", r"\1[REDACTED]", value)
     value = re.sub(
         r"(?i)((?:password|token|api[_-]?key|secret)\s*[=:]\s*)[^\s,;]+",
-        r"\1[REDACTED]", value,
+        r"\1[REDACTED]",
+        value,
     )
     value = re.sub(r"https?://[^/@\s]+:[^/@\s]+@", "https://[REDACTED]@", value)
     value = re.sub(r"(?:gh[pousr]_[\w]+|github_pat_[\w]+|sk-[\w-]{10,})", "[REDACTED]", value)
@@ -33,8 +34,10 @@ def redact(value: str) -> str:
 
 def scrub(value):
     if isinstance(value, dict):
-        return {k: "[REDACTED]" if re.search(r"(?i)(password|token|secret|api_key)", k)
-                else scrub(v) for k, v in value.items()}
+        return {
+            k: "[REDACTED]" if re.search(r"(?i)(password|token|secret|api_key)", k) else scrub(v)
+            for k, v in value.items()
+        }
     if isinstance(value, (list, tuple)):
         return [scrub(v) for v in value]
     if isinstance(value, str):
@@ -56,13 +59,21 @@ class Executor:
         self.tools = {s.name: s for s in specs}
 
     def definitions(self):
-        return [{"type": "function", "function": {
-            "name": s.name.replace(".", "__"), "description": s.description,
-            "parameters": s.inputs.model_json_schema(),
-        }} for s in self.tools.values()]
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": s.name.replace(".", "__"),
+                    "description": s.description,
+                    "parameters": s.inputs.model_json_schema(),
+                },
+            }
+            for s in self.tools.values()
+        ]
 
-    def execute(self, name: str, arguments: dict, request_id: str,
-                confirmations: set[str] | None = None) -> ToolResult:
+    def execute(
+        self, name: str, arguments: dict, request_id: str, confirmations: set[str] | None = None
+    ) -> ToolResult:
         start = time.monotonic()
         status, data, error = "ok", {}, None
         try:
@@ -72,6 +83,7 @@ class Executor:
             args = spec.inputs.model_validate(arguments).model_dump()
             if spec.confirmation:
                 from agent.permissions import require_confirmation
+
                 require_confirmation(spec.confirmation(args), confirmations or set())
             data = spec.handler(**args)
             # Tool evidence may include arbitrary service logs; scrub before LLM/API/storage.
@@ -84,11 +96,27 @@ class Executor:
             status, error = "timeout", "Tool timed out; operational outcome is unknown"
         except Exception as exc:
             # Never disclose exception strings: SDK exceptions can embed credentials or bodies.
-            status, error = "error", f"Service operation failed ({type(exc).__name__}); outcome unknown"
+            status, error = (
+                "error",
+                f"Service operation failed ({type(exc).__name__}); outcome unknown",
+            )
         duration = round((time.monotonic() - start) * 1000, 3)
-        result = ToolResult(tool=name, status=status, data=data, error=error,
-                            duration_ms=duration, request_id=request_id)
-        logger.info(json.dumps({"tool": name if name in self.tools else "unknown",
-                               "status": status, "duration_ms": duration,
-                               "request_id": request_id}))
+        result = ToolResult(
+            tool=name,
+            status=status,
+            data=data,
+            error=error,
+            duration_ms=duration,
+            request_id=request_id,
+        )
+        logger.info(
+            json.dumps(
+                {
+                    "tool": name if name in self.tools else "unknown",
+                    "status": status,
+                    "duration_ms": duration,
+                    "request_id": request_id,
+                }
+            )
+        )
         return result

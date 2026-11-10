@@ -12,8 +12,11 @@ def main():
     parser.add_argument("--min-f1", type=float, default=0.85)
     parser.add_argument("--export", action="store_true")
     parser.add_argument("--register", action="store_true")
-    parser.add_argument("--stage", choices=["validate", "preprocess", "train", "evaluate", "gate", "all"],
-                        default="all")
+    parser.add_argument(
+        "--stage",
+        choices=["validate", "preprocess", "train", "evaluate", "gate", "all"],
+        default="all",
+    )
     args = parser.parse_args()
     work = Path(args.workspace)
     work.mkdir(parents=True, exist_ok=True)

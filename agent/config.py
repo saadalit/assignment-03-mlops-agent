@@ -17,7 +17,9 @@ class Settings:
     airflow_url: str = field(
         default_factory=lambda: os.getenv("AIRFLOW_URL", "http://127.0.0.1:8080")
     )
-    airflow_dag: str = field(default_factory=lambda: os.getenv("AIRFLOW_DAG_ID", "training_pipeline"))
+    airflow_dag: str = field(
+        default_factory=lambda: os.getenv("AIRFLOW_DAG_ID", "training_pipeline")
+    )
     namespace: str = field(default_factory=lambda: os.getenv("KUBE_NAMESPACE", "mlops"))
     selector: str = field(
         default_factory=lambda: os.getenv("KUBE_APP_SELECTOR", "app=prediction-api")
@@ -26,7 +28,8 @@ class Settings:
     planner: str = field(default_factory=lambda: os.getenv("AGENT_PLANNER", "rules"))
     max_model_age_days: float | None = field(
         default_factory=lambda: float(os.environ["MAX_MODEL_AGE_DAYS"])
-        if os.getenv("MAX_MODEL_AGE_DAYS") else None
+        if os.getenv("MAX_MODEL_AGE_DAYS")
+        else None
     )
 
     @classmethod

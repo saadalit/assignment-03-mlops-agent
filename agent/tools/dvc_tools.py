@@ -15,8 +15,14 @@ class DVCTools:
         self.settings = settings
 
     def _run(self, *args):
-        return subprocess.run(args, cwd=self.settings.repo, text=True, capture_output=True,
-                              check=True, timeout=self.settings.timeout).stdout
+        return subprocess.run(
+            args,
+            cwd=self.settings.repo,
+            text=True,
+            capture_output=True,
+            check=True,
+            timeout=self.settings.timeout,
+        ).stdout
 
     def _commit(self, ref):
         if ref.startswith("-") or ".." in ref:
@@ -32,8 +38,10 @@ class DVCTools:
 
     def list_datasets(self):
         paths = self._run("git", "ls-files", "--", "*.dvc").splitlines()
-        return {"datasets": [{"pointer": p, **self.current_version("HEAD", p)} for p in paths],
-                "pipeline": (self.settings.repo / "dvc.yaml").exists()}
+        return {
+            "datasets": [{"pointer": p, **self.current_version("HEAD", p)} for p in paths],
+            "pipeline": (self.settings.repo / "dvc.yaml").exists(),
+        }
 
     def current_version(self, ref="HEAD", path="data/iris.csv.dvc"):
         commit, pointer = self._pointer(ref, path)
@@ -53,30 +61,54 @@ class DVCTools:
         return {"before": a, "after": b, "changed": a["outputs"] != b["outputs"], "diff": diff}
 
     def status(self):
-        return {"changes": json.loads(self._run("dvc", "status", "--json")),
-                "git_commit": self._commit("HEAD")}
+        return {
+            "changes": json.loads(self._run("dvc", "status", "--json")),
+            "git_commit": self._commit("HEAD"),
+        }
 
     def reproduction(self, ref="HEAD", path="data/iris.csv.dvc"):
         version = self.current_version(ref, path)
         commit = version["git_commit"]
-        return {**version, "instructions": [
-            f"git worktree add --detach ../dataset-reproduction {commit}",
-            "cd ../dataset-reproduction",
-            "uv sync --frozen",
-            "uv run dvc remote add --local -d storage /absolute/path/to/dvc-remote",
-            f"uv run dvc pull {path}",
-            "Compare the downloaded file MD5 with outputs[0].md5 above.",
-        ], "note": "Requires access to the DVC remote; no checkout was performed by this tool."}
+        return {
+            **version,
+            "instructions": [
+                f"git worktree add --detach ../dataset-reproduction {commit}",
+                "cd ../dataset-reproduction",
+                "uv sync --frozen",
+                "uv run dvc remote add --local -d storage /absolute/path/to/dvc-remote",
+                f"uv run dvc pull {path}",
+                "Compare the downloaded file MD5 with outputs[0].md5 above.",
+            ],
+            "note": "Requires access to the DVC remote; no checkout was performed by this tool.",
+        }
 
     def specs(self):
         return [
-            ToolSpec("dvc.list_datasets", "List Git-tracked DVC dataset pointers", Empty,
-                     self.list_datasets),
-            ToolSpec("dvc.current_version", "Read dataset MD5 and Git provenance at a revision",
-                     DatasetRef, self.current_version),
-            ToolSpec("dvc.compare", "Compare two recorded DVC dataset revisions", DatasetCompare,
-                     self.compare),
-            ToolSpec("dvc.status", "Detect changes in DVC-tracked data and pipeline", Empty, self.status),
-            ToolSpec("dvc.reproduction", "Explain isolated reproduction of a recorded dataset",
-                     DatasetRef, self.reproduction),
+            ToolSpec(
+                "dvc.list_datasets",
+                "List Git-tracked DVC dataset pointers",
+                Empty,
+                self.list_datasets,
+            ),
+            ToolSpec(
+                "dvc.current_version",
+                "Read dataset MD5 and Git provenance at a revision",
+                DatasetRef,
+                self.current_version,
+            ),
+            ToolSpec(
+                "dvc.compare",
+                "Compare two recorded DVC dataset revisions",
+                DatasetCompare,
+                self.compare,
+            ),
+            ToolSpec(
+                "dvc.status", "Detect changes in DVC-tracked data and pipeline", Empty, self.status
+            ),
+            ToolSpec(
+                "dvc.reproduction",
+                "Explain isolated reproduction of a recorded dataset",
+                DatasetRef,
+                self.reproduction,
+            ),
         ]

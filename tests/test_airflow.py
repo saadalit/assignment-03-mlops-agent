@@ -16,13 +16,24 @@ def transport(monkeypatch, handler):
         assert request.headers["authorization"] == "Bearer private-jwt"
         assert request.url.path.startswith("/api/v2/")
         return handler(request)
+
     return httpx.Client(base_url="http://airflow", transport=httpx.MockTransport(wrapped))
 
 
 def test_airflow_v3_auth_and_task_failure_diagnostics(settings, monkeypatch):
-    client = transport(monkeypatch, lambda r: httpx.Response(200, json={"task_instances": [
-        {"task_id": "validate", "state": "failed"}, {"task_id": "train", "state": "upstream_failed"},
-        {"task_id": "evaluate_mlflow", "state": "success"}]}))
+    client = transport(
+        monkeypatch,
+        lambda r: httpx.Response(
+            200,
+            json={
+                "task_instances": [
+                    {"task_id": "validate", "state": "failed"},
+                    {"task_id": "train", "state": "upstream_failed"},
+                    {"task_id": "evaluate_mlflow", "state": "success"},
+                ]
+            },
+        ),
+    )
     result = AirflowTools(settings, client).failed_tasks("training_pipeline", "manual/run")
     assert len(result["failed_tasks"]) == 2
 
@@ -31,10 +42,13 @@ def test_airflow_trigger_requires_confirmation_and_allowlist(settings, monkeypat
     client = transport(monkeypatch, lambda r: httpx.Response(200, json={"dag_run_id": "manual"}))
     ex = Executor(AirflowTools(settings, client).specs())
     assert ex.execute("airflow.trigger_training", {}, "id").status == "denied"
-    result = ex.execute("airflow.trigger_training", {}, "id", {"airflow.trigger_training:training_pipeline"})
+    result = ex.execute(
+        "airflow.trigger_training", {}, "id", {"airflow.trigger_training:training_pipeline"}
+    )
     assert result.status == "ok"
-    result = ex.execute("airflow.trigger_training", {"dag_id": "evil"}, "id",
-                        {"airflow.trigger_training:evil"})
+    result = ex.execute(
+        "airflow.trigger_training", {"dag_id": "evil"}, "id", {"airflow.trigger_training:evil"}
+    )
     assert result.status == "denied"
 
 

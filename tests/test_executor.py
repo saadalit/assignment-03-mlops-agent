@@ -14,15 +14,22 @@ def test_execution_records_safe_structured_log(caplog):
         result = ex.execute("dvc.status", {}, "request-123")
     assert result.status == "ok" and result.data == {"ok": True}
     record = json.loads(caplog.records[-1].message)
-    assert record == {"tool": "dvc.status", "status": "ok", "duration_ms": result.duration_ms,
-                      "request_id": "request-123"}
+    assert record == {
+        "tool": "dvc.status",
+        "status": "ok",
+        "duration_ms": result.duration_ms,
+        "request_id": "request-123",
+    }
 
 
-@pytest.mark.parametrize("error,status", [(httpx.ReadTimeout("secret"), "timeout"),
-                                         (ConnectionError("token=abc"), "error")])
+@pytest.mark.parametrize(
+    "error,status",
+    [(httpx.ReadTimeout("secret"), "timeout"), (ConnectionError("token=abc"), "error")],
+)
 def test_timeout_and_failure_never_invent_data(error, status):
     def fail():
         raise error
+
     ex = Executor([ToolSpec("test.status", "status", Empty, fail)])
     result = ex.execute("test.status", {}, "id")
     assert result.status == status and result.data == {}
@@ -37,9 +44,19 @@ def test_invalid_requests_rejected(name, args):
 
 def test_redacts_secrets_in_nested_evidence(monkeypatch, caplog):
     monkeypatch.setenv("AIRFLOW_PASSWORD", "superprivate123")
-    ex = Executor([ToolSpec("test.logs", "logs", Empty,
-                           lambda: {"logs": "password=abc Bearer xyz superprivate123",
-                                    "nested": {"access_token": "secret"}})])
+    ex = Executor(
+        [
+            ToolSpec(
+                "test.logs",
+                "logs",
+                Empty,
+                lambda: {
+                    "logs": "password=abc Bearer xyz superprivate123",
+                    "nested": {"access_token": "secret"},
+                },
+            )
+        ]
+    )
     with caplog.at_level(logging.INFO):
         result = ex.execute("test.logs", {}, "id")
     text = result.model_dump_json() + caplog.text
