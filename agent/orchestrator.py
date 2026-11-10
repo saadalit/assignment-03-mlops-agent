@@ -159,6 +159,24 @@ class Orchestrator:
 
     def _llm_plan(self, message, call):
         # Ollama's supported tool-calling API. The model cannot grant confirmations.
+        definitions = self.executor.definitions()
+        text = message.lower()
+        if re.search(r"\b(dvc|datasets?)\b", text) and not any(
+            word in text
+            for word in (
+                "model",
+                "experiment",
+                "run",
+                "pipeline",
+                "deploy",
+                "airflow",
+                "kubernetes",
+                "pod",
+            )
+        ):
+            # Domain routing limits prompt cost for small local models. Multi-tool requests
+            # retain the complete registry and are still planned by the model.
+            definitions = [d for d in definitions if d["function"]["name"].startswith("dvc__")]
         messages = [
             {
                 "role": "system",
@@ -176,14 +194,14 @@ class Orchestrator:
             },
             {"role": "user", "content": message},
         ]
-        with httpx.Client(timeout=90) as client:
+        with httpx.Client(timeout=float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "180"))) as client:
             for _ in range(12):
                 response = client.post(
                     os.getenv("OLLAMA_URL", "http://127.0.0.1:11434") + "/api/chat",
                     json={
                         "model": os.getenv("OLLAMA_MODEL", "qwen2.5:1.5b"),
                         "messages": messages,
-                        "tools": self.executor.definitions(),
+                        "tools": definitions,
                         "stream": False,
                         "options": {"temperature": 0, "num_ctx": 8192, "num_predict": 512},
                     },

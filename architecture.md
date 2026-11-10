@@ -25,6 +25,9 @@ uses the supported `/api/chat` tool-calling protocol. `AGENT_PLANNER=rules` prov
 documented natural-language workflows without a model download; responses identify the planner
 used. Model-generated prose is never treated as operational evidence. The final response is
 rendered exclusively from successful tool outputs; failed calls produce explicit uncertainty.
+For small local models, DVC-only questions use domain routing to reduce prompt size; requests
+mentioning model runs, workflows or deployments retain the complete tool registry. The LLM
+HTTP timeout is configurable independently of infrastructure tool timeouts.
 
 Each tool has a name, JSON Schema input, description, Python handler, and optional exact-action
 confirmation identifier. The executor validates inputs, checks confirmation, records elapsed

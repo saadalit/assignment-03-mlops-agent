@@ -123,9 +123,15 @@ docker exec assignment3-ollama ollama pull qwen2.5:1.5b
 uv run mlops-agent "List the DVC tracked datasets" --planner ollama
 ```
 
+For an existing stopped container, use `docker start assignment3-ollama`. The verification
+stops the LLM afterward to free memory. On a 4 GB machine, temporarily stopping Airflow for
+a DVC-only LLM demonstration leaves more memory; restart it before multi-tool checks.
+
 The model proposes JSON-schema tool calls via Ollama `/api/chat`. Final operational prose
 is rendered from actual tool results. The small model is suitable for demonstration; complex
 open-ended requests benefit from a stronger tool-capable model and more memory.
+`OLLAMA_TIMEOUT_SECONDS` defaults to 180 to accommodate CPU cold starts. DVC-only questions
+receive the five DVC tool definitions; multi-tool questions retain the complete registry.
 
 To launch the authenticated agent HTTP interface:
 
@@ -177,6 +183,7 @@ are historical evidence; regenerating demonstrations creates new ones.
 
 ```bash
 docker compose stop
+docker stop assignment3-k3s  # also stops a cluster started manually during setup
 docker stop assignment3-ollama  # if started
 ```
 

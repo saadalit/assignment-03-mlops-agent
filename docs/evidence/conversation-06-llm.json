@@ -1,0 +1,48 @@
+{
+  "collected_at": "2026-11-10T16:36:27.603118+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "List the datasets tracked by DVC. Call dvc__list_datasets exactly once, then stop.",
+    "agent": {
+      "request_id": "b584f172f1fa42b78229fe13bd915082",
+      "planner": "ollama",
+      "facts": [
+        "dvc.list_datasets: {\"datasets\": [{\"pointer\": \"data/iris.csv.dvc\", \"git_commit\": \"711eaa4e947aa70388dd2a7f2daa9c5347a5997a\", \"requested_ref\": \"HEAD\", \"outputs\": [{\"md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"size\": 2757, \"isexec\": true, \"hash\": \"md5\", \"path\": \"iris.csv\"}], \"workspace_md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"matches_recorded_version\": true}], \"pipeline\": true}"
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "dvc.list_datasets",
+          "status": "ok",
+          "data": {
+            "datasets": [
+              {
+                "pointer": "data/iris.csv.dvc",
+                "git_commit": "711eaa4e947aa70388dd2a7f2daa9c5347a5997a",
+                "requested_ref": "HEAD",
+                "outputs": [
+                  {
+                    "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                    "size": 2757,
+                    "isexec": true,
+                    "hash": "md5",
+                    "path": "iris.csv"
+                  }
+                ],
+                "workspace_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "matches_recorded_version": true
+              }
+            ],
+            "pipeline": true
+          },
+          "error": null,
+          "duration_ms": 538.032,
+          "request_id": "b584f172f1fa42b78229fe13bd915082"
+        }
+      ]
+    }
+  }
+}

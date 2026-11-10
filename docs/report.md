@@ -70,7 +70,9 @@ be inspected. Registry state and model artifacts are retrieved through supported
 
 The following exports contain actual service outputs, request IDs, status and elapsed time.
 The core demonstration uses `planner=rules`; the LLM backend is separately exercised through
-its supported tool-calling protocol. Mocked unit-test responses are not passed off as live evidence.
+its supported tool-calling protocol. A real local `qwen2.5:1.5b` model selected and executed
+`dvc.list_datasets` successfully; see the [LLM conversation](evidence/conversation-06-llm.json).
+Mocked unit-test responses are not passed off as live evidence.
 
 | Scenario | Request and evidence |
 | --- | --- |
@@ -133,7 +135,7 @@ Evidence: [diagnosis](evidence/failure-readiness-diagnosis.json) and
 
 ## Testing and engineering defense
 
-Pytest passes **48 tests** (77% combined statement coverage), exceeding the required eight cases.
+Pytest passes **48 tests** (78% combined statement coverage), exceeding the required eight cases.
 Coverage includes successful selection
 and execution, four-tool correlation without mutation, timeouts, invalid arguments, service
 errors, unavailable evidence, missing provenance, secret redaction, unauthorized/cross-namespace
@@ -161,6 +163,10 @@ limiting log retrieval fixed it; a regression test now covers that ordering.
 * Default deterministic planning covers bounded workflows, not arbitrary conversation. The
   Ollama backend supports structured tool calling; small models can choose poor tools or
   exceed the bounded loop. Use a stronger tool-capable model for broader requests.
+  On the 4 GB test machine, an initial full-registry cold request exceeded 90 seconds and
+  correctly returned uncertainty. Configurable 180-second LLM timeouts and DVC-only domain
+  routing enabled the successful real LLM demonstration. All four tool families remain
+  available for multi-tool requests. The model is stopped after verification to free memory.
 * Local SQLite, filesystem DVC remote, SimpleAuthManager and single-node k3s are demonstration
   topologies. Production requires durable shared stores, PostgreSQL, TLS, scoped identity,
   high availability, artifact signing and operational monitoring.

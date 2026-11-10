@@ -34,7 +34,6 @@ tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
     array.shape = self.shape
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-- generated xml file: /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.local/pytest.xml -
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.12.3-final-0 ________________
 
@@ -44,7 +43,7 @@ agent/__init__.py                     0      0   100%
 agent/config.py                      20      2    90%   37-38
 agent/executor.py                    72      0   100%
 agent/main.py                        43     14    67%   36, 41, 45-61, 65
-agent/orchestrator.py               208     34    84%   81, 85, 87, 89, 113-114, 116-120, 128, 136, 139, 144, 198, 206, 228, 239, 241-242, 262-263, 274, 280-288, 293, 298, 315, 320, 331-332, 347
+agent/orchestrator.py               212     34    84%   81, 85, 87, 89, 113-114, 116-120, 128, 136, 139, 144, 216, 224, 246, 257, 259-260, 280-281, 292, 298-306, 311, 316, 333, 338, 349-350, 365
 agent/permissions.py                  7      0   100%
 agent/schemas.py                     58      0   100%
 agent/tools/__init__.py               0      0   100%
@@ -59,6 +58,6 @@ training/prepare_data.py             16     16     0%   1-22
 training/stages.py                   95     34    64%   26, 29, 31, 33, 52, 95-147, 159, 166-168, 174-178
 training/train.py                    43     43     0%   1-53
 ---------------------------------------------------------------
-TOTAL                               811    183    77%
+TOTAL                               815    183    78%
 Coverage JSON written to file .local/coverage.json
-======================= 48 passed, 10 warnings in 41.19s =======================
+================== 48 passed, 10 warnings in 97.65s (0:01:37) ==================
