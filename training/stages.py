@@ -10,6 +10,7 @@ import mlflow
 import mlflow.sklearn
 import numpy as np
 import pandas as pd
+import sklearn
 import yaml
 from mlflow import MlflowClient
 from sklearn.ensemble import RandomForestClassifier
@@ -124,7 +125,16 @@ def evaluate(info, min_f1=0.85):
         )
         mlflow.log_artifact(str(work / "validation.json"))
         mlflow.log_artifact(str(work / "model.joblib"))
-        mlflow.sklearn.log_model(model, name="model", input_example=split["x_test"][:2])
+        mlflow.sklearn.log_model(
+            model,
+            name="model",
+            input_example=split["x_test"][:2],
+            pip_requirements=[
+                f"scikit-learn=={sklearn.__version__}",
+                f"numpy=={np.__version__}",
+                f"joblib=={joblib.__version__}",
+            ],
+        )
         result = {
             **info,
             "metrics": metrics,
