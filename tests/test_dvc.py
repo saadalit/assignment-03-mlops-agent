@@ -1,5 +1,6 @@
 import hashlib
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -51,3 +52,15 @@ def test_reproduction_instructions_use_immutable_commit(git_repo):
     assert result["git_commit"] in result["instructions"][0]
     assert "worktree" in result["instructions"][0]
     assert "no checkout" in result["note"]
+
+
+def test_status_works_without_virtualenv_cli_on_path(git_repo, monkeypatch):
+    subprocess.run([sys.executable, "-m", "dvc", "init"], check=True, capture_output=True)
+    commit_dataset("hello")
+    subprocess.run(
+        [sys.executable, "-m", "dvc", "add", "data/iris.csv"], check=True, capture_output=True
+    )
+    monkeypatch.setenv("PATH", "/usr/bin:/bin")
+    result = DVCTools(Settings(repo=git_repo)).status()
+    assert result["changes"] == {}
+    assert len(result["git_commit"]) == 40

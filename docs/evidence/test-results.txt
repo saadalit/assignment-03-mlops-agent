@@ -4,14 +4,14 @@ rootdir: /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3
 configfile: pyproject.toml
 testpaths: tests
 plugins: cov-7.0.0, anyio-4.16.0, hydra-core-1.3.8, platformdirs-4.14.5
-collected 48 items
+collected 49 items
 
 tests/test_airflow.py ......                                             [ 12%]
-tests/test_dvc.py ......                                                 [ 25%]
-tests/test_executor.py .......                                           [ 39%]
-tests/test_kubernetes.py ......                                          [ 52%]
-tests/test_llm_protocol.py .                                             [ 54%]
-tests/test_mlflow.py ....                                                [ 62%]
+tests/test_dvc.py .......                                                [ 26%]
+tests/test_executor.py .......                                           [ 40%]
+tests/test_kubernetes.py ......                                          [ 53%]
+tests/test_llm_protocol.py .                                             [ 55%]
+tests/test_mlflow.py ....                                                [ 63%]
 tests/test_orchestrator.py ............                                  [ 87%]
 tests/test_training_api.py ......                                        [100%]
 
@@ -48,7 +48,7 @@ agent/permissions.py                  7      0   100%
 agent/schemas.py                     58      0   100%
 agent/tools/__init__.py               0      0   100%
 agent/tools/airflow_tools.py         45      4    91%   25, 47, 65-69
-agent/tools/dvc_tools.py             48      4    92%   59-61, 64
+agent/tools/dvc_tools.py             51      3    94%   62-64
 agent/tools/kubernetes_tools.py      69     27    61%   18-25, 78-81, 104-107, 131, 140-158
 agent/tools/mlflow_tools.py          43      3    93%   33, 94-95
 api/__init__.py                       0      0   100%
@@ -58,6 +58,6 @@ training/prepare_data.py             16     16     0%   1-22
 training/stages.py                   95     34    64%   26, 29, 31, 33, 52, 95-147, 159, 166-168, 174-178
 training/train.py                    43     43     0%   1-53
 ---------------------------------------------------------------
-TOTAL                               815    183    78%
+TOTAL                               818    182    78%
 Coverage JSON written to file .local/coverage.json
-================== 48 passed, 10 warnings in 97.65s (0:01:37) ==================
+======================= 49 passed, 10 warnings in 31.25s =======================

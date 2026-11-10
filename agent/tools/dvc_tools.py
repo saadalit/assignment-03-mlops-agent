@@ -1,6 +1,7 @@
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import PurePosixPath
 
 import yaml
@@ -15,6 +16,8 @@ class DVCTools:
         self.settings = settings
 
     def _run(self, *args):
+        if args[0] == "dvc":
+            args = (sys.executable, "-m", "dvc", *args[1:])
         return subprocess.run(
             args,
             cwd=self.settings.repo,

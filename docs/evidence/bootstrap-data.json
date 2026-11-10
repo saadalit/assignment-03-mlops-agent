@@ -1,0 +1,9 @@
+{
+  "collected_at": "2026-11-10T16:44:07.922477+00:00",
+  "source": "live local services",
+  "result": {
+    "output": "Prepared v1: 150 rows from sklearn.datasets.load_iris\n\nTo track the changes with git, run:\n\n\tgit add data/iris.csv.dvc\n\nTo enable auto staging, run:\n\n\tdvc config core.autostage true\nEverything is up to date.\nPrepared v2: 150 rows from sklearn.datasets.load_iris\n\nTo track the changes with git, run:\n\n\tgit add data/iris.csv.dvc\n\nTo enable auto staging, run:\n\n\tdvc config core.autostage true\nEverything is up to date.\nBoth dataset versions populated in DVC cache/remote; workspace restored to v2\n",
+    "final_dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+    "matches_committed_v2": true
+  }
+}

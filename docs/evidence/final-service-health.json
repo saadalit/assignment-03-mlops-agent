@@ -1,0 +1,25 @@
+{
+  "collected_at": "2026-11-10T16:40:45.075174+00:00",
+  "source": "live local services",
+  "result": {
+    "airflow": {
+      "metadatabase": {
+        "status": "healthy"
+      },
+      "scheduler": {
+        "status": "healthy",
+        "latest_scheduler_heartbeat": "2026-11-10T16:40:36.261249+00:00"
+      },
+      "triggerer": {
+        "status": "healthy",
+        "latest_triggerer_heartbeat": "2026-11-10T16:40:36.932092+00:00"
+      },
+      "dag_processor": {
+        "status": "healthy",
+        "latest_dag_processor_heartbeat": "2026-11-10T16:40:36.771872+00:00"
+      }
+    },
+    "mlflow_health": "OK",
+    "reader_can_patch_deployment": false
+  }
+}

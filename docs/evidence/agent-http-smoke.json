@@ -1,18 +1,17 @@
 {
-  "collected_at": "2026-11-10T16:19:55.236938+00:00",
+  "collected_at": "2026-11-10T16:44:13.458109+00:00",
   "source": "live local services",
   "result": {
     "health": 200,
     "unauthenticated": 401,
     "authenticated": {
-      "request_id": "8ad8fa45e10748ebaa5539617ba97abb",
+      "request_id": "e94bc0e966814106878325d2c368e2d7",
       "planner": "rules",
       "facts": [
-        "dvc.list_datasets: {\"datasets\": [{\"pointer\": \"data/iris.csv.dvc\", \"git_commit\": \"bf770a27d69e83c382d71f85e45430610c6dee16\", \"requested_ref\": \"HEAD\", \"outputs\": [{\"md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"size\": 2757, \"isexec\": true, \"hash\": \"md5\", \"path\": \"iris.csv\"}], \"workspace_md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"matches_recorded_version\": true}], \"pipeline\": true}"
+        "dvc.list_datasets: {\"datasets\": [{\"pointer\": \"data/iris.csv.dvc\", \"git_commit\": \"a7d3e1c9ebb070a38605d66c7842e5d61577074d\", \"requested_ref\": \"HEAD\", \"outputs\": [{\"md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"size\": 2757, \"isexec\": true, \"hash\": \"md5\", \"path\": \"iris.csv\"}], \"workspace_md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"matches_recorded_version\": true}], \"pipeline\": true}",
+        "dvc.status: {\"changes\": {\"quality_gate\": [\"always changed\"]}, \"git_commit\": \"a7d3e1c9ebb070a38605d66c7842e5d61577074d\"}"
       ],
-      "uncertainties": [
-        "dvc.status: Service operation failed (FileNotFoundError); outcome unknown"
-      ],
+      "uncertainties": [],
       "recommendations": [
         "Training and cluster changes require a separate explicit request and action confirmation."
       ],
@@ -24,7 +23,7 @@
             "datasets": [
               {
                 "pointer": "data/iris.csv.dvc",
-                "git_commit": "bf770a27d69e83c382d71f85e45430610c6dee16",
+                "git_commit": "a7d3e1c9ebb070a38605d66c7842e5d61577074d",
                 "requested_ref": "HEAD",
                 "outputs": [
                   {
@@ -42,16 +41,23 @@
             "pipeline": true
           },
           "error": null,
-          "duration_ms": 655.625,
-          "request_id": "8ad8fa45e10748ebaa5539617ba97abb"
+          "duration_ms": 466.184,
+          "request_id": "e94bc0e966814106878325d2c368e2d7"
         },
         {
           "tool": "dvc.status",
-          "status": "error",
-          "data": {},
-          "error": "Service operation failed (FileNotFoundError); outcome unknown",
-          "duration_ms": 162.739,
-          "request_id": "8ad8fa45e10748ebaa5539617ba97abb"
+          "status": "ok",
+          "data": {
+            "changes": {
+              "quality_gate": [
+                "always changed"
+              ]
+            },
+            "git_commit": "a7d3e1c9ebb070a38605d66c7842e5d61577074d"
+          },
+          "error": null,
+          "duration_ms": 2889.392,
+          "request_id": "e94bc0e966814106878325d2c368e2d7"
         }
       ]
     }

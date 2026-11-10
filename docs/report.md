@@ -135,7 +135,7 @@ Evidence: [diagnosis](evidence/failure-readiness-diagnosis.json) and
 
 ## Testing and engineering defense
 
-Pytest passes **48 tests** (78% combined statement coverage), exceeding the required eight cases.
+Pytest passes **49 tests** (78% combined statement coverage), exceeding the required eight cases.
 Coverage includes successful selection
 and execution, four-tool correlation without mutation, timeouts, invalid arguments, service
 errors, unavailable evidence, missing provenance, secret redaction, unauthorized/cross-namespace
