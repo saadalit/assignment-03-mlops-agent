@@ -1,0 +1,447 @@
+{
+  "collected_at": "2026-11-15T14:30:56.096564+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Why is my Kubernetes deployment unhealthy?",
+    "agent": {
+      "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e",
+      "planner": "rules",
+      "facts": [
+        "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:61579cacc8064b8889afed658d0fad25'], version={'MODEL_RUN_ID': '61579cacc8064b8889afed658d0fad25', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
+        "Pod prediction-api-559f4b4799-5p8mt: phase=Running, healthy=False, restarts=0.",
+        "Pod prediction-api-66b7f69475-pskcf: phase=Running, healthy=True, restarts=0.",
+        "Pod prediction-api-66b7f69475-vm7wq: phase=Running, healthy=True, restarts=0.",
+        "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.138.175\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
+        "Recorded Kubernetes warning events: [{\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.6:8000/healthz\\\": dial tcp 10.42.0.6:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-559f4b4799-5p8mt\", \"count\": 10, \"last_seen\": \"2026-11-15 14:30:51+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Readiness probe failed: HTTP probe failed with statuscode: 404\", \"type\": \"Warning\", \"object\": \"prediction-api-559f4b4799-5p8mt\", \"count\": 1, \"last_seen\": \"2026-11-15 14:30:54+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-pskcf\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-vm7wq\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}]",
+        "Pod prediction-api-559f4b4799-5p8mt log excerpt: INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:39864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39866 - \"GET /deliberately-missing-readyz HTTP/1.1\" 404 Not Found\n"
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Deployment rollout is unhealthy or incomplete; inspect Pod events and logs.",
+        "Readiness checks returned HTTP 404; verify the probe path against /readyz before changing the model.",
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "kubernetes.deployment_status",
+          "status": "ok",
+          "data": {
+            "name": "prediction-api",
+            "namespace": "mlops",
+            "desired": 2,
+            "ready": 2,
+            "available": 2,
+            "updated": 1,
+            "rollout_complete": false,
+            "generation": 2,
+            "observed_generation": 2,
+            "images": [
+              "mlops-inference:61579cacc8064b8889afed658d0fad25"
+            ],
+            "version": {
+              "MODEL_RUN_ID": "61579cacc8064b8889afed658d0fad25",
+              "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "APP_VERSION": "1.0.0"
+            },
+            "readiness_paths": [
+              "/deliberately-missing-readyz"
+            ],
+            "conditions": [
+              {
+                "type": "Available",
+                "status": "True",
+                "reason": "MinimumReplicasAvailable",
+                "message": "Deployment has minimum availability."
+              },
+              {
+                "type": "Progressing",
+                "status": "True",
+                "reason": "ReplicaSetUpdated",
+                "message": "ReplicaSet \"prediction-api-559f4b4799\" is progressing."
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 58.482,
+          "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e"
+        },
+        {
+          "tool": "kubernetes.list_workloads",
+          "status": "ok",
+          "data": {
+            "namespace": "mlops",
+            "pods": [
+              {
+                "name": "prediction-api-559f4b4799-5p8mt",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "reason": "ContainersNotReady"
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "False",
+                    "reason": "ContainersNotReady"
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": false,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": false
+              },
+              {
+                "name": "prediction-api-66b7f69475-pskcf",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              },
+              {
+                "name": "prediction-api-66b7f69475-vm7wq",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              }
+            ],
+            "deployments": [
+              {
+                "name": "prediction-api",
+                "desired": 2,
+                "ready": 2,
+                "images": [
+                  "mlops-inference:61579cacc8064b8889afed658d0fad25"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 68.053,
+          "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e"
+        },
+        {
+          "tool": "kubernetes.services",
+          "status": "ok",
+          "data": {
+            "services": [
+              {
+                "name": "prediction-api",
+                "type": "ClusterIP",
+                "cluster_ip": "10.43.138.175",
+                "selector": {
+                  "app": "prediction-api"
+                },
+                "ports": [
+                  {
+                    "port": 80,
+                    "target_port": 8000
+                  }
+                ]
+              }
+            ],
+            "endpoints": [
+              {
+                "name": "prediction-api",
+                "ready_addresses": [
+                  "10.42.0.4",
+                  "10.42.0.5"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 25.01,
+          "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e"
+        },
+        {
+          "tool": "kubernetes.events",
+          "status": "ok",
+          "data": {
+            "events": [
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-559f4b4799-5p8mt to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": null,
+                "last_seen": "2026-11-15 14:30:21.110653+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:22+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:22+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:22+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.6:8000/healthz\": dial tcp 10.42.0.6:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": 10,
+                "last_seen": "2026-11-15 14:30:51+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+                "type": "Warning",
+                "object": "prediction-api-559f4b4799-5p8mt",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:54+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-559f4b4799-5p8mt",
+                "type": "Normal",
+                "object": "prediction-api-559f4b4799",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:21+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-pskcf to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.897568+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.5:8000/healthz\": dial tcp 10.42.0.5:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-vm7wq to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.866467+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.4:8000/healthz\": dial tcp 10.42.0.4:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-vm7wq",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-pskcf",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-66b7f69475 from 0 to 2",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-559f4b4799 from 0 to 1",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-15 14:30:21+00:00"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 73.026,
+          "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-559f4b4799-5p8mt",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:39864 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39866 - \"GET /deliberately-missing-readyz HTTP/1.1\" 404 Not Found\n"
+          },
+          "error": null,
+          "duration_ms": 48.495,
+          "request_id": "0d1f2520493d4dfa8749f91b53ef9a6e"
+        }
+      ],
+      "planner_trace": []
+    }
+  }
+}

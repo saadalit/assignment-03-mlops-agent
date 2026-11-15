@@ -1,0 +1,906 @@
+{
+  "collected_at": "2026-11-15T14:28:00.702613+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Find the best recent model, identify the dataset version used to train it, check the deployment status, and explain whether retraining is necessary",
+    "agent": {
+      "request_id": "099487b11bb64eb19b2cec9ce103c191",
+      "planner": "rules",
+      "facts": [
+        "Recorded comparison (f1, max): [{\"run_id\": \"3dfc622f86e24cb7991c6908386e0d06\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"96b1307c2a2e48c9a222a7e60b2da734\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"9c20b53eb631463a97839018275358d4\", \"status\": \"FINISHED\", \"f1\": 0.9332591768631814, \"quality_gate\": \"passed\"}, {\"run_id\": \"61579cacc8064b8889afed658d0fad25\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}, {\"run_id\": \"12ea6ed7b3de463bab159f9f454a01df\", \"status\": \"FINISHED\", \"f1\": 0.9555555555555556, \"quality_gate\": \"passed\"}]",
+        "Candidate 3dfc622f86e24cb7991c6908386e0d06: f1=0.9556; Most recent 5 runs in the last 30 days.",
+        "Dataset data/iris.csv.dvc at Git 90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064: DVC outputs=[{'md5': '5c2fcf018f5f74ee80f846aabcc97f36', 'size': 2757, 'isexec': True, 'hash': 'md5', 'path': 'iris.csv'}].",
+        "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:61579cacc8064b8889afed658d0fad25'], version={'MODEL_RUN_ID': '61579cacc8064b8889afed658d0fad25', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
+        "Pod prediction-api-66b7f69475-pskcf: phase=Running, healthy=True, restarts=0.",
+        "Pod prediction-api-66b7f69475-vm7wq: phase=Running, healthy=True, restarts=0.",
+        "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.138.175\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
+        "Recorded Kubernetes warning events: [{\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-pskcf\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-vm7wq\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}]",
+        "Pod prediction-api-66b7f69475-pskcf log excerpt:  10.42.0.1:52144 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59192 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59206 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59220 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39371 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:44422 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35376 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39056 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39058 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39060 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52512 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52536 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55736 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55746 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42460 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57410 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57416 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50292 - \"GET /readyz HTTP/1.1\" 200 OK\n",
+        "Pod prediction-api-66b7f69475-vm7wq log excerpt: 0.42.0.1:39960 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38942 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38958 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38962 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:31766 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18628 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58354 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58368 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58374 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45200 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45208 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45216 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40312 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40320 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47448 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47458 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52432 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52450 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47178 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47182 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37686 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37690 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34882 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34886 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54702 - \"GET /readyz HTTP/1.1\" 200 OK\n",
+        "Airflow run manual__2026-11-15T14:26:32.284734+00:00: success.",
+        "Deployed run differs from the selected candidate."
+      ],
+      "uncertainties": [
+        "No supplied degradation measurements or violated freshness policy establish a need for retraining."
+      ],
+      "recommendations": [
+        "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency.",
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "mlflow.best_run",
+          "status": "ok",
+          "data": {
+            "experiment": "iris-classification",
+            "days": 30,
+            "runs": [
+              {
+                "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+                "experiment_id": "1",
+                "status": "FINISHED",
+                "start_time": 1794752848084,
+                "end_time": 1794752860001,
+                "metrics": {
+                  "accuracy": 0.9555555555555556,
+                  "f1": 0.9555555555555556
+                },
+                "params": {
+                  "max_depth": "3",
+                  "n_estimators": "60",
+                  "split_seed": "42",
+                  "test_size": "0.3",
+                  "min_f1": "0.85"
+                },
+                "tags": {
+                  "mlflow.user": "airflow",
+                  "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                  "mlflow.source.type": "LOCAL",
+                  "mlflow.runName": "4c10d9a647efa375",
+                  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "dataset_pointer": "data/iris.csv.dvc",
+                  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                  "quality_gate": "passed",
+                  "evaluation_split": "stratified-seed42-test0.3"
+                }
+              },
+              {
+                "run_id": "96b1307c2a2e48c9a222a7e60b2da734",
+                "experiment_id": "1",
+                "status": "FINISHED",
+                "start_time": 1794752072647,
+                "end_time": 1794752101202,
+                "metrics": {
+                  "accuracy": 0.9555555555555556,
+                  "f1": 0.9555555555555556
+                },
+                "params": {
+                  "max_depth": "3",
+                  "n_estimators": "60",
+                  "split_seed": "42",
+                  "test_size": "0.3",
+                  "min_f1": "0.85"
+                },
+                "tags": {
+                  "mlflow.user": "saadalit",
+                  "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                  "mlflow.source.type": "LOCAL",
+                  "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "mlflow.runName": "pipeline",
+                  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "dataset_pointer": "data/iris.csv.dvc",
+                  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                  "quality_gate": "passed",
+                  "evaluation_split": "stratified-seed42-test0.3"
+                }
+              },
+              {
+                "run_id": "9c20b53eb631463a97839018275358d4",
+                "experiment_id": "1",
+                "status": "FINISHED",
+                "start_time": 1794751851362,
+                "end_time": 1794751872624,
+                "metrics": {
+                  "accuracy": 0.9333333333333333,
+                  "f1": 0.9332591768631814
+                },
+                "params": {
+                  "max_depth": "1",
+                  "n_estimators": "60",
+                  "split_seed": "42",
+                  "test_size": "0.3",
+                  "min_f1": "0.85"
+                },
+                "tags": {
+                  "mlflow.user": "saadalit",
+                  "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                  "mlflow.source.type": "LOCAL",
+                  "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "mlflow.runName": "review-shallow",
+                  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "dataset_pointer": "data/iris.csv.dvc",
+                  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                  "quality_gate": "passed",
+                  "evaluation_split": "stratified-seed42-test0.3"
+                }
+              },
+              {
+                "run_id": "61579cacc8064b8889afed658d0fad25",
+                "experiment_id": "1",
+                "status": "FINISHED",
+                "start_time": 1794751635822,
+                "end_time": 1794751662195,
+                "metrics": {
+                  "accuracy": 0.9555555555555556,
+                  "f1": 0.9555555555555556
+                },
+                "params": {
+                  "max_depth": "3",
+                  "n_estimators": "60",
+                  "split_seed": "42",
+                  "test_size": "0.3",
+                  "min_f1": "0.85"
+                },
+                "tags": {
+                  "mlflow.user": "saadalit",
+                  "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                  "mlflow.source.type": "LOCAL",
+                  "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "mlflow.runName": "review-deploy",
+                  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                  "dataset_pointer": "data/iris.csv.dvc",
+                  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                  "quality_gate": "passed",
+                  "evaluation_split": "stratified-seed42-test0.3"
+                }
+              },
+              {
+                "run_id": "12ea6ed7b3de463bab159f9f454a01df",
+                "experiment_id": "1",
+                "status": "FINISHED",
+                "start_time": 1794328061837,
+                "end_time": 1794328077229,
+                "metrics": {
+                  "accuracy": 0.9555555555555556,
+                  "f1": 0.9555555555555556
+                },
+                "params": {
+                  "max_depth": "3",
+                  "n_estimators": "60",
+                  "split_seed": "42",
+                  "test_size": "0.3",
+                  "min_f1": "0.85"
+                },
+                "tags": {
+                  "mlflow.user": "airflow",
+                  "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                  "mlflow.source.type": "LOCAL",
+                  "mlflow.runName": "5fc09526c5c30b8f",
+                  "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "dataset_git_commit": "9f5392f260f0db71a772e172359810ce85cd7208",
+                  "dataset_pointer": "data/iris.csv.dvc",
+                  "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                  "quality_gate": "passed",
+                  "evaluation_split": "stratified-seed42-test0.3"
+                }
+              }
+            ],
+            "metric": "f1",
+            "mode": "max",
+            "candidate": {
+              "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752848084,
+              "end_time": 1794752860001,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "4c10d9a647efa375",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            "selection_scope": "Most recent 5 runs in the last 30 days",
+            "caution": "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency."
+          },
+          "error": null,
+          "duration_ms": 184.955,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "dvc.current_version",
+          "status": "ok",
+          "data": {
+            "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+            "requested_ref": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+            "pointer": "data/iris.csv.dvc",
+            "outputs": [
+              {
+                "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "size": 2757,
+                "isexec": true,
+                "hash": "md5",
+                "path": "iris.csv"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 393.886,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.deployment_status",
+          "status": "ok",
+          "data": {
+            "name": "prediction-api",
+            "namespace": "mlops",
+            "desired": 2,
+            "ready": 2,
+            "available": 2,
+            "updated": 2,
+            "rollout_complete": true,
+            "generation": 1,
+            "observed_generation": 1,
+            "images": [
+              "mlops-inference:61579cacc8064b8889afed658d0fad25"
+            ],
+            "version": {
+              "MODEL_RUN_ID": "61579cacc8064b8889afed658d0fad25",
+              "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "APP_VERSION": "1.0.0"
+            },
+            "readiness_paths": [
+              "/readyz"
+            ],
+            "conditions": [
+              {
+                "type": "Available",
+                "status": "True",
+                "reason": "MinimumReplicasAvailable",
+                "message": "Deployment has minimum availability."
+              },
+              {
+                "type": "Progressing",
+                "status": "True",
+                "reason": "NewReplicaSetAvailable",
+                "message": "ReplicaSet \"prediction-api-66b7f69475\" has successfully progressed."
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 51.038,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.list_workloads",
+          "status": "ok",
+          "data": {
+            "namespace": "mlops",
+            "pods": [
+              {
+                "name": "prediction-api-66b7f69475-pskcf",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              },
+              {
+                "name": "prediction-api-66b7f69475-vm7wq",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              }
+            ],
+            "deployments": [
+              {
+                "name": "prediction-api",
+                "desired": 2,
+                "ready": 2,
+                "images": [
+                  "mlops-inference:61579cacc8064b8889afed658d0fad25"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 45.001,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.services",
+          "status": "ok",
+          "data": {
+            "services": [
+              {
+                "name": "prediction-api",
+                "type": "ClusterIP",
+                "cluster_ip": "10.43.138.175",
+                "selector": {
+                  "app": "prediction-api"
+                },
+                "ports": [
+                  {
+                    "port": 80,
+                    "target_port": 8000
+                  }
+                ]
+              }
+            ],
+            "endpoints": [
+              {
+                "name": "prediction-api",
+                "ready_addresses": [
+                  "10.42.0.4",
+                  "10.42.0.5"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 23.621,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.events",
+          "status": "ok",
+          "data": {
+            "events": [
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-pskcf to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.897568+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.5:8000/healthz\": dial tcp 10.42.0.5:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-vm7wq to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.866467+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.4:8000/healthz\": dial tcp 10.42.0.4:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-vm7wq",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-pskcf",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-66b7f69475 from 0 to 2",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 39.479,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-66b7f69475-pskcf",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:41280 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39078 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39092 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39096 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39850 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39858 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39872 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38674 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38680 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38696 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35012 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35020 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35032 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52124 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52136 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52144 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59192 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59206 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59220 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39371 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:44422 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35376 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39056 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39058 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39060 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52512 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52536 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55736 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55746 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42460 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57410 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57416 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50292 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 45.373,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-66b7f69475-vm7wq",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:43124 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43138 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43152 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40428 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40436 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40444 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40766 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40776 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40780 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41270 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41286 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41298 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41782 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41798 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41804 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39936 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39944 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39960 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38942 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38958 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38962 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:31766 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18628 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58354 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58368 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58374 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45200 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45208 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45216 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40312 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40320 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47448 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47458 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52432 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52450 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47178 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47182 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37686 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37690 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34882 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34886 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54702 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 39.307,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "airflow.list_runs",
+          "status": "ok",
+          "data": {
+            "dag_runs": [
+              {
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "dag_id": "training_pipeline",
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "queued_at": "2026-11-15T14:26:33.028199Z",
+                "start_date": "2026-11-15T14:26:34.319469Z",
+                "end_date": "2026-11-15T14:27:56.322412Z",
+                "duration": 82.002943,
+                "data_interval_start": "2026-11-15T14:26:32.284734Z",
+                "data_interval_end": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "last_scheduling_decision": "2026-11-15T14:27:56.316485Z",
+                "run_type": "manual",
+                "state": "success",
+                "triggered_by": "rest_api",
+                "triggering_user_name": "agent",
+                "conf": {},
+                "note": null,
+                "dag_versions": [
+                  {
+                    "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                    "version_number": 1,
+                    "dag_id": "training_pipeline",
+                    "bundle_name": "dags-folder",
+                    "bundle_version": null,
+                    "created_at": "2026-11-15T14:24:23.442763Z",
+                    "dag_display_name": "training_pipeline",
+                    "bundle_url": null
+                  }
+                ],
+                "bundle_version": null,
+                "dag_display_name": "training_pipeline"
+              }
+            ],
+            "total_entries": 1
+          },
+          "error": null,
+          "duration_ms": 76.914,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        },
+        {
+          "tool": "airflow.failed_tasks",
+          "status": "ok",
+          "data": {
+            "task_instances": [
+              {
+                "id": "01a1df9a-4b4c-7717-8c63-3a53ccbdfc80",
+                "task_id": "validate",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:26:36.475597Z",
+                "end_date": "2026-11-15T14:27:04.034703Z",
+                "duration": -4.4410000000000025,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "validate",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 6,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:26:34.595499Z",
+                "scheduled_when": "2026-11-15T14:26:34.480686Z",
+                "pid": 124,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              },
+              {
+                "id": "01a1df9a-4b4d-715d-8cc4-268a33590982",
+                "task_id": "preprocess",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:27:05.099337Z",
+                "end_date": "2026-11-15T14:27:11.539490Z",
+                "duration": 12.440000000000001,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "preprocess",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 5,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:27:04.731950Z",
+                "scheduled_when": "2026-11-15T14:27:04.693470Z",
+                "pid": 144,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              },
+              {
+                "id": "01a1df9a-4b4e-76f3-8b5e-dc60fe82167a",
+                "task_id": "train",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:27:12.635953Z",
+                "end_date": "2026-11-15T14:27:19.342760Z",
+                "duration": 13.707,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "train",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 4,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:27:12.599970Z",
+                "scheduled_when": "2026-11-15T14:27:12.564931Z",
+                "pid": 147,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              },
+              {
+                "id": "01a1df9a-4b4f-7855-a397-5fb48094a96b",
+                "task_id": "evaluate_mlflow",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:27:20.452348Z",
+                "end_date": "2026-11-15T14:27:40.244257Z",
+                "duration": 39.792,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "evaluate_mlflow",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 3,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:27:20.415170Z",
+                "scheduled_when": "2026-11-15T14:27:20.375710Z",
+                "pid": 158,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              },
+              {
+                "id": "01a1df9a-4b50-7301-b65e-7907c4593db7",
+                "task_id": "quality_gate",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:27:40.660747Z",
+                "end_date": "2026-11-15T14:27:46.572297Z",
+                "duration": 11.911,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "quality_gate",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 2,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:27:40.620037Z",
+                "scheduled_when": "2026-11-15T14:27:40.570505Z",
+                "pid": 174,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              },
+              {
+                "id": "01a1df9a-4b51-7887-afaf-f9d9266e0640",
+                "task_id": "register_candidate",
+                "dag_id": "training_pipeline",
+                "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+                "map_index": -1,
+                "logical_date": "2026-11-15T14:26:32.284734Z",
+                "run_after": "2026-11-15T14:26:32.284734Z",
+                "start_date": "2026-11-15T14:27:47.401862Z",
+                "end_date": "2026-11-15T14:27:55.890529Z",
+                "duration": 16.489,
+                "state": "success",
+                "try_number": 1,
+                "max_tries": 1,
+                "task_display_name": "register_candidate",
+                "dag_display_name": "training_pipeline",
+                "hostname": "e12a56f6e50e",
+                "unixname": "airflow",
+                "pool": "default_pool",
+                "pool_slots": 1,
+                "queue": "default",
+                "priority_weight": 1,
+                "operator": "_PythonDecoratedOperator",
+                "operator_name": "@task",
+                "queued_when": "2026-11-15T14:27:47.369760Z",
+                "scheduled_when": "2026-11-15T14:27:47.328028Z",
+                "pid": 178,
+                "executor": null,
+                "executor_config": "{}",
+                "note": null,
+                "rendered_map_index": null,
+                "rendered_fields": {},
+                "trigger": null,
+                "triggerer_job": null,
+                "dag_version": {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              }
+            ],
+            "total_entries": 6,
+            "failed_tasks": []
+          },
+          "error": null,
+          "duration_ms": 88.967,
+          "request_id": "099487b11bb64eb19b2cec9ce103c191"
+        }
+      ],
+      "planner_trace": []
+    }
+  }
+}

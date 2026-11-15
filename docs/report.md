@@ -4,6 +4,64 @@ Author: Saad Shahid · Fall 2026 · Verification date: 10 November 2026 (Asia/Ka
 
 Repository: [saadalit/assignment-03-mlops-agent](https://github.com/saadalit/assignment-03-mlops-agent)
 
+**Follow-up review: 15 November 2026.** The original results below remain a historical record.
+The [current compliance review](review-2026-11-15.md) and
+[dated evidence](evidence/review-2026-11-15/) describe subsequent fixes and verification,
+including the actual Ollama mandatory multi-tool scenario. Read the dated evidence index for
+the final result and any remaining manual checks; historical successes are not current health claims.
+
+## Verification update: 15 November 2026
+
+The expanded suite passes **66 tests with 81% combined statement coverage**. Linting,
+formatting, infrastructure/DAG validation, actual DVC graph inspection and the source/history
+credential audit pass. [Command output and exit codes](evidence/review-2026-11-15/local-checks.json)
+are local CI-equivalent evidence, separate from hosted Actions.
+
+[Nineteen real read operations](evidence/review-2026-11-15/integration-checks.json) verify all
+four adapters. Two fresh isolated DVC pulls reproduce both dataset hashes. MLflow comparison
+now includes experiment 1 run `d9ae465a6204434980b036e4a0395f28` (F1 0.955556) and experiment 2
+baseline `c7c012f7f03e4ee096f5671fa961db31` (F1 0.933259). Both record the same dataset and split
+policy. The baseline was actually trained at depth 1 through the existing training workflow.
+
+The normal Airflow run and post-fault recovery each completed all six tasks. New invalid-data
+and impossible-threshold runs each failed on the second attempt and blocked registration.
+The deliberate readiness fault was restored; the live cluster has two ready replicas, ready
+Service endpoints, and a successful class-0 prediction through the ClusterIP Service.
+The deployed run is `61579cacc8064b8889afed658d0fad25`; the later selected candidate differs.
+That difference does not establish a need to retrain. [The dated evidence index](evidence/review-2026-11-15/README.md)
+links the five conversations, two investigations, recovery, authorization and inference results.
+
+The Ollama integration retains native tool calling and adds supported JSON-schema action
+selection when a small model supplies invalid arguments or premature prose. The actual LLM
+chooses actions and arguments; a shared executor enforces schemas, confirmations and scope.
+Only actual evidence is used to render operational facts. Outstanding-tool feedback, exact
+Git/DVC correlation, canonical duplicate suppression, bounded requests and scrubbed planner
+traces address the gaps found during review. [The mandatory live LLM export](evidence/review-2026-11-15/ollama/conversation-05-multi-tool.json)
+and compliance review record its final acceptance status.
+
+The actual mandatory LLM scenario **passed**: `qwen2.5:1.5b` completed six turns with seven
+successful required tools. One initial native dataset proposal was rejected, then corrected
+through evidence-grounded schema selection. The recorded Git commit, pointer and MD5 match;
+the renderer compares candidate/deployed identity and leaves retraining necessity unestablished
+without degradation or policy evidence. No training/restart tool ran. Model requests totaled
+482.4 seconds. [Acceptance results](evidence/review-2026-11-15/llm-acceptance.json) distinguish
+the passing run from the earlier failed attempts. The tested CPU invocation uses request
+timeout 360 seconds, total budget 1200 seconds and tool timeout 45 seconds.
+
+Unexpected runtime issues are retained as failed attempts: insufficient model memory, CPU
+request timeouts, poor 0.5B selection, incomplete 1.5B planning and an Ollama grammar limitation.
+The 4 GB WSL host needed 3 GB total swap and the complete CPU runtime libraries. Ollama's schema
+decoder rejected `\w`; explicit character ranges resolved that grammar incompatibility while
+original Pydantic input checks remain enforced. These failed attempts are not passing evidence.
+All four services remain running during the mandatory LLM check.
+
+Submission is the repository link; no archive is generated. Credentials, short-lived kubeconfigs,
+databases, model binaries and runtime state remain ignored. The expanded requirement-by-requirement
+checklist and full modification inventory are in [the compliance review](review-2026-11-15.md).
+Hosted CI on the final pushed commit, evaluator repository access and the oral demonstration
+remain separate checks; earlier failed Actions runs can remain in history.
+The owner will verify hosted CI on the final pushed commit.
+
 ## Architecture and implementation
 
 [architecture.md](../architecture.md) contains the full component diagram and rationale.

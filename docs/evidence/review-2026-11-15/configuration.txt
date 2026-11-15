@@ -1,0 +1,1 @@
+Kubernetes manifests, DVC stage order, and Airflow DAG syntax validated

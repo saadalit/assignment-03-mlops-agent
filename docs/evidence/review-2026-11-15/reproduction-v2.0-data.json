@@ -1,0 +1,12 @@
+{
+  "collected_at": "2026-11-15T15:18:42.192970+00:00",
+  "source": "live local services",
+  "result": {
+    "ref": "v2.0-data",
+    "git_commit": "fca41b0a44a9b26fdad713b17cade6f293d574b4",
+    "expected_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+    "actual_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+    "match": true,
+    "method": "git worktree + real dvc pull from configured local remote"
+  }
+}

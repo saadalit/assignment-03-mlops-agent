@@ -1,0 +1,50 @@
+{
+    "collected_at":  "2026-11-15T15:19:14.1334588Z",
+    "source":  "live local services",
+    "result":  {
+                   "version":  {
+                                   "version":  "0.13.5"
+                               },
+                   "models":  {
+                                  "models":  [
+                                                 {
+                                                     "name":  "qwen2.5:0.5b",
+                                                     "model":  "qwen2.5:0.5b",
+                                                     "modified_at":  "2026-11-15T19:42:53.374178674+05:00",
+                                                     "size":  397821319,
+                                                     "digest":  "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+                                                     "details":  {
+                                                                     "parent_model":  "",
+                                                                     "format":  "gguf",
+                                                                     "family":  "qwen2",
+                                                                     "families":  [
+                                                                                      "qwen2"
+                                                                                  ],
+                                                                     "parameter_size":  "494.03M",
+                                                                     "quantization_level":  "Q4_K_M"
+                                                                 }
+                                                 },
+                                                 {
+                                                     "name":  "qwen2.5:1.5b",
+                                                     "model":  "qwen2.5:1.5b",
+                                                     "modified_at":  "2026-11-15T19:24:57.950169605+05:00",
+                                                     "size":  986061892,
+                                                     "digest":  "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+                                                     "details":  {
+                                                                     "parent_model":  "",
+                                                                     "format":  "gguf",
+                                                                     "family":  "qwen2",
+                                                                     "families":  [
+                                                                                      "qwen2"
+                                                                                  ],
+                                                                     "parameter_size":  "1.5B",
+                                                                     "quantization_level":  "Q4_K_M"
+                                                                 }
+                                                 }
+                                             ]
+                              },
+                   "execution":  "Native CPU Ollama with binary and CPU libraries extracted from the Docker-verified official 0.13.5 image; all four MLOps services remained running",
+                   "image_digest":  "sha256:2c9595c555fd70a28363489ac03bd5bf9e7c5bdf2890373c3a830ffd7252ce6d",
+                   "binary_sha256":  "b128a368ebcfd35c16df4a3c3d7ea7d20340479f737148565f7d2a0db3c3db59"
+               }
+}

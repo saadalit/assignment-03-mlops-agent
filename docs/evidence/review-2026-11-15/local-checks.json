@@ -1,0 +1,84 @@
+{
+  "source": "local CI-equivalent checks; not a hosted GitHub Actions run",
+  "collected_at": "2026-11-15T15:30:29.356381+00:00",
+  "checks": [
+    {
+      "check": "lint",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "started_at": "2026-11-15T15:28:41.737282+00:00",
+      "exit_code": 0,
+      "output": "lint.txt"
+    },
+    {
+      "check": "format",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "started_at": "2026-11-15T15:28:42.039620+00:00",
+      "exit_code": 0,
+      "output": "format.txt"
+    },
+    {
+      "check": "tests",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--cov=agent",
+        "--cov=api",
+        "--cov=training",
+        "--cov-report=term-missing",
+        "--cov-report=xml"
+      ],
+      "started_at": "2026-11-15T15:28:42.264018+00:00",
+      "exit_code": 0,
+      "output": "tests.txt"
+    },
+    {
+      "check": "configuration",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "scripts.validate_config"
+      ],
+      "started_at": "2026-11-15T15:30:14.026352+00:00",
+      "exit_code": 0,
+      "output": "configuration.txt"
+    },
+    {
+      "check": "dvc-graph",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "dvc",
+        "dag"
+      ],
+      "started_at": "2026-11-15T15:30:14.377704+00:00",
+      "exit_code": 0,
+      "output": "dvc-graph.txt"
+    },
+    {
+      "check": "repository-audit",
+      "command": [
+        "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/bin/python",
+        "-m",
+        "scripts.audit_repository",
+        "--history"
+      ],
+      "started_at": "2026-11-15T15:30:22.926000+00:00",
+      "exit_code": 0,
+      "output": "repository-audit.txt"
+    }
+  ]
+}

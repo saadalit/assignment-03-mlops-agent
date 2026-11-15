@@ -68,3 +68,44 @@ def test_malformed_service_payload_is_an_error_without_claims():
     ex = Executor([ToolSpec("test.status", "status", Empty, lambda: ["unexpected"])])
     result = ex.execute("test.status", {}, "id")
     assert result.status == "error" and result.data == {}
+
+
+def test_json_credentials_and_jwt_in_log_strings_are_redacted():
+    from agent.executor import redact
+
+    jwt = "eyJ" + "a" * 20 + "." + "b" * 25 + "." + "c" * 25
+    text = redact('{"password": "private-value", "access_token": "private-token"} ' + jwt)
+    assert all(v not in text for v in ("private-value", "private-token", jwt))
+
+
+def test_kubernetes_sdk_timeout_is_classified(settings):
+    from urllib3.exceptions import ReadTimeoutError
+
+    def fail():
+        raise ReadTimeoutError(None, "private-url", "private response")
+
+    result = Executor([ToolSpec("kubernetes.events", "events", Empty, fail)]).execute(
+        "kubernetes.events",
+        {},
+        "request-id",
+    )
+    assert result.status == "timeout" and not result.data
+    assert "private" not in result.model_dump_json()
+
+
+def test_invalid_arguments_return_actionable_schema_feedback_without_echoing_inputs():
+    from unittest.mock import Mock
+
+    from agent.schemas import DatasetRef
+
+    handler = Mock()
+    result = Executor([ToolSpec("dvc.current_version", "version", DatasetRef, handler)]).execute(
+        "dvc.current_version",
+        {"ref": "private-secret; shell", "private-field": "private-value"},
+        "id",
+    )
+    assert result.status == "invalid" and not result.data
+    assert "ref: string_pattern_mismatch" in result.error
+    assert "Allowed fields: path, ref" in result.error
+    assert "private" not in result.model_dump_json()
+    handler.assert_not_called()

@@ -2,6 +2,9 @@
 
 Source: `Assignment_03_MLOps_AI_Agent_Complete.pdf` (7 pages, Fall 2026).
 
+See the [15 November requirement-by-requirement checklist](review-2026-11-15.md) for the expanded
+audit, modifications, current evidence, and the distinction between local and hosted CI checks.
+
 | Requirement | Implementation | Verification |
 | --- | --- | --- |
 | DVC: tracked datasets, Git/hash provenance, comparison, changes, reproduction | `agent/tools/dvc_tools.py`, `dvc.yaml` | Unit tests and actual version checkout in isolated worktree |

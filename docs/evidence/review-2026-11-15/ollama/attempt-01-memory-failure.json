@@ -1,0 +1,21 @@
+{
+  "collected_at": "2026-11-15T14:32:02.347463+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Find the best recent model, identify the dataset version used to train it, check the deployment status, and explain whether retraining is necessary",
+    "agent": {
+      "request_id": "7ece308f66ca48cfbbc5a756f16625d4",
+      "planner": "ollama",
+      "facts": [],
+      "uncertainties": [
+        "No operational evidence collected. Request dataset, model, pipeline or deployment information.",
+        "LLM planner unavailable or exceeded tool budget; no answer was invented."
+      ],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [],
+      "planner_trace": []
+    }
+  }
+}

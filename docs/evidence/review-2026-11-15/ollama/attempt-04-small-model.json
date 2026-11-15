@@ -1,0 +1,157 @@
+{
+  "collected_at": "2026-11-15T14:51:11.578940+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Find the best recent model, identify the dataset version used to train it, check the deployment status, and explain whether retraining is necessary",
+    "agent": {
+      "request_id": "06cd0a7f2722439b908197ab00e32c1c",
+      "planner": "ollama",
+      "facts": [],
+      "uncertainties": [
+        "No eligible finished run with the requested metric was found.",
+        "dvc.current_version: Invalid tool name or arguments",
+        "LLM planner unavailable or exceeded tool budget; no answer was invented."
+      ],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "mlflow.best_run",
+          "status": "ok",
+          "data": {
+            "runs": [],
+            "experiment": "mlops/iris-classification",
+            "note": "Experiment not found",
+            "metric": "f1",
+            "mode": "max",
+            "candidate": null,
+            "selection_scope": "Most recent 5 runs in the last 30 days",
+            "caution": "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency."
+          },
+          "error": null,
+          "duration_ms": 1102.797,
+          "request_id": "06cd0a7f2722439b908197ab00e32c1c"
+        },
+        {
+          "tool": "dvc.current_version",
+          "status": "invalid",
+          "data": {},
+          "error": "Invalid tool name or arguments",
+          "duration_ms": 0.033,
+          "request_id": "06cd0a7f2722439b908197ab00e32c1c"
+        }
+      ],
+      "planner_trace": [
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "mlflow__best_run"
+          ],
+          "eval_count": 35,
+          "prompt_eval_count": 1428,
+          "done_reason": "stop",
+          "total_duration_ns": 26862365765
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "dvc__current_version"
+          ],
+          "eval_count": 87,
+          "prompt_eval_count": 1636,
+          "done_reason": "stop",
+          "total_duration_ns": 8678276519
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "mlflow__best_run"
+          ],
+          "eval_count": 85,
+          "prompt_eval_count": 1788,
+          "done_reason": "stop",
+          "total_duration_ns": 6774645980
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "mlflow__best_run"
+          ],
+          "eval_count": 85,
+          "prompt_eval_count": 1876,
+          "done_reason": "stop",
+          "total_duration_ns": 5416056129
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "mlflow__best_run"
+          ],
+          "eval_count": 85,
+          "prompt_eval_count": 1964,
+          "done_reason": "stop",
+          "total_duration_ns": 4726695268
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [
+            "mlflow__best_run"
+          ],
+          "eval_count": 85,
+          "prompt_eval_count": 2052,
+          "done_reason": "stop",
+          "total_duration_ns": 4774912574
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 54,
+          "prompt_eval_count": 2140,
+          "done_reason": "stop",
+          "total_duration_ns": 3589439091
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 23,
+          "prompt_eval_count": 2279,
+          "done_reason": "stop",
+          "total_duration_ns": 3407575291
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 24,
+          "prompt_eval_count": 2365,
+          "done_reason": "stop",
+          "total_duration_ns": 3450133190
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 23,
+          "prompt_eval_count": 2451,
+          "done_reason": "stop",
+          "total_duration_ns": 4006189789
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 23,
+          "prompt_eval_count": 2537,
+          "done_reason": "stop",
+          "total_duration_ns": 3729629887
+        },
+        {
+          "model": "qwen2.5:0.5b",
+          "tool_names": [],
+          "eval_count": 23,
+          "prompt_eval_count": 2623,
+          "done_reason": "stop",
+          "total_duration_ns": 5317728379
+        }
+      ]
+    }
+  }
+}

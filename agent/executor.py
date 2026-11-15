@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 import httpx
 from pydantic import BaseModel, ValidationError
+from urllib3.exceptions import TimeoutError as SDKTimeoutError
 
 from agent.permissions import PermissionDenied
 from agent.schemas import ToolResult
@@ -22,6 +23,16 @@ def redact(value: str) -> str:
         if secret and len(secret) >= 4:
             value = value.replace(secret, "[REDACTED]")
     value = re.sub(r"(?i)(bearer\s+)\S+", r"\1[REDACTED]", value)
+    value = re.sub(
+        r"""(?i)(["'](?:password|(?:access_|api[_-]?)?token|api[_-]?key|secret)["']\s*:\s*)["'][^"']*["']""",
+        r'\1"[REDACTED]"',
+        value,
+    )
+    value = re.sub(
+        r"\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b",
+        "[REDACTED]",
+        value,
+    )
     value = re.sub(
         r"(?i)((?:password|token|api[_-]?key|secret)\s*[=:]\s*)[^\s,;]+",
         r"\1[REDACTED]",
@@ -92,9 +103,26 @@ class Executor:
             data = scrub(json.loads(json.dumps(data, default=str)))
         except PermissionDenied as exc:
             status, error = "denied", str(exc)
-        except (ValidationError, ValueError):
+        except ValidationError as exc:
+            # Only schema-defined names/types, never echoed values or exception bodies.
+            fields = set(spec.inputs.model_fields)
+            problems = [
+                f"{e['loc'][0] if e['loc'] and e['loc'][0] in fields else 'arguments'}: {e['type']}"
+                for e in exc.errors(include_input=False, include_url=False)
+            ]
+            status, error = (
+                "invalid",
+                (
+                    "Invalid arguments ("
+                    + "; ".join(problems)
+                    + "). Allowed fields: "
+                    + ", ".join(sorted(fields))
+                    + ". Use the tool schema and copy identifiers from evidence."
+                ),
+            )
+        except ValueError:
             status, error = "invalid", "Invalid tool name or arguments"
-        except (TimeoutError, subprocess.TimeoutExpired, httpx.TimeoutException):
+        except (TimeoutError, SDKTimeoutError, subprocess.TimeoutExpired, httpx.TimeoutException):
             status, error = "timeout", "Tool timed out; operational outcome is unknown"
         except Exception as exc:
             # Never disclose exception strings: SDK exceptions can embed credentials or bodies.

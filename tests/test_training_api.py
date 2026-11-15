@@ -92,3 +92,45 @@ def test_agent_http_api_requires_credentials(monkeypatch, tmp_path):
         assert client.post("/chat", json={"message": "best model"}).status_code == 503
         monkeypatch.setenv("AGENT_API_TOKEN", "private-test-token")
         assert client.post("/chat", json={"message": "best model"}).status_code == 401
+
+
+def test_agent_http_accepts_correct_token_and_rejects_wrong_token(monkeypatch, tmp_path):
+    from agent import main
+    from agent.executor import Executor, ToolSpec
+    from agent.orchestrator import Orchestrator
+    from agent.schemas import Empty
+
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("AGENT_API_TOKEN", "private-test-token")
+    monkeypatch.setenv("AGENT_PLANNER", "rules")
+    ex = Executor(
+        [
+            ToolSpec("dvc.list_datasets", "datasets", Empty, lambda: {"datasets": []}),
+            ToolSpec("dvc.status", "status", Empty, lambda: {"changes": {}}),
+        ]
+    )
+    monkeypatch.setattr(main, "Orchestrator", lambda settings: Orchestrator(settings, ex))
+    with TestClient(main.app) as client:
+        payload = {"message": "Which dataset version is current?"}
+        assert (
+            client.post(
+                "/chat",
+                json=payload,
+                headers={
+                    "Authorization": "Bearer incorrect-token",
+                },
+            ).status_code
+            == 401
+        )
+        response = client.post(
+            "/chat",
+            json=payload,
+            headers={
+                "Authorization": "Bearer private-test-token",
+            },
+        )
+        assert response.status_code == 200
+        assert [r["tool"] for r in response.json()["evidence"]] == [
+            "dvc.list_datasets",
+            "dvc.status",
+        ]

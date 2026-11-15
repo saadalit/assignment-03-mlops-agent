@@ -1,0 +1,30 @@
+{
+  "collected_at": "2026-11-15T14:26:37.380286+00:00",
+  "source": "live local services",
+  "result": {
+    "cluster_ip": "10.43.138.175",
+    "checks": {
+      "/healthz": {
+        "status": "alive"
+      },
+      "/readyz": {
+        "status": "ready",
+        "run_id": "61579cacc8064b8889afed658d0fad25",
+        "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36"
+      },
+      "/version": {
+        "app_version": "1.0.0",
+        "model_run_id": "61579cacc8064b8889afed658d0fad25",
+        "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+        "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064"
+      },
+      "/predict": {
+        "predictions": [
+          0
+        ],
+        "run_id": "61579cacc8064b8889afed658d0fad25"
+      }
+    },
+    "passed": true
+  }
+}

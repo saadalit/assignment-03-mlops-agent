@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v6
         with:
           version: "0.13.7"
@@ -18,6 +20,8 @@ jobs:
       - run: uv sync --frozen
       - run: uv run ruff check .
       - run: uv run ruff format --check .
+      - name: Reject committed credentials and runtime files
+        run: uv run python -m scripts.audit_repository --history
       - run: uv run pytest --cov=agent --cov=api --cov=training --cov-report=term-missing --cov-report=xml
       - name: Validate DVC pipeline and infrastructure documents
         run: uv run python scripts/validate_config.py

@@ -1,0 +1,69 @@
+{
+  "collected_at": "2026-11-15T14:17:49.960906+00:00",
+  "source": "live local services",
+  "result": {
+    "health": {
+      "status": "ok"
+    },
+    "unauthenticated_status": 401,
+    "authenticated_status": 200,
+    "agent": {
+      "request_id": "1992a7a2512c469fbcd8714e075876c2",
+      "planner": "rules",
+      "facts": [
+        "dvc.list_datasets: {\"datasets\": [{\"pointer\": \"data/iris.csv.dvc\", \"git_commit\": \"90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064\", \"requested_ref\": \"HEAD\", \"outputs\": [{\"md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"size\": 2757, \"isexec\": true, \"hash\": \"md5\", \"path\": \"iris.csv\"}], \"workspace_md5\": \"5c2fcf018f5f74ee80f846aabcc97f36\", \"matches_recorded_version\": true}], \"pipeline\": true}",
+        "dvc.status: {\"changes\": {\"quality_gate\": [\"always changed\"]}, \"git_commit\": \"90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064\"}"
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "dvc.list_datasets",
+          "status": "ok",
+          "data": {
+            "datasets": [
+              {
+                "pointer": "data/iris.csv.dvc",
+                "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "requested_ref": "HEAD",
+                "outputs": [
+                  {
+                    "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                    "size": 2757,
+                    "isexec": true,
+                    "hash": "md5",
+                    "path": "iris.csv"
+                  }
+                ],
+                "workspace_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "matches_recorded_version": true
+              }
+            ],
+            "pipeline": true
+          },
+          "error": null,
+          "duration_ms": 656.854,
+          "request_id": "1992a7a2512c469fbcd8714e075876c2"
+        },
+        {
+          "tool": "dvc.status",
+          "status": "ok",
+          "data": {
+            "changes": {
+              "quality_gate": [
+                "always changed"
+              ]
+            },
+            "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064"
+          },
+          "error": null,
+          "duration_ms": 2921.616,
+          "request_id": "1992a7a2512c469fbcd8714e075876c2"
+        }
+      ],
+      "planner_trace": []
+    }
+  }
+}

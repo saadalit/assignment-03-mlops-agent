@@ -1,0 +1,349 @@
+{
+  "collected_at": "2026-11-15T14:27:59.595703+00:00",
+  "source": "live local services",
+  "result": {
+    "user": "Check Kubernetes deployment health and logs",
+    "agent": {
+      "request_id": "ee59067c79cd47ff81fc8c94739ab427",
+      "planner": "rules",
+      "facts": [
+        "Deployment mlops/prediction-api: 2/2 ready, images=['mlops-inference:61579cacc8064b8889afed658d0fad25'], version={'MODEL_RUN_ID': '61579cacc8064b8889afed658d0fad25', 'DATASET_MD5': '5c2fcf018f5f74ee80f846aabcc97f36', 'APP_VERSION': '1.0.0'}.",
+        "Pod prediction-api-66b7f69475-pskcf: phase=Running, healthy=True, restarts=0.",
+        "Pod prediction-api-66b7f69475-vm7wq: phase=Running, healthy=True, restarts=0.",
+        "Services and ready endpoints: {\"services\": [{\"name\": \"prediction-api\", \"type\": \"ClusterIP\", \"cluster_ip\": \"10.43.138.175\", \"selector\": {\"app\": \"prediction-api\"}, \"ports\": [{\"port\": 80, \"target_port\": 8000}]}], \"endpoints\": [{\"name\": \"prediction-api\", \"ready_addresses\": [\"10.42.0.4\", \"10.42.0.5\"]}]}",
+        "Recorded Kubernetes warning events: [{\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.5:8000/healthz\\\": dial tcp 10.42.0.5:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-pskcf\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}, {\"reason\": \"Unhealthy\", \"message\": \"Startup probe failed: Get \\\"http://10.42.0.4:8000/healthz\\\": dial tcp 10.42.0.4:8000: connect: connection refused\", \"type\": \"Warning\", \"object\": \"prediction-api-66b7f69475-vm7wq\", \"count\": 8, \"last_seen\": \"2026-11-15 14:25:29+00:00\"}]",
+        "Pod prediction-api-66b7f69475-pskcf log excerpt:  10.42.0.1:52144 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59192 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59206 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59220 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39371 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:44422 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35376 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39056 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39058 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39060 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52512 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52536 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55736 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55746 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42460 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57410 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57416 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50292 - \"GET /readyz HTTP/1.1\" 200 OK\n",
+        "Pod prediction-api-66b7f69475-vm7wq log excerpt: 0.42.0.1:39960 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38942 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38958 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38962 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:31766 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18628 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58354 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58368 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58374 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45200 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45208 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45216 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40312 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40320 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47448 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47458 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52432 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52450 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47178 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47182 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37686 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37690 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34882 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34886 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54702 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Training and cluster changes require a separate explicit request and action confirmation."
+      ],
+      "evidence": [
+        {
+          "tool": "kubernetes.deployment_status",
+          "status": "ok",
+          "data": {
+            "name": "prediction-api",
+            "namespace": "mlops",
+            "desired": 2,
+            "ready": 2,
+            "available": 2,
+            "updated": 2,
+            "rollout_complete": true,
+            "generation": 1,
+            "observed_generation": 1,
+            "images": [
+              "mlops-inference:61579cacc8064b8889afed658d0fad25"
+            ],
+            "version": {
+              "MODEL_RUN_ID": "61579cacc8064b8889afed658d0fad25",
+              "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "APP_VERSION": "1.0.0"
+            },
+            "readiness_paths": [
+              "/readyz"
+            ],
+            "conditions": [
+              {
+                "type": "Available",
+                "status": "True",
+                "reason": "MinimumReplicasAvailable",
+                "message": "Deployment has minimum availability."
+              },
+              {
+                "type": "Progressing",
+                "status": "True",
+                "reason": "NewReplicaSetAvailable",
+                "message": "ReplicaSet \"prediction-api-66b7f69475\" has successfully progressed."
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 91.914,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        },
+        {
+          "tool": "kubernetes.list_workloads",
+          "status": "ok",
+          "data": {
+            "namespace": "mlops",
+            "pods": [
+              {
+                "name": "prediction-api-66b7f69475-pskcf",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              },
+              {
+                "name": "prediction-api-66b7f69475-vm7wq",
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "PodReadyToStartContainers",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Initialized",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "ContainersReady",
+                    "status": "True",
+                    "reason": null
+                  },
+                  {
+                    "type": "PodScheduled",
+                    "status": "True",
+                    "reason": null
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "prediction-api",
+                    "ready": true,
+                    "restarts": 0,
+                    "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                    "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                    "waiting": null,
+                    "last_termination": null
+                  }
+                ],
+                "healthy": true
+              }
+            ],
+            "deployments": [
+              {
+                "name": "prediction-api",
+                "desired": 2,
+                "ready": 2,
+                "images": [
+                  "mlops-inference:61579cacc8064b8889afed658d0fad25"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 59.444,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        },
+        {
+          "tool": "kubernetes.services",
+          "status": "ok",
+          "data": {
+            "services": [
+              {
+                "name": "prediction-api",
+                "type": "ClusterIP",
+                "cluster_ip": "10.43.138.175",
+                "selector": {
+                  "app": "prediction-api"
+                },
+                "ports": [
+                  {
+                    "port": 80,
+                    "target_port": 8000
+                  }
+                ]
+              }
+            ],
+            "endpoints": [
+              {
+                "name": "prediction-api",
+                "ready_addresses": [
+                  "10.42.0.4",
+                  "10.42.0.5"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 24.362,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        },
+        {
+          "tool": "kubernetes.events",
+          "status": "ok",
+          "data": {
+            "events": [
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-pskcf to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.897568+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.5:8000/healthz\": dial tcp 10.42.0.5:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-pskcf",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "Scheduled",
+                "message": "Successfully assigned mlops/prediction-api-66b7f69475-vm7wq to ee1fe17990e8",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": null,
+                "last_seen": "2026-11-15 14:25:05.866467+00:00"
+              },
+              {
+                "reason": "Pulled",
+                "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Created",
+                "message": "Created container: prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Started",
+                "message": "Started container prediction-api",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:06+00:00"
+              },
+              {
+                "reason": "Unhealthy",
+                "message": "Startup probe failed: Get \"http://10.42.0.4:8000/healthz\": dial tcp 10.42.0.4:8000: connect: connection refused",
+                "type": "Warning",
+                "object": "prediction-api-66b7f69475-vm7wq",
+                "count": 8,
+                "last_seen": "2026-11-15 14:25:29+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-vm7wq",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "SuccessfulCreate",
+                "message": "Created pod: prediction-api-66b7f69475-pskcf",
+                "type": "Normal",
+                "object": "prediction-api-66b7f69475",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              },
+              {
+                "reason": "ScalingReplicaSet",
+                "message": "Scaled up replica set prediction-api-66b7f69475 from 0 to 2",
+                "type": "Normal",
+                "object": "prediction-api",
+                "count": 1,
+                "last_seen": "2026-11-15 14:25:05+00:00"
+              }
+            ]
+          },
+          "error": null,
+          "duration_ms": 49.054,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-66b7f69475-pskcf",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:41280 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41306 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39078 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39092 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39096 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39850 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39858 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39872 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38674 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38680 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38696 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35012 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35020 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35032 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52124 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52136 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52144 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59192 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59206 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:59220 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39371 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:44422 - \"GET /version HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41834 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41836 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41838 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35348 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35364 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35376 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39056 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39058 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39060 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52512 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52526 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52536 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56044 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56046 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:56056 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55724 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55736 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:55746 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42456 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42460 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57410 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57414 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57416 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50292 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 81.59,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        },
+        {
+          "tool": "kubernetes.pod_logs",
+          "status": "ok",
+          "data": {
+            "pod": "prediction-api-66b7f69475-vm7wq",
+            "logs": "INFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     10.42.0.1:43124 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43138 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43152 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40428 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40436 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40444 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40766 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40776 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40780 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41270 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41286 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41298 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41782 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41798 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:41804 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39936 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39944 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:39960 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38942 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38958 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38962 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:31766 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:18628 - \"POST /predict HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58354 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58368 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:58374 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45200 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45208 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45216 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40296 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40312 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40320 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47434 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47448 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47458 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52432 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:52450 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47162 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47178 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47182 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37682 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37686 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:37690 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34874 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34882 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34886 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54702 - \"GET /readyz HTTP/1.1\" 200 OK\n"
+          },
+          "error": null,
+          "duration_ms": 46.309,
+          "request_id": "ee59067c79cd47ff81fc8c94739ab427"
+        }
+      ],
+      "planner_trace": []
+    }
+  }
+}

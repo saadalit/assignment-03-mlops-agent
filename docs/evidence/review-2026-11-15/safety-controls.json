@@ -1,0 +1,32 @@
+{
+  "collected_at": "2026-11-15T15:18:46.196061+00:00",
+  "source": "live local services",
+  "result": {
+    "checks": [
+      {
+        "tool": "kubernetes.restart_deployment",
+        "status": "denied",
+        "data": {},
+        "error": "Explicit confirmation required: kubernetes.restart_deployment:mlops:prediction-api",
+        "duration_ms": 0.088,
+        "request_id": "live-safety"
+      },
+      {
+        "tool": "kubernetes.list_workloads",
+        "status": "denied",
+        "data": {},
+        "error": "Namespace is outside the approved scope",
+        "duration_ms": 0.079,
+        "request_id": "live-safety"
+      },
+      {
+        "tool": "airflow.trigger_training",
+        "status": "denied",
+        "data": {},
+        "error": "Explicit confirmation required: airflow.trigger_training:training_pipeline",
+        "duration_ms": 0.076,
+        "request_id": "live-safety"
+      }
+    ]
+  }
+}

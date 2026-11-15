@@ -1,0 +1,37 @@
+{
+    "collected_at":  "2026-11-15T15:36:29.6235956Z",
+    "source":  "assertions over the actual Ollama conversation export",
+    "result":  {
+                   "passed":  true,
+                   "planner":  "ollama",
+                   "models":  [
+                                  "qwen2.5:1.5b"
+                              ],
+                   "turns":  6,
+                   "required_tools_succeeded":  [
+                                                    "mlflow.best_run",
+                                                    "dvc.current_version",
+                                                    "kubernetes.deployment_status",
+                                                    "kubernetes.list_workloads",
+                                                    "kubernetes.services",
+                                                    "kubernetes.events",
+                                                    "airflow.list_runs"
+                                                ],
+                   "total_attempts":  8,
+                   "successful_calls":  7,
+                   "rejected_calls":  1,
+                   "candidate_run_id":  "d9ae465a6204434980b036e4a0395f28",
+                   "dataset_git_commit":  "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                   "dataset_pointer":  "data/iris.csv.dvc",
+                   "dataset_md5":  "5c2fcf018f5f74ee80f846aabcc97f36",
+                   "mutation_tools_executed":  [
+
+                                               ],
+                   "protocols":  [
+                                     "json_schema",
+                                     "native_tools"
+                                 ],
+                   "llm_duration_seconds":  482.4,
+                   "note":  "The initial native DVC proposal was rejected; the LLM recovered using evidence-grounded JSON-schema action selection."
+               }
+}

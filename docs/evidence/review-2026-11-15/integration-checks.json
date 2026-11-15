@@ -1,0 +1,1670 @@
+{
+  "collected_at": "2026-11-15T15:18:46.164624+00:00",
+  "source": "live local services",
+  "result": {
+    "checks": [
+      {
+        "tool": "dvc.list_datasets",
+        "status": "ok",
+        "data": {
+          "datasets": [
+            {
+              "pointer": "data/iris.csv.dvc",
+              "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+              "requested_ref": "HEAD",
+              "outputs": [
+                {
+                  "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                  "size": 2757,
+                  "isexec": true,
+                  "hash": "md5",
+                  "path": "iris.csv"
+                }
+              ],
+              "workspace_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "matches_recorded_version": true
+            }
+          ],
+          "pipeline": true
+        },
+        "error": null,
+        "duration_ms": 422.338,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "dvc.status",
+        "status": "ok",
+        "data": {
+          "changes": {
+            "quality_gate": [
+              "always changed"
+            ]
+          },
+          "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064"
+        },
+        "error": null,
+        "duration_ms": 7681.193,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "dvc.reproduction",
+        "status": "ok",
+        "data": {
+          "git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "requested_ref": "HEAD",
+          "pointer": "data/iris.csv.dvc",
+          "outputs": [
+            {
+              "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "size": 2757,
+              "isexec": true,
+              "hash": "md5",
+              "path": "iris.csv"
+            }
+          ],
+          "workspace_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "matches_recorded_version": true,
+          "instructions": [
+            "git worktree add --detach ../dataset-reproduction 90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+            "cd ../dataset-reproduction",
+            "uv sync --frozen",
+            "uv run dvc remote add --local -d storage /absolute/path/to/dvc-remote",
+            "uv run dvc pull data/iris.csv.dvc",
+            "Compare the downloaded file MD5 with outputs[0].md5 above."
+          ],
+          "note": "Requires access to the DVC remote; no checkout was performed by this tool."
+        },
+        "error": null,
+        "duration_ms": 344.456,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "dvc.compare",
+        "status": "ok",
+        "data": {
+          "before": {
+            "git_commit": "12b005559f25d93419ccdc93f3cd470d2ee0c09f",
+            "requested_ref": "v1.0-data",
+            "pointer": "data/iris.csv.dvc",
+            "outputs": [
+              {
+                "md5": "4224576f0267bf88902f87f0f6200967",
+                "size": 2757,
+                "isexec": true,
+                "hash": "md5",
+                "path": "iris.csv"
+              }
+            ]
+          },
+          "after": {
+            "git_commit": "fca41b0a44a9b26fdad713b17cade6f293d574b4",
+            "requested_ref": "v2.0-data",
+            "pointer": "data/iris.csv.dvc",
+            "outputs": [
+              {
+                "md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "size": 2757,
+                "isexec": true,
+                "hash": "md5",
+                "path": "iris.csv"
+              }
+            ]
+          },
+          "changed": true,
+          "diff": {
+            "added": [],
+            "deleted": [],
+            "modified": [
+              {
+                "path": "data/iris.csv"
+              }
+            ],
+            "renamed": []
+          }
+        },
+        "error": null,
+        "duration_ms": 8141.271,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.list_experiments",
+        "status": "ok",
+        "data": {
+          "experiments": [
+            {
+              "id": "2",
+              "name": "iris-classification-baseline",
+              "artifact_location": "mlflow-artifacts:/2"
+            },
+            {
+              "id": "1",
+              "name": "iris-classification",
+              "artifact_location": "mlflow-artifacts:/1"
+            },
+            {
+              "id": "0",
+              "name": "Default",
+              "artifact_location": "mlflow-artifacts:/0"
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 309.754,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.list_runs",
+        "status": "ok",
+        "data": {
+          "experiment": "iris-classification",
+          "days": 30,
+          "runs": [
+            {
+              "run_id": "d9ae465a6204434980b036e4a0395f28",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794753013636,
+              "end_time": 1794753022655,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "bc4b4445c436ee8e",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "ebbf712bc7d64565b5ea3a9b99897a42",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752948079,
+              "end_time": 1794752954844,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "1.01"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "688f4181ab9bca07",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "failed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752848084,
+              "end_time": 1794752860001,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "4c10d9a647efa375",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "96b1307c2a2e48c9a222a7e60b2da734",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752072647,
+              "end_time": 1794752101202,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "pipeline",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "9c20b53eb631463a97839018275358d4",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794751851362,
+              "end_time": 1794751872624,
+              "metrics": {
+                "accuracy": 0.9333333333333333,
+                "f1": 0.9332591768631814
+              },
+              "params": {
+                "max_depth": "1",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "review-shallow",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 112.895,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.best_run",
+        "status": "ok",
+        "data": {
+          "experiment": "iris-classification",
+          "days": 30,
+          "runs": [
+            {
+              "run_id": "d9ae465a6204434980b036e4a0395f28",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794753013636,
+              "end_time": 1794753022655,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "bc4b4445c436ee8e",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "ebbf712bc7d64565b5ea3a9b99897a42",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752948079,
+              "end_time": 1794752954844,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "1.01"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "688f4181ab9bca07",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "failed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752848084,
+              "end_time": 1794752860001,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "4c10d9a647efa375",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "96b1307c2a2e48c9a222a7e60b2da734",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794752072647,
+              "end_time": 1794752101202,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "pipeline",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            },
+            {
+              "run_id": "9c20b53eb631463a97839018275358d4",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794751851362,
+              "end_time": 1794751872624,
+              "metrics": {
+                "accuracy": 0.9333333333333333,
+                "f1": 0.9332591768631814
+              },
+              "params": {
+                "max_depth": "1",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "review-shallow",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            }
+          ],
+          "metric": "f1",
+          "mode": "max",
+          "candidate": {
+            "run_id": "d9ae465a6204434980b036e4a0395f28",
+            "experiment_id": "1",
+            "status": "FINISHED",
+            "start_time": 1794753013636,
+            "end_time": 1794753022655,
+            "metrics": {
+              "accuracy": 0.9555555555555556,
+              "f1": 0.9555555555555556
+            },
+            "params": {
+              "max_depth": "3",
+              "n_estimators": "60",
+              "split_seed": "42",
+              "test_size": "0.3",
+              "min_f1": "0.85"
+            },
+            "tags": {
+              "mlflow.user": "airflow",
+              "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+              "mlflow.source.type": "LOCAL",
+              "mlflow.runName": "bc4b4445c436ee8e",
+              "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+              "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+              "dataset_pointer": "data/iris.csv.dvc",
+              "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+              "quality_gate": "passed",
+              "evaluation_split": "stratified-seed42-test0.3"
+            }
+          },
+          "selection_scope": "Most recent 5 runs in the last 30 days",
+          "caution": "Metric ranking alone does not establish production readiness; check quality gate, data, deployment, drift and latency."
+        },
+        "error": null,
+        "duration_ms": 113.471,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.get_run",
+        "status": "ok",
+        "data": {
+          "run_id": "d9ae465a6204434980b036e4a0395f28",
+          "experiment_id": "1",
+          "status": "FINISHED",
+          "start_time": 1794753013636,
+          "end_time": 1794753022655,
+          "metrics": {
+            "accuracy": 0.9555555555555556,
+            "f1": 0.9555555555555556
+          },
+          "params": {
+            "max_depth": "3",
+            "n_estimators": "60",
+            "split_seed": "42",
+            "test_size": "0.3",
+            "min_f1": "0.85"
+          },
+          "tags": {
+            "mlflow.user": "airflow",
+            "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+            "mlflow.source.type": "LOCAL",
+            "mlflow.runName": "bc4b4445c436ee8e",
+            "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+            "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+            "dataset_pointer": "data/iris.csv.dvc",
+            "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+            "quality_gate": "passed",
+            "evaluation_split": "stratified-seed42-test0.3"
+          },
+          "artifacts": [
+            {
+              "path": "evaluation.json",
+              "is_dir": false,
+              "size": 515
+            },
+            {
+              "path": "model.joblib",
+              "is_dir": false,
+              "size": 70641
+            },
+            {
+              "path": "validation.json",
+              "is_dir": false,
+              "size": 320
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 244.672,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.list_runs",
+        "status": "ok",
+        "data": {
+          "experiment": "iris-classification-baseline",
+          "days": 30,
+          "runs": [
+            {
+              "run_id": "c7c012f7f03e4ee096f5671fa961db31",
+              "experiment_id": "2",
+              "status": "FINISHED",
+              "start_time": 1794755807118,
+              "end_time": 1794755823056,
+              "metrics": {
+                "accuracy": 0.9333333333333333,
+                "f1": 0.9332591768631814
+              },
+              "params": {
+                "max_depth": "1",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "review-baseline",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              }
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 101.336,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.compare_runs",
+        "status": "ok",
+        "data": {
+          "runs": [
+            {
+              "run_id": "d9ae465a6204434980b036e4a0395f28",
+              "experiment_id": "1",
+              "status": "FINISHED",
+              "start_time": 1794753013636,
+              "end_time": 1794753022655,
+              "metrics": {
+                "accuracy": 0.9555555555555556,
+                "f1": 0.9555555555555556
+              },
+              "params": {
+                "max_depth": "3",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "airflow",
+                "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.runName": "bc4b4445c436ee8e",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              },
+              "artifacts": [
+                {
+                  "path": "evaluation.json",
+                  "is_dir": false,
+                  "size": 515
+                },
+                {
+                  "path": "model.joblib",
+                  "is_dir": false,
+                  "size": 70641
+                },
+                {
+                  "path": "validation.json",
+                  "is_dir": false,
+                  "size": 320
+                }
+              ]
+            },
+            {
+              "run_id": "c7c012f7f03e4ee096f5671fa961db31",
+              "experiment_id": "2",
+              "status": "FINISHED",
+              "start_time": 1794755807118,
+              "end_time": 1794755823056,
+              "metrics": {
+                "accuracy": 0.9333333333333333,
+                "f1": 0.9332591768631814
+              },
+              "params": {
+                "max_depth": "1",
+                "n_estimators": "60",
+                "split_seed": "42",
+                "test_size": "0.3",
+                "min_f1": "0.85"
+              },
+              "tags": {
+                "mlflow.user": "saadalit",
+                "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+                "mlflow.source.type": "LOCAL",
+                "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "mlflow.runName": "review-baseline",
+                "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+                "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+                "dataset_pointer": "data/iris.csv.dvc",
+                "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+                "quality_gate": "passed",
+                "evaluation_split": "stratified-seed42-test0.3"
+              },
+              "artifacts": [
+                {
+                  "path": "evaluation.json",
+                  "is_dir": false,
+                  "size": 514
+                },
+                {
+                  "path": "model.joblib",
+                  "is_dir": false,
+                  "size": 41777
+                },
+                {
+                  "path": "validation.json",
+                  "is_dir": false,
+                  "size": 319
+                }
+              ]
+            }
+          ],
+          "note": "Compare evaluation splits and dataset provenance before comparing scores."
+        },
+        "error": null,
+        "duration_ms": 452.064,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "mlflow.registry",
+        "status": "ok",
+        "data": {
+          "name": "iris-classifier",
+          "versions": [
+            {
+              "version": "7",
+              "run_id": "d9ae465a6204434980b036e4a0395f28",
+              "status": "READY",
+              "source": "models:/m-16d0d8105b2d421a9af454481abb1523",
+              "aliases": []
+            },
+            {
+              "version": "6",
+              "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+              "status": "READY",
+              "source": "models:/m-07c9893b774f4bf98a6696cdf52bb80c",
+              "aliases": []
+            },
+            {
+              "version": "5",
+              "run_id": "61579cacc8064b8889afed658d0fad25",
+              "status": "READY",
+              "source": "models:/m-f27af274ca7b466085390735b93a52b4",
+              "aliases": []
+            },
+            {
+              "version": "4",
+              "run_id": "12ea6ed7b3de463bab159f9f454a01df",
+              "status": "READY",
+              "source": "models:/m-061c93fa6fd4428d8b906d16a41f2556",
+              "aliases": []
+            },
+            {
+              "version": "3",
+              "run_id": "d6cf8e19d7b64fdb9c0124c63ff7355a",
+              "status": "READY",
+              "source": "models:/m-9dc908c681204268b51b2e164e83dfc3",
+              "aliases": []
+            },
+            {
+              "version": "2",
+              "run_id": "b70a9a9e59a5423a8264e76d90714a3b",
+              "status": "READY",
+              "source": "models:/m-e3f519bc2d924bdbbf629df318d78207",
+              "aliases": []
+            },
+            {
+              "version": "1",
+              "run_id": "6138bca51d5f4b0ab91bf5c8d4db3adc",
+              "status": "READY",
+              "source": "models:/m-a803e073434f4472aa02645d3bd7313f",
+              "aliases": []
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 413.468,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "airflow.list_dags",
+        "status": "ok",
+        "data": {
+          "dags": [
+            {
+              "dag_id": "training_pipeline",
+              "dag_display_name": "training_pipeline",
+              "is_paused": false,
+              "is_stale": false,
+              "last_parsed_time": "2026-11-15T15:18:34.100716Z",
+              "last_parse_duration": 0.24717076799970528,
+              "last_expired": null,
+              "bundle_name": "dags-folder",
+              "bundle_version": null,
+              "relative_fileloc": "training_pipeline.py",
+              "fileloc": "/workspace/dags/training_pipeline.py",
+              "description": null,
+              "timetable_summary": null,
+              "timetable_description": "Never, external triggers only",
+              "tags": [
+                {
+                  "name": "assignment03",
+                  "dag_id": "training_pipeline",
+                  "dag_display_name": "training_pipeline"
+                },
+                {
+                  "name": "mlops",
+                  "dag_id": "training_pipeline",
+                  "dag_display_name": "training_pipeline"
+                }
+              ],
+              "max_active_tasks": 16,
+              "max_active_runs": 1,
+              "max_consecutive_failed_dag_runs": 0,
+              "has_task_concurrency_limits": false,
+              "has_import_errors": false,
+              "next_dagrun_logical_date": null,
+              "next_dagrun_data_interval_start": null,
+              "next_dagrun_data_interval_end": null,
+              "next_dagrun_run_after": null,
+              "owners": [
+                "airflow"
+              ],
+              "file_token": "[REDACTED]"
+            }
+          ],
+          "total_entries": 1
+        },
+        "error": null,
+        "duration_ms": 978.402,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "airflow.list_runs",
+        "status": "ok",
+        "data": {
+          "dag_runs": [
+            {
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "dag_id": "training_pipeline",
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "queued_at": "2026-11-15T14:29:44.631769Z",
+              "start_date": "2026-11-15T14:29:45.081160Z",
+              "end_date": "2026-11-15T14:30:39.096222Z",
+              "duration": 54.015062,
+              "data_interval_start": "2026-11-15T14:29:44.593108Z",
+              "data_interval_end": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "last_scheduling_decision": "2026-11-15T14:30:39.087873Z",
+              "run_type": "manual",
+              "state": "success",
+              "triggered_by": "rest_api",
+              "triggering_user_name": "agent",
+              "conf": {},
+              "note": null,
+              "dag_versions": [
+                {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              ],
+              "bundle_version": null,
+              "dag_display_name": "training_pipeline"
+            },
+            {
+              "dag_run_id": "manual__2026-11-15T14:28:38.060275+00:00",
+              "dag_id": "training_pipeline",
+              "logical_date": "2026-11-15T14:28:38.060275Z",
+              "queued_at": "2026-11-15T14:28:38.098077Z",
+              "start_date": "2026-11-15T14:28:39.657630Z",
+              "end_date": "2026-11-15T14:29:40.216371Z",
+              "duration": 60.558741,
+              "data_interval_start": "2026-11-15T14:28:38.060275Z",
+              "data_interval_end": "2026-11-15T14:28:38.060275Z",
+              "run_after": "2026-11-15T14:28:38.060275Z",
+              "last_scheduling_decision": "2026-11-15T14:29:40.210674Z",
+              "run_type": "manual",
+              "state": "failed",
+              "triggered_by": "rest_api",
+              "triggering_user_name": "agent",
+              "conf": {
+                "min_f1": 1.01
+              },
+              "note": null,
+              "dag_versions": [
+                {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              ],
+              "bundle_version": null,
+              "dag_display_name": "training_pipeline"
+            },
+            {
+              "dag_run_id": "manual__2026-11-15T14:28:01.728590+00:00",
+              "dag_id": "training_pipeline",
+              "logical_date": "2026-11-15T14:28:01.728590Z",
+              "queued_at": "2026-11-15T14:28:01.777093Z",
+              "start_date": "2026-11-15T14:28:02.804116Z",
+              "end_date": "2026-11-15T14:28:33.526789Z",
+              "duration": 30.722673,
+              "data_interval_start": "2026-11-15T14:28:01.728590Z",
+              "data_interval_end": "2026-11-15T14:28:01.728590Z",
+              "run_after": "2026-11-15T14:28:01.728590Z",
+              "last_scheduling_decision": "2026-11-15T14:28:33.517201Z",
+              "run_type": "manual",
+              "state": "failed",
+              "triggered_by": "rest_api",
+              "triggering_user_name": "agent",
+              "conf": {
+                "inject_invalid": true
+              },
+              "note": null,
+              "dag_versions": [
+                {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              ],
+              "bundle_version": null,
+              "dag_display_name": "training_pipeline"
+            },
+            {
+              "dag_run_id": "manual__2026-11-15T14:26:32.284734+00:00",
+              "dag_id": "training_pipeline",
+              "logical_date": "2026-11-15T14:26:32.284734Z",
+              "queued_at": "2026-11-15T14:26:33.028199Z",
+              "start_date": "2026-11-15T14:26:34.319469Z",
+              "end_date": "2026-11-15T14:27:56.322412Z",
+              "duration": 82.002943,
+              "data_interval_start": "2026-11-15T14:26:32.284734Z",
+              "data_interval_end": "2026-11-15T14:26:32.284734Z",
+              "run_after": "2026-11-15T14:26:32.284734Z",
+              "last_scheduling_decision": "2026-11-15T14:27:56.316485Z",
+              "run_type": "manual",
+              "state": "success",
+              "triggered_by": "rest_api",
+              "triggering_user_name": "agent",
+              "conf": {},
+              "note": null,
+              "dag_versions": [
+                {
+                  "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                  "version_number": 1,
+                  "dag_id": "training_pipeline",
+                  "bundle_name": "dags-folder",
+                  "bundle_version": null,
+                  "created_at": "2026-11-15T14:24:23.442763Z",
+                  "dag_display_name": "training_pipeline",
+                  "bundle_url": null
+                }
+              ],
+              "bundle_version": null,
+              "dag_display_name": "training_pipeline"
+            }
+          ],
+          "total_entries": 4
+        },
+        "error": null,
+        "duration_ms": 407.564,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "airflow.failed_tasks",
+        "status": "ok",
+        "data": {
+          "task_instances": [
+            {
+              "id": "01a1df9d-3646-7cd2-b69c-f80830cc152c",
+              "task_id": "validate",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:29:45.243482Z",
+              "end_date": "2026-11-15T14:29:52.052807Z",
+              "duration": 13.809999999999999,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "validate",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 6,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:29:45.191383Z",
+              "scheduled_when": "2026-11-15T14:29:45.146808Z",
+              "pid": 269,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            },
+            {
+              "id": "01a1df9d-3647-71b6-b265-6932d2e27028",
+              "task_id": "preprocess",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:29:52.683597Z",
+              "end_date": "2026-11-15T14:29:58.962011Z",
+              "duration": 12.277999999999999,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "preprocess",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 5,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:29:52.647905Z",
+              "scheduled_when": "2026-11-15T14:29:52.610448Z",
+              "pid": 280,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            },
+            {
+              "id": "01a1df9d-3648-7f44-984e-0ed9f91cb927",
+              "task_id": "train",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:29:59.966068Z",
+              "end_date": "2026-11-15T14:30:06.312172Z",
+              "duration": -46.654,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "train",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 4,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:29:59.923881Z",
+              "scheduled_when": "2026-11-15T14:29:59.865798Z",
+              "pid": 284,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            },
+            {
+              "id": "01a1df9d-3649-70dc-ace6-907cdb4ea17c",
+              "task_id": "evaluate_mlflow",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:30:06.612372Z",
+              "end_date": "2026-11-15T14:30:22.969127Z",
+              "duration": 32.357,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "evaluate_mlflow",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 3,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:30:06.570473Z",
+              "scheduled_when": "2026-11-15T14:30:06.526593Z",
+              "pid": 293,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            },
+            {
+              "id": "01a1df9d-364a-7e32-9942-daa1de1edffe",
+              "task_id": "quality_gate",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:30:24.075267Z",
+              "end_date": "2026-11-15T14:30:31.285891Z",
+              "duration": 14.211,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "quality_gate",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 2,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:30:24.030149Z",
+              "scheduled_when": "2026-11-15T14:30:23.986504Z",
+              "pid": 309,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            },
+            {
+              "id": "01a1df9d-364b-7ca8-98d7-0f0222f289dc",
+              "task_id": "register_candidate",
+              "dag_id": "training_pipeline",
+              "dag_run_id": "manual__2026-11-15T14:29:44.593108+00:00",
+              "map_index": -1,
+              "logical_date": "2026-11-15T14:29:44.593108Z",
+              "run_after": "2026-11-15T14:29:44.593108Z",
+              "start_date": "2026-11-15T14:30:31.467461Z",
+              "end_date": "2026-11-15T14:30:38.528361Z",
+              "duration": 14.061,
+              "state": "success",
+              "try_number": 1,
+              "max_tries": 1,
+              "task_display_name": "register_candidate",
+              "dag_display_name": "training_pipeline",
+              "hostname": "e12a56f6e50e",
+              "unixname": "airflow",
+              "pool": "default_pool",
+              "pool_slots": 1,
+              "queue": "default",
+              "priority_weight": 1,
+              "operator": "_PythonDecoratedOperator",
+              "operator_name": "@task",
+              "queued_when": "2026-11-15T14:30:31.436765Z",
+              "scheduled_when": "2026-11-15T14:30:31.396856Z",
+              "pid": 312,
+              "executor": null,
+              "executor_config": "{}",
+              "note": null,
+              "rendered_map_index": null,
+              "rendered_fields": {},
+              "trigger": null,
+              "triggerer_job": null,
+              "dag_version": {
+                "id": "01a1df98-4f92-7956-9d7e-bc3c95831c49",
+                "version_number": 1,
+                "dag_id": "training_pipeline",
+                "bundle_name": "dags-folder",
+                "bundle_version": null,
+                "created_at": "2026-11-15T14:24:23.442763Z",
+                "dag_display_name": "training_pipeline",
+                "bundle_url": null
+              }
+            }
+          ],
+          "total_entries": 6,
+          "failed_tasks": []
+        },
+        "error": null,
+        "duration_ms": 183.493,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "kubernetes.deployment_status",
+        "status": "ok",
+        "data": {
+          "name": "prediction-api",
+          "namespace": "mlops",
+          "desired": 2,
+          "ready": 2,
+          "available": 2,
+          "updated": 2,
+          "rollout_complete": true,
+          "generation": 3,
+          "observed_generation": 3,
+          "images": [
+            "mlops-inference:61579cacc8064b8889afed658d0fad25"
+          ],
+          "version": {
+            "MODEL_RUN_ID": "61579cacc8064b8889afed658d0fad25",
+            "DATASET_MD5": "5c2fcf018f5f74ee80f846aabcc97f36",
+            "APP_VERSION": "1.0.0"
+          },
+          "readiness_paths": [
+            "/readyz"
+          ],
+          "conditions": [
+            {
+              "type": "Available",
+              "status": "True",
+              "reason": "MinimumReplicasAvailable",
+              "message": "Deployment has minimum availability."
+            },
+            {
+              "type": "Progressing",
+              "status": "True",
+              "reason": "NewReplicaSetAvailable",
+              "message": "ReplicaSet \"prediction-api-66b7f69475\" has successfully progressed."
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 42.951,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "kubernetes.list_workloads",
+        "status": "ok",
+        "data": {
+          "namespace": "mlops",
+          "pods": [
+            {
+              "name": "prediction-api-66b7f69475-pskcf",
+              "phase": "Running",
+              "conditions": [
+                {
+                  "type": "PodReadyToStartContainers",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "Initialized",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "Ready",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "ContainersReady",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "PodScheduled",
+                  "status": "True",
+                  "reason": null
+                }
+              ],
+              "containers": [
+                {
+                  "name": "prediction-api",
+                  "ready": true,
+                  "restarts": 0,
+                  "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                  "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                  "waiting": null,
+                  "last_termination": null
+                }
+              ],
+              "healthy": true
+            },
+            {
+              "name": "prediction-api-66b7f69475-vm7wq",
+              "phase": "Running",
+              "conditions": [
+                {
+                  "type": "PodReadyToStartContainers",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "Initialized",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "Ready",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "ContainersReady",
+                  "status": "True",
+                  "reason": null
+                },
+                {
+                  "type": "PodScheduled",
+                  "status": "True",
+                  "reason": null
+                }
+              ],
+              "containers": [
+                {
+                  "name": "prediction-api",
+                  "ready": true,
+                  "restarts": 0,
+                  "image": "docker.io/library/mlops-inference:61579cacc8064b8889afed658d0fad25",
+                  "image_id": "sha256:06d55bb2b789c283f606aceaad08f27e7facfd89a3d221bd5c300ad76b124f05",
+                  "waiting": null,
+                  "last_termination": null
+                }
+              ],
+              "healthy": true
+            }
+          ],
+          "deployments": [
+            {
+              "name": "prediction-api",
+              "desired": 2,
+              "ready": 2,
+              "images": [
+                "mlops-inference:61579cacc8064b8889afed658d0fad25"
+              ]
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 53.782,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "kubernetes.services",
+        "status": "ok",
+        "data": {
+          "services": [
+            {
+              "name": "prediction-api",
+              "type": "ClusterIP",
+              "cluster_ip": "10.43.138.175",
+              "selector": {
+                "app": "prediction-api"
+              },
+              "ports": [
+                {
+                  "port": 80,
+                  "target_port": 8000
+                }
+              ]
+            }
+          ],
+          "endpoints": [
+            {
+              "name": "prediction-api",
+              "ready_addresses": [
+                "10.42.0.4",
+                "10.42.0.5"
+              ]
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 23.938,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "kubernetes.events",
+        "status": "ok",
+        "data": {
+          "events": [
+            {
+              "reason": "Scheduled",
+              "message": "Successfully assigned mlops/prediction-api-559f4b4799-5p8mt to ee1fe17990e8",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": null,
+              "last_seen": "2026-11-15 14:30:21.110653+00:00"
+            },
+            {
+              "reason": "Pulled",
+              "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:22+00:00"
+            },
+            {
+              "reason": "Created",
+              "message": "Created container: prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:22+00:00"
+            },
+            {
+              "reason": "Started",
+              "message": "Started container prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:22+00:00"
+            },
+            {
+              "reason": "Unhealthy",
+              "message": "Startup probe failed: Get \"http://10.42.0.6:8000/healthz\": dial tcp 10.42.0.6:8000: connect: connection refused",
+              "type": "Warning",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 10,
+              "last_seen": "2026-11-15 14:30:51+00:00"
+            },
+            {
+              "reason": "Unhealthy",
+              "message": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+              "type": "Warning",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 2,
+              "last_seen": "2026-11-15 14:30:56+00:00"
+            },
+            {
+              "reason": "Killing",
+              "message": "Stopping container prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799-5p8mt",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:56+00:00"
+            },
+            {
+              "reason": "SuccessfulCreate",
+              "message": "Created pod: prediction-api-559f4b4799-5p8mt",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:21+00:00"
+            },
+            {
+              "reason": "SuccessfulDelete",
+              "message": "Deleted pod: prediction-api-559f4b4799-5p8mt",
+              "type": "Normal",
+              "object": "prediction-api-559f4b4799",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:56+00:00"
+            },
+            {
+              "reason": "Scheduled",
+              "message": "Successfully assigned mlops/prediction-api-66b7f69475-pskcf to ee1fe17990e8",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-pskcf",
+              "count": null,
+              "last_seen": "2026-11-15 14:25:05.897568+00:00"
+            },
+            {
+              "reason": "Pulled",
+              "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-pskcf",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Created",
+              "message": "Created container: prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-pskcf",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Started",
+              "message": "Started container prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-pskcf",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Unhealthy",
+              "message": "Startup probe failed: Get \"http://10.42.0.5:8000/healthz\": dial tcp 10.42.0.5:8000: connect: connection refused",
+              "type": "Warning",
+              "object": "prediction-api-66b7f69475-pskcf",
+              "count": 8,
+              "last_seen": "2026-11-15 14:25:29+00:00"
+            },
+            {
+              "reason": "Scheduled",
+              "message": "Successfully assigned mlops/prediction-api-66b7f69475-vm7wq to ee1fe17990e8",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-vm7wq",
+              "count": null,
+              "last_seen": "2026-11-15 14:25:05.866467+00:00"
+            },
+            {
+              "reason": "Pulled",
+              "message": "Container image \"mlops-inference:61579cacc8064b8889afed658d0fad25\" already present on machine",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-vm7wq",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Created",
+              "message": "Created container: prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-vm7wq",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Started",
+              "message": "Started container prediction-api",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475-vm7wq",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:06+00:00"
+            },
+            {
+              "reason": "Unhealthy",
+              "message": "Startup probe failed: Get \"http://10.42.0.4:8000/healthz\": dial tcp 10.42.0.4:8000: connect: connection refused",
+              "type": "Warning",
+              "object": "prediction-api-66b7f69475-vm7wq",
+              "count": 8,
+              "last_seen": "2026-11-15 14:25:29+00:00"
+            },
+            {
+              "reason": "SuccessfulCreate",
+              "message": "Created pod: prediction-api-66b7f69475-vm7wq",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:05+00:00"
+            },
+            {
+              "reason": "SuccessfulCreate",
+              "message": "Created pod: prediction-api-66b7f69475-pskcf",
+              "type": "Normal",
+              "object": "prediction-api-66b7f69475",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:05+00:00"
+            },
+            {
+              "reason": "ScalingReplicaSet",
+              "message": "Scaled up replica set prediction-api-66b7f69475 from 0 to 2",
+              "type": "Normal",
+              "object": "prediction-api",
+              "count": 1,
+              "last_seen": "2026-11-15 14:25:05+00:00"
+            },
+            {
+              "reason": "ScalingReplicaSet",
+              "message": "Scaled up replica set prediction-api-559f4b4799 from 0 to 1",
+              "type": "Normal",
+              "object": "prediction-api",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:21+00:00"
+            },
+            {
+              "reason": "ScalingReplicaSet",
+              "message": "Scaled down replica set prediction-api-559f4b4799 from 1 to 0",
+              "type": "Normal",
+              "object": "prediction-api",
+              "count": 1,
+              "last_seen": "2026-11-15 14:30:56+00:00"
+            }
+          ]
+        },
+        "error": null,
+        "duration_ms": 73.966,
+        "request_id": "live-verification"
+      },
+      {
+        "tool": "kubernetes.pod_logs",
+        "status": "ok",
+        "data": {
+          "pod": "prediction-api-66b7f69475-pskcf",
+          "logs": "INFO:     10.42.0.1:60516 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60532 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60652 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60658 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60660 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40766 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40776 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:40792 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43628 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43642 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:43656 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54188 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54200 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54204 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38582 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38596 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38610 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50354 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50360 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:50368 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45866 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45872 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45876 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60586 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60594 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:60606 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35742 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35756 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35758 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38446 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38458 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:38460 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42130 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42136 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:42142 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34826 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34842 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34858 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49190 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49206 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:49208 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33390 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33394 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33396 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45738 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45746 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45756 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45004 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45014 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45022 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47062 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47078 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:47088 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34988 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35004 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:35018 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54876 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54892 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:54906 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45888 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45904 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:45916 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48710 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48714 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:48716 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33994 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34002 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:34016 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57640 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57650 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57652 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:53170 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:53184 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:53198 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57174 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57188 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:57194 - \"GET /healthz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33466 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33480 - \"GET /readyz HTTP/1.1\" 200 OK\nINFO:     10.42.0.1:33496 - \"GET /healthz HTTP/1.1\" 200 OK\n"
+        },
+        "error": null,
+        "duration_ms": 61.103,
+        "request_id": "live-verification"
+      }
+    ]
+  }
+}

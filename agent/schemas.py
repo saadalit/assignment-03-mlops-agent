@@ -95,3 +95,4 @@ class AgentResponse(BaseModel):
     uncertainties: list[str]
     recommendations: list[str]
     evidence: list[ToolResult]
+    planner_trace: list[dict[str, Any]] = Field(default_factory=list)

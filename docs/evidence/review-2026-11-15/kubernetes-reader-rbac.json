@@ -1,0 +1,12 @@
+{
+    "collected_at":  "2026-11-15T15:23:05.1495681Z",
+    "source":  "live Kubernetes authorization check",
+    "result":  {
+                   "identity":  "system:serviceaccount:mlops:mlops-agent-reader",
+                   "action":  "patch deployment/prediction-api",
+                   "namespace":  "mlops",
+                   "allowed":  false,
+                   "stdout":  "no",
+                   "exit_code":  1
+               }
+}

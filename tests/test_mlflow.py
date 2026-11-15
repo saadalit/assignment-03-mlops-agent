@@ -58,10 +58,13 @@ def test_missing_experiment_does_not_fabricate(settings):
 
 def test_compare_reads_metrics_params_artifacts(settings):
     client = Mock()
-    client.get_run.side_effect = [run("a", 0.8), run("b", 0.9)]
+    a, b = run("a", 0.8), run("b", 0.9)
+    b.info.experiment_id = "2"
+    client.get_run.side_effect = [a, b]
     client.list_artifacts.return_value = [NS(path="model.joblib", is_dir=False, file_size=100)]
     results = MLflowTools(settings, client).compare_runs(["a" * 32, "b" * 32])["runs"]
     assert results[0]["artifacts"][0]["path"] == "model.joblib"
     assert results[1]["metrics"]["f1"] == 0.9
+    assert {r["experiment_id"] for r in results} == {"1", "2"}
     with pytest.raises(ValueError):
         MLflowTools(settings, client).compare_runs(["bad/id", "b" * 32])

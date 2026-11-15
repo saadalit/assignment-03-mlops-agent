@@ -1,0 +1,11 @@
+{
+    "collected_at":  "2026-11-15T15:37:44.3506046Z",
+    "source":  "working source and reachable Git history",
+    "result":  {
+                   "files_checked":  156,
+                   "history_blobs_checked":  178,
+                   "violations":  [
+
+                                  ]
+               }
+}

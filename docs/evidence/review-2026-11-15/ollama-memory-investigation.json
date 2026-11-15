@@ -1,0 +1,14 @@
+{
+  "collected_at": "2026-11-15T14:36:12.728844+00:00",
+  "source": "live local services",
+  "result": {
+    "observed_at": "2026-11-15T14:32:02+00:00",
+    "source": "Observed Ollama 0.13.5 server stderr and HTTP response during first mandatory attempt",
+    "http_status": 500,
+    "error": "model requires more system memory (1.1 GiB) than is available (929.4 MiB)",
+    "agent_response": "No operational evidence collected; LLM planner unavailable; no rules fallback",
+    "resolution_applied": "Enabled a temporary 2 GiB swap file outside the repository; total swap 3 GiB",
+    "all_four_services_kept_available": true,
+    "resolution_verification": "See the subsequent mandatory Ollama conversation; this record alone is not a success claim"
+  }
+}

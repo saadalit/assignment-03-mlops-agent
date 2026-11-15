@@ -5,6 +5,7 @@ No mock results are used. Failure injection requires an explicit operator flag.
 
 import argparse
 import json
+import logging
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -54,7 +55,14 @@ def converse(settings, name, message, confirmations=None):
 
 
 def main():
+    global EVIDENCE
+    logger = logging.getLogger("mlops.tools")
+    logger.setLevel(logging.INFO)
+    logger.addHandler(logging.StreamHandler())
     parser = argparse.ArgumentParser()
+    parser.add_argument("--planner", choices=["ollama", "rules"], default="ollama")
+    parser.add_argument("--output", type=Path, default=EVIDENCE)
+    parser.add_argument("--only-multi", action="store_true")
     parser.add_argument(
         "--trigger", action="store_true", help="Explicitly start and await training"
     )
@@ -65,6 +73,8 @@ def main():
     )
     args = parser.parse_args()
     settings = Settings.from_env()
+    settings.planner = args.planner
+    EVIDENCE = args.output
     airflow, mlflow = AirflowTools(settings), MLflowTools(settings)
     if args.trigger:
         response = converse(
@@ -83,6 +93,9 @@ def main():
         if result["run"]["state"] != "success":
             raise RuntimeError("Training failed; inspect real Airflow task evidence")
         converse(settings, "conversation-03-completion", "Report the training pipeline status")
+    if args.only_multi:
+        verify_multi(settings)
+        return
     best = mlflow.best_run()["candidate"]
     if not best:
         raise RuntimeError("No real MLflow candidate is available")
@@ -97,22 +110,7 @@ def main():
         "Compare the last five training runs and recommend the best model based on F1 score",
     )
     converse(settings, "conversation-04-deployment", "Check Kubernetes deployment health and logs")
-    integrated = converse(
-        settings,
-        "conversation-05-multi-tool",
-        "Find the best recent model, identify the dataset version used to train it, "
-        "check the deployment status, and explain whether retraining is necessary",
-    )
-    names = {r.tool for r in integrated.evidence}
-    required = {
-        "mlflow.best_run",
-        "dvc.current_version",
-        "kubernetes.deployment_status",
-        "airflow.list_runs",
-    }
-    assert required <= names, "Mandatory scenario did not query all four integrations"
-    assert all(r.status == "ok" for r in integrated.evidence), "Live integration call failed"
-    assert not any("trigger" in n or "restart" in n for n in names)
+    verify_multi(settings)
     save("mlflow-experiments", mlflow.list_experiments())
     save("mlflow-runs", mlflow.list_runs())
     save("mlflow-registry", mlflow.registry())
@@ -136,7 +134,56 @@ def main():
             if promotion["state"] == "success":
                 raise RuntimeError("Safety violation: failed workflow promoted a candidate")
             converse(settings, f"failure-{name}-diagnosis", "Diagnose the failed training pipeline")
+        recovery = airflow._request(
+            "POST",
+            airflow._dag(settings.airflow_dag),
+            json={"logical_date": datetime.now(UTC).isoformat(), "conf": {}},
+        )
+        recovered = wait_run(airflow, recovery["dag_run_id"])
+        save("failure-recovery-run", recovered)
+        if recovered["run"]["state"] != "success":
+            raise RuntimeError("Normal pipeline did not recover after removing fault injection")
     print("Live evidence exported; no credentials included", flush=True)
+
+
+def verify_multi(settings):
+    integrated = converse(
+        settings,
+        "conversation-05-multi-tool",
+        "Find the best recent model, identify the dataset version used to train it, "
+        "check the deployment status, and explain whether retraining is necessary",
+    )
+    names = {r.tool for r in integrated.evidence}
+    required = {
+        "mlflow.best_run",
+        "dvc.current_version",
+        "kubernetes.deployment_status",
+        "kubernetes.list_workloads",
+        "kubernetes.services",
+        "kubernetes.events",
+        "airflow.list_runs",
+    }
+    assert required <= names, "Mandatory scenario did not query all four integrations and health"
+    successful = {r.tool for r in integrated.evidence if r.status == "ok"}
+    assert required <= successful, "Mandatory integration lacks successful live evidence"
+    assert not any("trigger" in n or "restart" in n for n in names)
+    assert not any("planner unavailable" in u for u in integrated.uncertainties)
+    if settings.planner == "ollama":
+        assert integrated.planner_trace, "No actual LLM turns recorded"
+    candidate = next(
+        r.data["candidate"] for r in integrated.evidence if r.tool == "mlflow.best_run"
+    )
+    assert candidate, "No recorded model candidate"
+    version = next(
+        r.data
+        for r in integrated.evidence
+        if r.tool == "dvc.current_version"
+        and r.status == "ok"
+        and r.data.get("git_commit") == candidate["tags"]["dataset_git_commit"]
+    )
+    assert version["git_commit"] == candidate["tags"]["dataset_git_commit"]
+    assert any(o.get("md5") == candidate["tags"]["dataset_md5"] for o in version["outputs"])
+    return integrated
 
 
 if __name__ == "__main__":

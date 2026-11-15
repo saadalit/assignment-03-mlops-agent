@@ -1,0 +1,64 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.7.0
+rootdir: /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3
+configfile: pyproject.toml
+testpaths: tests
+plugins: hydra-core-1.3.8, anyio-4.16.0, platformdirs-4.14.5, cov-7.0.0
+collected 66 items
+
+tests/test_airflow.py ......                                             [  9%]
+tests/test_dvc.py .......                                                [ 19%]
+tests/test_executor.py ..........                                        [ 34%]
+tests/test_kubernetes.py ......                                          [ 43%]
+tests/test_llm_protocol.py ...........                                   [ 60%]
+tests/test_mlflow.py ....                                                [ 66%]
+tests/test_orchestrator.py .............                                 [ 86%]
+tests/test_repository_audit.py ..                                        [ 89%]
+tests/test_training_api.py .......                                       [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:51
+  /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/lib/python3.12/site-packages/starlette/testclient.py:51: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+tests/test_training_api.py::test_inference_predicts_and_rejects_bad_shape
+  /mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/.venv/lib/python3.12/site-packages/joblib/numpy_pickle.py:207: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+  As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+    array.shape = self.shape
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                              Stmts   Miss  Cover   Missing
+---------------------------------------------------------------
+agent/__init__.py                     0      0   100%
+agent/config.py                      20      0   100%
+agent/executor.py                    79      0   100%
+agent/main.py                        43     13    70%   36, 45-61, 65
+agent/orchestrator.py               325     37    89%   47-48, 143, 147, 149, 151, 175-176, 178-182, 190, 198, 201, 206, 320, 426, 431, 436, 493, 504, 506-507, 527-528, 539, 545-553, 558, 563, 580, 607-608, 623
+agent/permissions.py                  7      0   100%
+agent/schemas.py                     59      0   100%
+agent/tools/__init__.py               0      0   100%
+agent/tools/airflow_tools.py         45      4    91%   25, 47, 65-69
+agent/tools/dvc_tools.py             51      3    94%   62-64
+agent/tools/kubernetes_tools.py      69     27    61%   18-25, 78-81, 104-107, 131, 140-158
+agent/tools/mlflow_tools.py          43      3    93%   33, 94-95
+api/__init__.py                       0      0   100%
+api/main.py                          44      2    95%   21, 54
+training/__init__.py                  0      0   100%
+training/prepare_data.py             16     16     0%   1-22
+training/stages.py                   95     34    64%   26, 29, 31, 33, 52, 95-147, 159, 166-168, 174-178
+training/train.py                    43     43     0%   1-53
+---------------------------------------------------------------
+TOTAL                               939    182    81%
+Coverage XML written to file coverage.xml
+================== 66 passed, 10 warnings in 82.35s (0:01:22) ==================

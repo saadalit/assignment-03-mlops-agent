@@ -1,0 +1,163 @@
+{
+  "collected_at": "2026-11-15T14:28:01.053010+00:00",
+  "source": "live local services",
+  "result": {
+    "experiment": "iris-classification",
+    "days": 30,
+    "runs": [
+      {
+        "run_id": "3dfc622f86e24cb7991c6908386e0d06",
+        "experiment_id": "1",
+        "status": "FINISHED",
+        "start_time": 1794752848084,
+        "end_time": 1794752860001,
+        "metrics": {
+          "accuracy": 0.9555555555555556,
+          "f1": 0.9555555555555556
+        },
+        "params": {
+          "max_depth": "3",
+          "n_estimators": "60",
+          "split_seed": "42",
+          "test_size": "0.3",
+          "min_f1": "0.85"
+        },
+        "tags": {
+          "mlflow.user": "airflow",
+          "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+          "mlflow.source.type": "LOCAL",
+          "mlflow.runName": "4c10d9a647efa375",
+          "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "dataset_pointer": "data/iris.csv.dvc",
+          "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+          "quality_gate": "passed",
+          "evaluation_split": "stratified-seed42-test0.3"
+        }
+      },
+      {
+        "run_id": "96b1307c2a2e48c9a222a7e60b2da734",
+        "experiment_id": "1",
+        "status": "FINISHED",
+        "start_time": 1794752072647,
+        "end_time": 1794752101202,
+        "metrics": {
+          "accuracy": 0.9555555555555556,
+          "f1": 0.9555555555555556
+        },
+        "params": {
+          "max_depth": "3",
+          "n_estimators": "60",
+          "split_seed": "42",
+          "test_size": "0.3",
+          "min_f1": "0.85"
+        },
+        "tags": {
+          "mlflow.user": "saadalit",
+          "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+          "mlflow.source.type": "LOCAL",
+          "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "mlflow.runName": "pipeline",
+          "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "dataset_pointer": "data/iris.csv.dvc",
+          "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+          "quality_gate": "passed",
+          "evaluation_split": "stratified-seed42-test0.3"
+        }
+      },
+      {
+        "run_id": "9c20b53eb631463a97839018275358d4",
+        "experiment_id": "1",
+        "status": "FINISHED",
+        "start_time": 1794751851362,
+        "end_time": 1794751872624,
+        "metrics": {
+          "accuracy": 0.9333333333333333,
+          "f1": 0.9332591768631814
+        },
+        "params": {
+          "max_depth": "1",
+          "n_estimators": "60",
+          "split_seed": "42",
+          "test_size": "0.3",
+          "min_f1": "0.85"
+        },
+        "tags": {
+          "mlflow.user": "saadalit",
+          "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+          "mlflow.source.type": "LOCAL",
+          "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "mlflow.runName": "review-shallow",
+          "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "dataset_pointer": "data/iris.csv.dvc",
+          "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+          "quality_gate": "passed",
+          "evaluation_split": "stratified-seed42-test0.3"
+        }
+      },
+      {
+        "run_id": "61579cacc8064b8889afed658d0fad25",
+        "experiment_id": "1",
+        "status": "FINISHED",
+        "start_time": 1794751635822,
+        "end_time": 1794751662195,
+        "metrics": {
+          "accuracy": 0.9555555555555556,
+          "f1": 0.9555555555555556
+        },
+        "params": {
+          "max_depth": "3",
+          "n_estimators": "60",
+          "split_seed": "42",
+          "test_size": "0.3",
+          "min_f1": "0.85"
+        },
+        "tags": {
+          "mlflow.user": "saadalit",
+          "mlflow.source.name": "/mnt/d/FAST NUCES/7th Semester/MLOps/Assignment3/training/train.py",
+          "mlflow.source.type": "LOCAL",
+          "mlflow.source.git.commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "mlflow.runName": "review-deploy",
+          "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "dataset_git_commit": "90464ab8104e4f5dc7d6fc2fc6c57c55da5cf064",
+          "dataset_pointer": "data/iris.csv.dvc",
+          "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+          "quality_gate": "passed",
+          "evaluation_split": "stratified-seed42-test0.3"
+        }
+      },
+      {
+        "run_id": "12ea6ed7b3de463bab159f9f454a01df",
+        "experiment_id": "1",
+        "status": "FINISHED",
+        "start_time": 1794328061837,
+        "end_time": 1794328077229,
+        "metrics": {
+          "accuracy": 0.9555555555555556,
+          "f1": 0.9555555555555556
+        },
+        "params": {
+          "max_depth": "3",
+          "n_estimators": "60",
+          "split_seed": "42",
+          "test_size": "0.3",
+          "min_f1": "0.85"
+        },
+        "tags": {
+          "mlflow.user": "airflow",
+          "mlflow.source.name": "/home/airflow/.local/bin/airflow",
+          "mlflow.source.type": "LOCAL",
+          "mlflow.runName": "5fc09526c5c30b8f",
+          "dataset_md5": "5c2fcf018f5f74ee80f846aabcc97f36",
+          "dataset_git_commit": "9f5392f260f0db71a772e172359810ce85cd7208",
+          "dataset_pointer": "data/iris.csv.dvc",
+          "dataset_version": "md5:5c2fcf018f5f74ee80f846aabcc97f36",
+          "quality_gate": "passed",
+          "evaluation_split": "stratified-seed42-test0.3"
+        }
+      }
+    ]
+  }
+}

@@ -9,6 +9,10 @@ pytest tests, GitHub Actions, and exported demonstrations.
 See [architecture](architecture.md), [technical report](docs/report.md),
 [tool permissions](docs/tools.md), and [requirement mapping](docs/requirements.md).
 
+The [15 November review](docs/review-2026-11-15.md) records the requirement-by-requirement
+audit, changes, current checks, and remaining verification. Historical 10 November exports
+are preserved; new results live under [the dated evidence directory](docs/evidence/review-2026-11-15/).
+
 ## Install and configure
 
 Use Linux/WSL2, Python **3.12**, Git, [uv](https://docs.astral.sh/uv/getting-started/installation/),
@@ -121,17 +125,38 @@ docker run -d --name assignment3-ollama -p 127.0.0.1:11434:11434 \
   -v assignment3-ollama:/root/.ollama ollama/ollama:0.13.5
 docker exec assignment3-ollama ollama pull qwen2.5:1.5b
 uv run mlops-agent "List the DVC tracked datasets" --planner ollama
+uv run mlops-agent "Find the best recent model, identify the dataset version used to train it, check the deployment status, and explain whether retraining is necessary" --planner ollama
 ```
 
-For an existing stopped container, use `docker start assignment3-ollama`. The verification
-stops the LLM afterward to free memory. On a 4 GB machine, temporarily stopping Airflow for
-a DVC-only LLM demonstration leaves more memory; restart it before multi-tool checks.
+For an existing stopped container, use `docker start assignment3-ollama`. Stop it after
+verification to free memory. Keep Airflow running for the mandatory four-tool scenario.
 
 The model proposes JSON-schema tool calls via Ollama `/api/chat`. Final operational prose
 is rendered from actual tool results. The small model is suitable for demonstration; complex
 open-ended requests benefit from a stronger tool-capable model and more memory.
 `OLLAMA_TIMEOUT_SECONDS` defaults to 180 to accommodate CPU cold starts. DVC-only questions
-receive the five DVC tool definitions; multi-tool questions retain the complete registry.
+receive the five DVC tool definitions. Multi-tool requests initially receive the full registry;
+subsequent turns advertise outstanding evidence tools to focus the small model.
+The LLM chooses calls and receives their results through a bounded loop (12 turns, 24 proposed
+calls, and a configurable `OLLAMA_MAX_SECONDS=600` total deadline). Duplicate calls are not
+executed again. An incomplete mandatory scenario prompts the model to collect missing evidence;
+it never falls back silently to rules. `planner_trace` records the serving model, token counts,
+and proposed tool names/arguments (scrubbed). Full evidence is exported while model context uses bounded
+excerpts. Dataset correlation requires the selected run's exact Git reference and pointer.
+On a constrained CPU host, use `OLLAMA_TIMEOUT_SECONDS=360` and `OLLAMA_MAX_SECONDS=1200`.
+The 4 GB WSL review environment needed 3 GB total swap to load the model alongside all services.
+Stopping Airflow is unsuitable for the mandatory four-integration demonstration. Model responses
+are capped by `OLLAMA_NUM_PREDICT=256`, and schema display titles are omitted to reduce overhead;
+all input constraints remain enforced.
+
+If the small model emits prose before completing the mandatory check or proposes invalid
+arguments, planning switches to Ollama's supported JSON-schema response format. The LLM selects
+the next function and its arguments from the outstanding tools; execution and authorization use
+the same registry. The trace distinguishes `native_tools` and `json_schema` turns. Regex character
+classes are expanded for Ollama 0.13's grammar compatibility; Pydantic remains the input authority.
+The mandatory dataset lookup's schema uses the commit/pointer actually recorded by MLflow,
+preventing the small model from substituting a model-artifact path. Recovery context retains
+actual tool results and drops obsolete model prose and argument guesses.
 
 To launch the authenticated agent HTTP interface:
 
@@ -164,7 +189,9 @@ CI needs neither external credentials nor a cluster.
 With all real services running and inference deployed:
 
 ```bash
-uv run python scripts/demo.py --trigger --confirm-failures
+uv run python scripts/demo.py --planner rules --trigger --confirm-failures --output docs/evidence/review-2026-11-15
+OLLAMA_TIMEOUT_SECONDS=360 OLLAMA_MAX_SECONDS=1200 TOOL_TIMEOUT_SECONDS=45 uv run python scripts/demo.py --planner ollama --only-multi --output docs/evidence/review-2026-11-15/ollama
+uv run python -m scripts.verify_live --output docs/evidence/review-2026-11-15
 uv run python scripts/smoke_inference.py
 uv run python scripts/readiness_failure.py --confirm
 ```
@@ -173,6 +200,14 @@ uv run python scripts/readiness_failure.py --confirm
 two deliberate failures: invalid data and an impossible quality threshold. Registration must
 remain blocked. The readiness script injects an incorrect probe path, captures diagnosis,
 then restores the original path and verifies recovery.
+
+To demonstrate comparison across distinct MLflow experiments, create a separately tracked
+baseline using the existing training workflow, then rerun the read-only verification:
+
+```bash
+MLFLOW_EXPERIMENT_NAME=iris-classification-baseline uv run python -m training.train --workspace .local/runs/review-baseline --max-depth 1
+uv run python -m scripts.verify_live --output docs/evidence/review-2026-11-15
+```
 
 [docs/evidence](docs/evidence/) contains real service exports, meeting the PDF's screenshots
 **or exported evidence** requirement. [The report](docs/report.md) explains the five scenarios,
@@ -190,3 +225,21 @@ docker stop assignment3-ollama  # if started
 Stop foreground MLflow with Ctrl+C. Volumes and `.local` preserve state. Never commit `.env`,
 `config.local`, kubeconfigs, tokens, model binaries, service databases, or private logs.
 The assignment PDF is retained locally only.
+
+## Verify the repository submission
+
+```bash
+uv run python -m scripts.verify_local
+uv run python -m scripts.audit_repository --history
+```
+
+`verify_local` saves actual commands, exit codes, timestamps and output for the CI checks.
+`audit_repository` checks submission paths, configured local secrets and recognizable credentials,
+including reachable Git history. It reports filenames/object IDs without printing credentials.
+Submit the GitHub repository link. Source, frozen dependencies, documentation and scrubbed
+evidence belong in Git; local credentials, databases, runtime caches and model binaries remain
+ignored. No archive is required.
+
+GitHub Actions runs on pull requests and main pushes. Earlier failed runs can remain in history;
+the final submitted commit should have a passing run. Local CI-equivalent checks do not establish
+a hosted Actions result for changes that have not been pushed.

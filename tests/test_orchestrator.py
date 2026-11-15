@@ -95,6 +95,19 @@ def test_missing_provenance_not_substituted_with_head(settings, monkeypatch):
     assert any("lacks complete" in u for u in result.uncertainties)
 
 
+def test_unrelated_dvc_lookup_cannot_verify_selected_model(settings, monkeypatch):
+    ex = mocked_executor(monkeypatch, settings)
+    ex.tools["dvc.current_version"].handler = lambda **kw: {
+        "pointer": "data/iris.csv.dvc",
+        "git_commit": "c" * 40,
+        "outputs": [{"md5": "abc"}],
+    }
+    result = Orchestrator(settings, ex).run(AgentRequest(message="Find the best model"))
+    assert any(
+        "exact Git/DVC dataset reference was not verified" in u for u in result.uncertainties
+    )
+
+
 def test_unavailable_run_does_not_substitute_current_dataset(settings, monkeypatch):
     ex = mocked_executor(monkeypatch, settings, failing="mlflow.get_run")
     result = Orchestrator(settings, ex).run(
